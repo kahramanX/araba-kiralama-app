@@ -209,7 +209,6 @@ header {
         width: 50%;
         display: flex;
         align-items: center;
-        text-align: justify;
 
 
         .brand-title {
@@ -221,7 +220,8 @@ header {
             font-size: 16px;
             font-family: 'Inter', sans-serif;
             font-weight: 400;
-            width: 70%;
+            text-align: justify;
+            width: 80%;
         }
 
         .brand-img {
@@ -231,7 +231,7 @@ header {
             box-shadow: #32325d40 0px 0px 5px 1px;
             display: flex;
             align-items: center;
-            margin-right: 150px;
+            margin-right: 200px;
         }
 
         img {

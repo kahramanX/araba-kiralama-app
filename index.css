@@ -233,7 +233,6 @@ header .account-container .sign-up:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  text-align: justify;
 }
 
 .brand-section .part-2 .brand-title {
@@ -245,7 +244,8 @@ header .account-container .sign-up:hover {
   font-size: 16px;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  width: 70%;
+  text-align: justify;
+  width: 80%;
 }
 
 .brand-section .part-2 .brand-img {
@@ -260,7 +260,7 @@ header .account-container .sign-up:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-right: 150px;
+  margin-right: 200px;
 }
 
 .brand-section .part-2 img {
