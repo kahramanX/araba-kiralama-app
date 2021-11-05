@@ -146,7 +146,7 @@ header .account-container .sign-up:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 60%;
+  width: 450px;
   background-color: #F9FBFD;
   -webkit-box-shadow: #32325d40 0px 0px 5px 1px inset;
           box-shadow: #32325d40 0px 0px 5px 1px inset;
@@ -173,8 +173,7 @@ header .account-container .sign-up:hover {
 .brand-section {
   margin-top: 100px;
   padding-top: 100px;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  border-radius: 30px;
   -webkit-box-shadow: #32325d40 0px 0px 10px 1px inset;
           box-shadow: #32325d40 0px 0px 10px 1px inset;
 }
@@ -220,13 +219,15 @@ header .account-container .sign-up:hover {
 
 .brand-section .part img {
   width: 250px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .brand-section .part-2 {
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 70px;
   width: 50%;
+  margin-bottom: 70px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -266,5 +267,47 @@ header .account-container .sign-up:hover {
 .brand-section .part-2 img {
   border-radius: 20px;
   width: 250px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+footer {
+  color: white;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  height: 13em;
+  background: -webkit-gradient(linear, left top, right top, from(#3861fb), to(#ea3943));
+  background: linear-gradient(to right, #3861fb, #ea3943);
+  padding: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+footer .ft-part-logo .ft-logo {
+  font-weight: 700;
+  font-size: 100px;
+  background: -webkit-gradient(linear, right top, left top, from(#ea3943)), #3861fb 80%;
+  background: linear-gradient(to left, #ea3943), #3861fb 80%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+footer ul li {
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+footer .ul-header-in-ft {
+  cursor: default;
+  list-style-type: none;
+  margin-left: -10px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=index.css.map */
