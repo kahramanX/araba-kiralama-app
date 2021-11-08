@@ -23,7 +23,7 @@ export default [{
         il: "Adıyaman",
         plaka: "02",
         ilceler: [
-            "Adıyaman",
+            "Merkez",
             "Besni",
             "Çelikhan",
             "Gerger",
@@ -39,7 +39,7 @@ export default [{
         il: "Afyon",
         plaka: "03",
         ilceler: [
-            "Afyonkarahisar",
+            "Merkez",
             "Başmakçı",
             "Bayat",
             "Bolvadin",
@@ -63,7 +63,7 @@ export default [{
         il: "Ağrı",
         plaka: "04",
         ilceler: [
-            "Ağrı",
+            "Merkez",
             "Diyadin",
             "Doğubayazıt",
             "Eleşkirt",
@@ -77,7 +77,7 @@ export default [{
         il: "Amasya",
         plaka: "05",
         ilceler: [
-            "Amasya",
+            "Merkez",
             "Göynücek",
             "Gümüşhacıköy",
             "Hamamözü",
@@ -146,7 +146,7 @@ export default [{
         il: "Artvin",
         plaka: "08",
         ilceler: [
-            "Artvin",
+            "Merkez",
             "Ardanuç",
             "Arhavi",
             "Borçka",
@@ -210,7 +210,7 @@ export default [{
         il: "Bilecik",
         plaka: "11",
         ilceler: [
-            "Bilecik",
+            "Merkez",
             "Bozüyük",
             "Gölpazarı",
             "İnhisar",
@@ -224,7 +224,7 @@ export default [{
         il: "Bingöl",
         plaka: "12",
         ilceler: [
-            "Bingöl",
+            "Merkez",
             "Adaklı",
             "Genç",
             "Karlıova",
@@ -238,7 +238,7 @@ export default [{
         il: "Bitlis",
         plaka: "13",
         ilceler: [
-            "Bitlis",
+            "Merkez",
             "Adilcevaz",
             "Ahlat",
             "Güroymak",
@@ -251,7 +251,7 @@ export default [{
         il: "Bolu",
         plaka: "14",
         ilceler: [
-            "Bolu",
+            "Merkez",
             "Dörtdivan",
             "Gerede",
             "Göynük",
@@ -266,7 +266,7 @@ export default [{
         il: "Burdur",
         plaka: "15",
         ilceler: [
-            "Burdur",
+            "Merkez",
             "Ağlasun",
             "Altınyayla",
             "Bucak",
@@ -306,7 +306,7 @@ export default [{
         il: "Çanakkale",
         plaka: "17",
         ilceler: [
-            "Çanakkale",
+            "Merkez",
             "Ayvacık",
             "Bayramiç",
             "Biga",
@@ -324,7 +324,7 @@ export default [{
         il: "Çankırı",
         plaka: "18",
         ilceler: [
-            "Çankırı",
+            "Merkez",
             "Atkaracalar",
             "Bayramören",
             "Çerkeş",
@@ -342,7 +342,7 @@ export default [{
         il: "Çorum",
         plaka: "19",
         ilceler: [
-            "Çorum",
+            "Merkez",
             "Alaca",
             "Bayat",
             "Boğazkale",
@@ -410,7 +410,7 @@ export default [{
         il: "Edirne",
         plaka: "22",
         ilceler: [
-            "Edirne",
+            "Merkez",
             "Enez",
             "Havsa",
             "İpsala",
@@ -425,7 +425,7 @@ export default [{
         il: "Elazığ",
         plaka: "23",
         ilceler: [
-            "Elâzığ",
+            "Merkez",
             "Ağın",
             "Alacakaya",
             "Arıcak",
@@ -442,7 +442,7 @@ export default [{
         il: "Erzincan",
         plaka: "24",
         ilceler: [
-            "Erzincan",
+            "Merkez",
             "Çayırlı",
             "İliç",
             "Kemah",
@@ -518,7 +518,7 @@ export default [{
         il: "Giresun",
         plaka: "28",
         ilceler: [
-            "Giresun",
+            "Merkez",
             "Alucra",
             "Bulancak",
             "Çamoluk",
@@ -540,7 +540,7 @@ export default [{
         il: "Gümüşhane",
         plaka: "29",
         ilceler: [
-            "Gümüşhane",
+            "Merkez",
             "Kelkit",
             "Köse",
             "Kürtün",
@@ -552,7 +552,7 @@ export default [{
         il: "Hakkari",
         plaka: "30",
         ilceler: [
-            "Hakkâri",
+            "Merkez",
             "Çukurca",
             "Derecik",
             "Şemdinli",
@@ -584,7 +584,7 @@ export default [{
         il: "Isparta",
         plaka: "32",
         ilceler: [
-            "Isparta",
+            "Merkez",
             "Aksu",
             "Atabey",
             "Eğirdir",
@@ -703,7 +703,7 @@ export default [{
         il: "Kars",
         plaka: "36",
         ilceler: [
-            "Kars",
+            "Merkez",
             "Akyaka",
             "Arpaçay",
             "Digor",
@@ -717,7 +717,7 @@ export default [{
         il: "Kastamonu",
         plaka: "37",
         ilceler: [
-            "Kastamonu",
+            "Merkez",
             "Abana",
             "Ağlı",
             "Araç",
@@ -765,7 +765,7 @@ export default [{
         il: "Kırklareli",
         plaka: "39",
         ilceler: [
-            "Kırklareli",
+            "Merkez",
             "Babaeski",
             "Demirköy",
             "Kofçaz",
@@ -779,7 +779,7 @@ export default [{
         il: "Kırşehir",
         plaka: "40",
         ilceler: [
-            "Kırşehir",
+            "Merkez",
             "Akçakent",
             "Akpınar",
             "Boztepe",
@@ -847,7 +847,7 @@ export default [{
         il: "Kütahya",
         plaka: "43",
         ilceler: [
-            "Kütahya",
+            "Merkez",
             "Altıntaş",
             "Aslanapa",
             "Çavdarhisar",
@@ -960,7 +960,7 @@ export default [{
         il: "Muş",
         plaka: "49",
         ilceler: [
-            "Muş",
+            "Merkez",
             "Bulanık",
             "Hasköy",
             "Korkut",
@@ -972,7 +972,7 @@ export default [{
         il: "Nevşehir",
         plaka: "50",
         ilceler: [
-            "Nevşehir",
+            "Merkez",
             "Acıgöl",
             "Avanos",
             "Derinkuyu",
@@ -986,7 +986,7 @@ export default [{
         il: "Niğde",
         plaka: "51",
         ilceler: [
-            "Niğde",
+            "Merkez",
             "Altunhisar",
             "Bor",
             "Çamardı",
@@ -1023,7 +1023,7 @@ export default [{
         il: "Rize",
         plaka: "53",
         ilceler: [
-            "Rize",
+            "Merkez",
             "Ardeşen",
             "Çamlıhemşin",
             "Çayeli",
@@ -1086,7 +1086,7 @@ export default [{
         il: "Siirt",
         plaka: "56",
         ilceler: [
-            "Siirt",
+            "Merkez",
             "Baykan",
             "Eruh",
             "Kurtalan",
@@ -1099,7 +1099,7 @@ export default [{
         il: "Sinop",
         plaka: "57",
         ilceler: [
-            "Sinop",
+            "Merkez",
             "Ayancık",
             "Boyabat",
             "Dikmen",
@@ -1114,7 +1114,7 @@ export default [{
         il: "Sivas",
         plaka: "58",
         ilceler: [
-            "Sivas",
+            "Merkez",
             "Akıncılar",
             "Altınyayla",
             "Divriği",
@@ -1154,7 +1154,7 @@ export default [{
         il: "Tokat",
         plaka: "60",
         ilceler: [
-            "Tokat",
+            "Merkez",
             "Almus",
             "Artova",
             "Başçiftlik",
@@ -1196,7 +1196,7 @@ export default [{
         il: "Tunceli",
         plaka: "62",
         ilceler: [
-            "Tunceli",
+            "Merkez",
             "Çemişgezek",
             "Hozat",
             "Mazgirt",
@@ -1229,7 +1229,7 @@ export default [{
         il: "Uşak",
         plaka: "64",
         ilceler: [
-            "Uşak",
+            "Merkez",
             "Banaz",
             "Eşme",
             "Karahallı",
@@ -1260,7 +1260,7 @@ export default [{
         il: "Yozgat",
         plaka: "66",
         ilceler: [
-            "Yozgat",
+            "Merkez",
             "Akdağmadeni",
             "Aydıncık",
             "Boğazlıyan",
@@ -1280,7 +1280,7 @@ export default [{
         il: "Zonguldak",
         plaka: "67",
         ilceler: [
-            "Zonguldak",
+            "Merkez",
             "Alaplı",
             "Çaycuma",
             "Devrek",
@@ -1294,7 +1294,7 @@ export default [{
         il: "Aksaray",
         plaka: "68",
         ilceler: [
-            "Aksaray",
+            "Merkez",
             "Ağaçören",
             "Eskil",
             "Gülağaç",
@@ -1308,7 +1308,7 @@ export default [{
         il: "Bayburt",
         plaka: "69",
         ilceler: [
-            "Bayburt",
+            "Merkez",
             "Aydıntepe",
             "Demirözü"
         ]
@@ -1317,7 +1317,7 @@ export default [{
         il: "Karaman",
         plaka: "70",
         ilceler: [
-            "Karaman",
+            "Merkez",
             "Ayrancı",
             "Başyayla",
             "Ermenek",
@@ -1329,7 +1329,7 @@ export default [{
         il: "Kırıkkale",
         plaka: "71",
         ilceler: [
-            "Kırıkkale",
+            "Merkez",
             "Bahşili",
             "Balışeyh",
             "Çelebi",
@@ -1343,7 +1343,7 @@ export default [{
         il: "Batman",
         plaka: "72",
         ilceler: [
-            "Batman",
+            "Merkez",
             "Beşiri",
             "Gercüş",
             "Hasankeyf",
@@ -1355,7 +1355,7 @@ export default [{
         il: "Şırnak",
         plaka: "73",
         ilceler: [
-            "Şırnak",
+            "Merkez",
             "Beytüşşebap",
             "Cizre",
             "Güçlükonak",
@@ -1368,7 +1368,7 @@ export default [{
         il: "Bartın",
         plaka: "74",
         ilceler: [
-            "Bartın",
+            "Merkez",
             "Amasra",
             "Kurucaşile",
             "Ulus"
@@ -1378,7 +1378,7 @@ export default [{
         il: "Ardahan",
         plaka: "75",
         ilceler: [
-            "Ardahan",
+            "Merkez",
             "Çıldır",
             "Damal",
             "Göle",
@@ -1390,7 +1390,7 @@ export default [{
         il: "Iğdır",
         plaka: "76",
         ilceler: [
-            "Iğdır",
+            "Merkez",
             "Aralık",
             "Karakoyunlu",
             "Tuzluca"
@@ -1400,7 +1400,7 @@ export default [{
         il: "Yalova",
         plaka: "77",
         ilceler: [
-            "Yalova",
+            "Merkez",
             "Altınova",
             "Armutlu",
             "Çınarcık",
@@ -1412,7 +1412,7 @@ export default [{
         il: "Karabük",
         plaka: "78",
         ilceler: [
-            "Karabük",
+            "Merkez",
             "Eflani",
             "Eskipazar",
             "Ovacık",
@@ -1424,7 +1424,7 @@ export default [{
         il: "Kilis",
         plaka: "79",
         ilceler: [
-            "Kilis",
+            "Merkez",
             "Elbeyli",
             "Musabeyli",
             "Polateli"
@@ -1434,7 +1434,7 @@ export default [{
         il: "Osmaniye",
         plaka: "80",
         ilceler: [
-            "Osmaniye",
+            "Merkez",
             "Bahçe",
             "Düziçi",
             "Hasanbeyli",
@@ -1447,7 +1447,7 @@ export default [{
         il: "Düzce",
         plaka: "81",
         ilceler: [
-            "Düzce",
+            "Merkez",
             "Akçakoca",
             "Cumayeri",
             "Çilimli",
