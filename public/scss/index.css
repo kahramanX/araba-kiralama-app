@@ -137,7 +137,6 @@ header .account-container .sign-up:hover {
 }
 
 .search-boxs-container .nereden-search-box {
-  border: 10px solid red;
   font-weight: 700;
   border-radius: 10px;
   height: 50px;
@@ -147,7 +146,7 @@ header .account-container .sign-up:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 450px;
+  width: 100%;
   background-color: #F9FBFD;
   -webkit-box-shadow: #32325d40 0px 0px 5px 1px inset;
           box-shadow: #32325d40 0px 0px 5px 1px inset;

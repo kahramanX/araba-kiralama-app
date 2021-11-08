@@ -129,13 +129,12 @@ header {
     background-color: white;
 
     .nereden-search-box {
-        border: 10px solid red;
         font-weight: 700;
         border-radius: 10px;
         height: 50px;
         display: flex;
         align-items: center;
-        width: 450px;
+        width: 100%;
         background-color: #F9FBFD;
         box-shadow: #32325d40 0px 0px 5px 1px inset;
         text-align: center;
