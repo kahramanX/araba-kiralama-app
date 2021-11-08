@@ -1,82 +1,44 @@
-/*class SearchBox{
-
-    constructor(){
-
-        let neredenBox = document.querySelector(".nereden-search-box");
-        console.log(neredenBox);
-    }
-
-    eventListeners(){
-        this.neredenBox.addEventListener("click", this.whenClickedSearchBox);
-    }
-
-    ekranayaz(){
-        console.log("ÇALIŞAN Bİ FONKS")
-    }
-
-    whenClickedSearchBox(e){
-
-        if (e.target.classList == "nereden-search-box") {
-            console.log("tıklandı")
-            console.log(e.target)
-        }
-        else{
-            console.log("tıklanmadı")
-        }
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function(){
-    let nereden = new SearchBox();
-    nereden;
-})
-*/
 import turkey from "../api/il-api.js";
 
-console.log(turkey.il);
+let provinces = turkey;
+
 let neredenBox = document.querySelector(".nereden-search-box");
-console.log(neredenBox);
 
 
-function eventListeners(){
+function eventListeners() {
     neredenBox.addEventListener("click", whenClickedSearchBox);
 }
 
 eventListeners();
 
-function whenClickedSearchBox(e){
+function whenClickedSearchBox(e) {
     if (e.target.className == "nereden-search-box") {
-
         e.target.children[2].remove();
 
         createSelectTag();
     }
 }
+//    <option value="">${element.il}</option>
 
 function createSelectTag() {
     let selectSection = document.querySelector(".select-section");
 
-    let selectElements = `<label for="provinces">İl seçin</label>
+    let selectElement = `<label for="provinces">İl seçin</label>
     <select name="" id="provinces">
-        <option value="izmir">izmir</option>
-    </select>
-
-    <label for="districts">İlçe seçin</label>
-    <select name="" id="districts">
-        <option value="menemen">menemen</option>
+        ${addProvinces()}
     </select>`;
 
-    selectSection.innerHTML = selectElements;
+    selectSection.innerHTML = selectElement;
+}
 
-    /*
-    <label for="provinces">İl seçin</label>
-                <select name="" id="provinces">
-                    <option value="izmir">izmir</option>
-                </select>
+function addProvinces() {
+    let arr = [];
 
-                <label for="districts">İlçe seçin</label>
-                <select name="" id="districts">
-                    <option value="menemen">menemen</option>
-                </select>
-                */
+    for (let i = 0; i < turkey.length; i++) {
+
+        let element = `<option value="">${turkey[i].il}</option>`;
+        
+        arr.push(element);
+    }
+    return arr;
 }
