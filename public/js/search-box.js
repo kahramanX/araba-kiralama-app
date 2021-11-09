@@ -3,6 +3,10 @@ import turkey from "../api/il-api.js";
 let provinces = turkey;
 
 let neredenBox = document.querySelector(".nereden-search-box");
+//let selectSection = document.querySelector(".select-section");
+let provinceSection = document.querySelector(".province-section");
+let districtSection = document.querySelector(".district-section");
+
 
 
 function eventListeners() {
@@ -13,23 +17,29 @@ eventListeners();
 
 function whenClickedSearchBox(e) {
     if (e.target.className == "nereden-search-box") {
-        
-        e.target.children[2].remove();
 
-        createSelectTag();
+        //e.target.children[2].remove();
+        let willDeletedPTag = document.querySelector(".nereden-search-box>.delete-after");
+        willDeletedPTag.remove();
+
+        createSelectTagForProvinces();
+        createSelectTagForDistricts();
     }
 }
-//    <option value="">${element.il}</option>
 
-function createSelectTag() {
-    let selectSection = document.querySelector(".select-section");
+function createSelectTagForProvinces() {
 
     let selectElement = `<label for="provinces">İl seçin</label>
     <select name="provinces" id="provinces">
         ${addProvinces()}
     </select>`;
 
-    selectSection.innerHTML = selectElement;
+    provinceSection.innerHTML = selectElement;
+
+    // Bundan sonraki kısım, selected olan option elementini seçmek için
+    let select = document.querySelector("select");
+
+    select.addEventListener("change", findSelectedProvince)
 }
 
 function addProvinces() {
@@ -38,7 +48,7 @@ function addProvinces() {
     for (let i = 0; i < turkey.length; i++) {
 
         let element = `<option value="${turkey[i].il}">${turkey[i].il}</option>`;
-        
+
         arr.push(element);
     }
 
@@ -48,15 +58,41 @@ function addProvinces() {
 
 
 function findSelectedProvince() {
-    let getSelectedProvince = document.querySelectorAll("option")
+    let selectTag = document.querySelector("#provinces"); // select elementinin id'si
 
-        let arr = [];
-    getSelectedProvince.forEach((element, i) => {
+    let selectValue = selectTag.value;
 
-        arr.push(element.selected)
+    addDistrict(selectValue);
+    //console.log(selectValue);
+}
 
-    })
-    console.log(arr)
-    
-    console.log(getSelectedProvince)
+
+
+
+
+function createSelectTagForDistricts() {
+
+    let selectElement = `<label for="districts">İlçe seçin</label>
+    <select name="districts" id="districts">
+        ${addDistrict()}
+    </select>`;
+
+    districtSection.innerHTML = selectElement;
+}
+
+function addDistrict(province) {
+
+    //let arr2 = [];
+
+   let arrayed = turkey.filter((el) => {
+        if (el.il.includes(province)) {
+            let selectedDistrict = el.ilceler;
+
+            return selectedDistrict
+        }
+
+    });
+
+    console.log(arrayed)
+    return arrayed;
 }
