@@ -51,15 +51,6 @@ function addProvinces() {
     return arr.join("");
 }
 
-/* function findSelectedProvince() {
-    let selectTag = document.querySelector("#provinces"); // select elementinin id'si
-
-    let selectValue = selectTag.value;
-
-    addDistrict(selectValue);
-    //console.log(selectValue);
-} */
-
 function createSelectTagForDistricts() {
 
     let selectElement = `<label for="districts">İlçe seçin</label>
