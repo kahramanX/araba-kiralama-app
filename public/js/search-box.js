@@ -19,7 +19,7 @@ function whenClickedSearchBox(e) {
     if (e.target.className == "nereden-search-box") {
 
         //e.target.children[2].remove();
-        let willDeletedPTag = document.querySelector(".nereden-search-box>.delete-after");
+        let willDeletedPTag = document.querySelector(".nereden-search-box .delete-after");
         willDeletedPTag.remove();
 
         createSelectTagForProvinces();
@@ -66,11 +66,30 @@ function findSelectedProvince() {
     //console.log(selectValue);
 }
 
+function addDistrict(province) {
 
+    let arr = [];
 
+    turkey.filter((el) => {
 
+        if (el.il.includes(province)) {
 
-function createSelectTagForDistricts() {
+            let districts = el.ilceler;
+
+            for (let i = 0; i < districts.length; i++) {
+
+                let selectedDistrict = `<option value="${districts[i]}">${districts[i]}</option>`;
+
+                arr.push(selectedDistrict);
+            }
+        }
+    });
+
+    console.log(arr);
+    return arr;
+}
+
+function createSelectTagForDistricts(callback) {
 
     let selectElement = `<label for="districts">İlçe seçin</label>
     <select name="districts" id="districts">
@@ -78,21 +97,4 @@ function createSelectTagForDistricts() {
     </select>`;
 
     districtSection.innerHTML = selectElement;
-}
-
-function addDistrict(province) {
-
-    //let arr2 = [];
-
-   let arrayed = turkey.filter((el) => {
-        if (el.il.includes(province)) {
-            let selectedDistrict = el.ilceler;
-
-            return selectedDistrict
-        }
-
-    });
-
-    console.log(arrayed)
-    return arrayed;
 }
