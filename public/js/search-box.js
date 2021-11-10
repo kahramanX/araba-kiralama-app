@@ -1,19 +1,15 @@
 import turkey from "../api/il-api.js";
 
-let provinces = turkey;
-
 let neredenBox = document.querySelector(".nereden-search-box");
 //let selectSection = document.querySelector(".select-section");
 let provinceSection = document.querySelector(".province-section");
 let districtSection = document.querySelector(".district-section");
 
-
+eventListeners();
 
 function eventListeners() {
     neredenBox.addEventListener("click", whenClickedSearchBox);
 }
-
-eventListeners();
 
 function whenClickedSearchBox(e) {
     if (e.target.className == "nereden-search-box") {
@@ -23,7 +19,6 @@ function whenClickedSearchBox(e) {
         willDeletedPTag.remove();
 
         createSelectTagForProvinces();
-        createSelectTagForDistricts();
     }
 }
 
@@ -39,7 +34,7 @@ function createSelectTagForProvinces() {
     // Bundan sonraki kısım, selected olan option elementini seçmek için
     let select = document.querySelector("select");
 
-    select.addEventListener("change", findSelectedProvince)
+    select.addEventListener("change", createSelectTagForDistricts)
 }
 
 function addProvinces() {
@@ -56,17 +51,29 @@ function addProvinces() {
     return arr.join("");
 }
 
-
-function findSelectedProvince() {
+/* function findSelectedProvince() {
     let selectTag = document.querySelector("#provinces"); // select elementinin id'si
 
     let selectValue = selectTag.value;
 
     addDistrict(selectValue);
     //console.log(selectValue);
+} */
+
+function createSelectTagForDistricts() {
+
+    let selectElement = `<label for="districts">İlçe seçin</label>
+    <select name="districts" id="districts">
+        ${addDistrict()}
+    </select>`;
+
+    districtSection.innerHTML = selectElement;
 }
 
-function addDistrict(province) {
+function addDistrict() {
+    let selectTag = document.querySelector("#provinces"); // select elementinin id'si
+
+    let province = selectTag.value;
 
     let arr = [];
 
@@ -80,6 +87,7 @@ function addDistrict(province) {
 
                 let selectedDistrict = `<option value="${districts[i]}">${districts[i]}</option>`;
 
+                console.log(selectedDistrict);
                 arr.push(selectedDistrict);
             }
         }
@@ -87,14 +95,4 @@ function addDistrict(province) {
 
     console.log(arr);
     return arr;
-}
-
-function createSelectTagForDistricts(callback) {
-
-    let selectElement = `<label for="districts">İlçe seçin</label>
-    <select name="districts" id="districts">
-        ${addDistrict()}
-    </select>`;
-
-    districtSection.innerHTML = selectElement;
 }
