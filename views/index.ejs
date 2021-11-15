@@ -1,171 +1,93 @@
-<!DOCTYPE html>
-<html lang="tr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--SCSS COMPILER-->
-    <link rel="stylesheet" href="/public/scss/index.css">
-    <!--SCSS COMPILER-->
-    <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
-    <!--Google Fonts-->
-    <title>iCAR - Araba Kiralama Hizmeti</title>
-</head>
-
-<body>
-    <header>
-        <div class="logo">
-            iCAR
+<div class="home-image-container">
+    <img src="public/images/map-location-pin.jpg" alt="">
+    <h2>Size en yakın noktayı seçin,<br>
+        kiralamaya başlayın!</h2>
+</div>
+<div class="search-boxs-container">
+    <div class="nereden-search-box">
+        <div class="paper-plane-icon">
+            <img src="public/icons/paper-plane.png" alt="">
         </div>
-        <div class="account-container">
-            <div class="login">Giriş yap</div>
-            <div class="sign-up">Üye ol</div>
-    </header>
+        <form action="" method="POST">
 
-    <div class="home-image-container">
-        <img src="public/images/map-location-pin.jpg" alt="">
-        <h2>Size en yakın noktayı seçin,<br>
-            kiralamaya başlayın!</h2>
-    </div>
-
-    <div class="search-boxs-container">
-        <div class="nereden-search-box">
-            <div class="paper-plane-icon">
-                <img src="public/icons/paper-plane.png" alt="">
-            </div>
-            <form action="" method="POST">
-
-                <div class="select-section">
-                    <div class="province-section">
-
-                    </div>
-                    <div class="district-section">
-
-                    </div>
-
-                    <!-- javascript
-                <label for="provinces">İl seçin</label>
-                <select name="" id="provinces">
-                    <option value="izmir">izmir</option>
-                </select>
-
-                <label for="districts">İlçe seçin</label>
-                <select name="" id="districts">
-                    <option value="menemen">menemen</option>
-                </select>
-            -->
+            <div class="select-section">
+                <div class="province-section">
 
                 </div>
-                <p class="delete-after">Nereden almak istiyorsun?</p>
-        </div>
+                <div class="district-section">
 
-        <button class="search-btn">
-            <img src="public/icons/search-icon.png" alt="">
-        </button>
+                </div>
 
-        </form>
+                <!-- javascript
+            <label for="provinces">İl seçin</label>
+            <select name="" id="provinces">
+                <option value="izmir">izmir</option>
+            </select>
 
+            <label for="districts">İlçe seçin</label>
+            <select name="" id="districts">
+                <option value="menemen">menemen</option>
+            </select>
+        -->
+
+            </div>
+            <p class="delete-after">Nereden almak istiyorsun?</p>
     </div>
 
-    <section class="brand-section">
-        <div class="part">
-            <div class="text-container">
-                <p class="brand-title">Son model araçlar</p>
-                <p class="brand-text">Trafik ve sizin için en güvenli sürüş deneyimi için,
-                    sadece son model ve belirli kriterlere sahip araçlarımızı dahil ettik.</p>
-            </div>
+    <button type="submit" class="search-btn">
+        <img src="public/icons/search-icon.png" alt="">
+    </button>
 
-            <div class="brand-img">
-                <img src="public/images/arac.png" alt="">
-            </div>
+    </form>
+
+</div>
+
+<section class="brand-section">
+    <div class="part">
+        <div class="text-container">
+            <p class="brand-title">Son model araçlar</p>
+            <p class="brand-text">Trafik ve sizin için en güvenli sürüş deneyimi için,
+                sadece son model ve belirli kriterlere sahip araçlarımızı dahil ettik.</p>
         </div>
 
-        <div class="part-2">
-            <div class="brand-img">
-                <img src="public/images/saglik.jpg" alt="">
-            </div>
+        <div class="brand-img">
+            <img src="public/images/arac.png" alt="">
+        </div>
+    </div>
 
-            <div class="text-container">
-                <p class="brand-title">Sağlığınız için</p>
-                <p class="brand-text">Toplum ve sizin sağlığınız için tüm önlemleri alıyoruz. Araçlarımızı dezenfekte
-                    edip size öyle teslim ediyoruz.</p>
-            </div>
+    <div class="part-2">
+        <div class="brand-img">
+            <img src="public/images/saglik.jpg" alt="">
         </div>
 
-        <div class="part">
-            <div class="text-container">
-                <p class="brand-title">81 il, tam hizmet</p>
-                <p class="brand-text">Türkiye'nin 81 ilinden kullanıcılarımız ile birlikte, istediğiniz il ve ilçeden
-                    araç kiralayabilirsiniz.</p>
-            </div>
+        <div class="text-container">
+            <p class="brand-title">Sağlığınız için</p>
+            <p class="brand-text">Toplum ve sizin sağlığınız için tüm önlemleri alıyoruz. Araçlarımızı dezenfekte
+                edip size öyle teslim ediyoruz.</p>
+        </div>
+    </div>
 
-            <div class="brand-img">
-                <img src="public/images/turkey-map.png" alt="">
-            </div>
+    <div class="part">
+        <div class="text-container">
+            <p class="brand-title">81 il, tam hizmet</p>
+            <p class="brand-text">Türkiye'nin 81 ilinden kullanıcılarımız ile birlikte, istediğiniz il ve ilçeden
+                araç kiralayabilirsiniz.</p>
         </div>
 
-        <div class="part-2">
-            <div class="brand-img">
-                <img src="public/images/discount.jpg" alt="">
-            </div>
-
-            <div class="text-container">
-                <p class="brand-title">%5 indirim</p>
-                <p class="brand-text">Yeni üye olan müşterilerimize anında %5 indirim tanımlanır. Yalnızca ilk kiralama
-                    hizmeti için geçerlidir.</p>
-            </div>
+        <div class="brand-img">
+            <img src="public/images/turkey-map.png" alt="">
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <div class="ft-part-logo">
-            <div class="ft-logo">
-                iCAR
-            </div>
+    <div class="part-2">
+        <div class="brand-img">
+            <img src="public/images/discount.jpg" alt="">
         </div>
 
-        <div>
-            <ul>
-                <li class="ul-header-in-ft">Sosyal medya</li>
-                <li>Instagram</li>
-                <li>Facebook</li>
-                <li>Twitter</li>
-            </ul>
+        <div class="text-container">
+            <p class="brand-title">%5 indirim</p>
+            <p class="brand-text">Yeni üye olan müşterilerimize anında %5 indirim tanımlanır. Yalnızca ilk kiralama
+                hizmeti için geçerlidir.</p>
         </div>
-
-        <div>
-            <ul>
-                <li class="ul-header-in-ft">Kiralayan</li>
-                <li>İlgili Kişi Başvuru Formu</li>
-                <li>Kiralama Şartları</li>
-                <li>Genel Kiralama Koşulları</li>
-            </ul>
-        </div>
-
-        <div>
-            <ul>
-                <li class="ul-header-in-ft">Genel</li>
-                <li>Hakkımızda</li>
-                <li>Çerez Politikası</li>
-                <li>İş fırsatları</li>
-            </ul>
-        </div>
-
-        <div>
-            <ul>
-                <li class="ul-header-in-ft">İletişim</li>
-                <li>0 (532) 444 44 44</li>
-                <li>bilgi@iCar.com</li>
-            </ul>
-        </div>
-    </footer>
-
-    <script type="module" src="public/js/search-box.js"></script>
-</body>
-
-</html>
+    </div>
+</section>
