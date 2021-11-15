@@ -5,8 +5,7 @@ const ejsLayouts = require('express-ejs-layouts');
 const app = express();
 
 //router
-const searchRouter = require('./routes/searchRouter')
-
+//const searchRouter = require('./routes/searchRouter')
 
 // EJS layouts
 app.use(ejsLayouts);
@@ -21,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 // Router middleware
-app.use(searchRouter);
+//app.use(searchRouter);
 
 //static files
 app.use("/public", express.static(path.join(__dirname, 'public')));
