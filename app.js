@@ -2,7 +2,22 @@
 const express = require('express');
 const path = require('path');
 const ejsLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
+const passport = require('passport');
 const app = express();
+
+// db connection
+mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", (error)=>{
+    if(!error){
+        console.log("Database bağlandı!");
+    }
+    else{
+        console.log(error);
+    }
+})
+
+//start passport
+passport.initialize();
 
 //router
 const userRoutes = require('./routes/userRoutes');
