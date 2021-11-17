@@ -57,8 +57,15 @@ app.post("/giris", (req, res) => {
     res.send(`Giriş yaptığınız mail:${mail} <br> Şifreniz: ${password}`);
 })
 
-app.get("/uye-ol", (req, res) => {
+app.get("/kayit", (req, res) => {
     res.render("register.ejs");
+})
+
+
+app.post("/kayit", (req, res) => {
+    let { username, surname, mail, password } = req.body;
+
+    res.send(`Adınız: ${username} <br> Soyadınız: ${surname} <br> kayıt maili:${mail} <br> Şifreniz: ${password}`);
 })
 
 // bilinmeyen route yapmak için herhangi bir değer yazmamalıyız
