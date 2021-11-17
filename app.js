@@ -4,6 +4,8 @@ const path = require('path');
 const ejsLayouts = require('express-ejs-layouts');
 const app = express();
 
+const userRoutes = require('./routes/userRoutes');
+
 //router
 //const searchRouter = require('./routes/searchRouter')
 
@@ -25,47 +27,10 @@ app.use(express.urlencoded({ extended: true }));
 //static files
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
+app.use(userRoutes);
+
 app.get('/', (req, res) => {
     res.render("index");
-})
-
-app.post("/", (req, res) => {
-
-    let {
-        provinces: province,
-        districts: district
-    } = req.body;
-
-    if (province == undefined || district == undefined) {
-
-        //res.send("il ve ilçeyi seçmeniz gerekiyor");
-        res.render("index.ejs", );
-    }
-    if (province !== undefined && district !== undefined) {
-        res.redirect(`${province}/${district}`);
-    }
-
-})
-
-app.get("/giris", (req, res) => {
-    res.render("login.ejs");
-})
-
-app.post("/giris", (req, res) => {
-    let { mail, password } = req.body;
-
-    res.send(`Giriş yaptığınız mail:${mail} <br> Şifreniz: ${password}`);
-})
-
-app.get("/kayit", (req, res) => {
-    res.render("register.ejs");
-})
-
-
-app.post("/kayit", (req, res) => {
-    let { username, surname, mail, password } = req.body;
-
-    res.send(`Adınız: ${username} <br> Soyadınız: ${surname} <br>Giriş yaptığınız mail:${mail} <br> Şifreniz: ${password}`);
 })
 
 // bilinmeyen route yapmak için herhangi bir değer yazmamalıyız
