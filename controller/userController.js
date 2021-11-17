@@ -1,3 +1,5 @@
+const User = require('../model/User');
+
 module.exports.getGirisPage = (req, res) => {
     res.render("login.ejs");
 };
@@ -15,5 +17,15 @@ module.exports.getKayitPage = (req, res) => {
 module.exports.postKayitPage = (req, res) => {
     let { username, surname, mail, password } = req.body;
 
-    res.render("register.ejs");
+    const newUser = User({
+        username,
+        surname,
+        mail,
+        password
+    })
+
+    newUser.save().then(res => console.log("üye kaydı yapıldı"))
+
+
+    res.send(`Sayın ${username}, kayıt işleminiz başarılı.`);
 };
