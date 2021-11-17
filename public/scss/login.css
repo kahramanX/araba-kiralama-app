@@ -1,0 +1,82 @@
+.login-page-elements {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 70vh;
+}
+
+.login-page-elements label {
+  display: block;
+}
+
+.login-page-elements input {
+  display: block;
+}
+
+.login-page-elements .lp-container {
+  border-radius: 10px;
+  border: 1px solid red;
+  -webkit-box-shadow: #32325d40 0px 0px 5px 1px;
+          box-shadow: #32325d40 0px 0px 5px 1px;
+  width: 500px;
+  height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-page-elements .lp-container #mail-label {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+.login-page-elements .lp-container #mail-label input {
+  margin-top: 10px;
+  border-radius: 5px;
+  border-style: none;
+  -webkit-box-shadow: #32325d40 0px 0px 5px 1px;
+          box-shadow: #32325d40 0px 0px 5px 1px;
+  width: 300px;
+  margin-bottom: 30px;
+  height: 30px;
+  font-size: 1em;
+}
+
+.login-page-elements .lp-container #pass-label {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+.login-page-elements .lp-container #pass-label input {
+  margin-top: 10px;
+  border-radius: 5px;
+  border-style: none;
+  -webkit-box-shadow: #32325d40 0px 0px 5px 1px;
+          box-shadow: #32325d40 0px 0px 5px 1px;
+  width: 300px;
+  margin-bottom: 30px;
+  height: 30px;
+  font-size: 1em;
+}
+
+.login-page-elements .lp-container .lp-btn {
+  background: #3861fb;
+  padding: 8px 13px 8px 13px;
+  border-radius: 10px;
+  border-style: none;
+  color: white;
+  font-size: 1.1em;
+}
+/*# sourceMappingURL=login.css.map */

@@ -17,7 +17,7 @@ app.set("layout", "./layouts/layout");
 
 // express body parser
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 // Router middleware
 //app.use(searchRouter);
@@ -45,6 +45,20 @@ app.post("/", (req, res) => {
         res.redirect(`${province}/${district}`);
     }
 
+})
+
+app.get("/giris", (req, res) => {
+    res.render("login.ejs");
+})
+
+app.post("/giris", (req, res) => {
+    let { mail, password } = req.body;
+
+    res.send(`Giriş yaptığınız mail:${mail} <br> Şifreniz: ${password}`);
+})
+
+app.get("/uye-ol", (req, res) => {
+    res.render("register.ejs");
 })
 
 // bilinmeyen route yapmak için herhangi bir değer yazmamalıyız

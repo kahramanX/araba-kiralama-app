@@ -1,0 +1,63 @@
+.login-page-elements {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+
+    label {
+        display: block;
+    }
+
+    input {
+        display: block;
+    }
+
+    .lp-container {
+        border-radius: 10px;
+        border: 1px solid red;
+        box-shadow: #32325d40 0px 0px 5px 1px;
+        width: 500px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        #mail-label {
+            font-size: 1.3em;
+            font-weight: 500;
+            input {
+                margin-top: 10px;
+                border-radius: 5px;
+                border-style: none;
+                box-shadow: #32325d40 0px 0px 5px 1px;
+                width: 300px;
+                margin-bottom: 30px;
+                height: 30px;
+                font-size: 1em;
+            }
+        }
+        #pass-label {
+            font-size: 1.3em;
+            font-weight: 500;
+            input {
+                margin-top: 10px;
+                border-radius: 5px;
+                border-style: none;
+                box-shadow: #32325d40 0px 0px 5px 1px;
+                width: 300px;
+                margin-bottom: 30px;
+                height: 30px;
+                font-size: 1em;
+            }
+        }
+
+        .lp-btn{
+            background: rgb(56, 97, 251);
+            padding: 8px 13px 8px 13px;
+            border-radius: 10px;
+            border-style: none;
+            color: white;
+            font-size: 1.1em;
+        }
+    }
+}

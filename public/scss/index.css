@@ -71,6 +71,8 @@ header .account-container .login {
   font-size: 700;
   border-radius: 10px;
   color: white;
+  -webkit-text-decoration-style: none;
+          text-decoration-style: none;
   background: linear-gradient(130deg, #ff868d, #ea3943);
 }
 
@@ -85,6 +87,8 @@ header .account-container .sign-up {
   font-size: 700;
   border-radius: 10px;
   color: white;
+  -webkit-text-decoration-style: none;
+          text-decoration-style: none;
   background-color: #3861FB;
 }
 
