@@ -4,10 +4,8 @@ const path = require('path');
 const ejsLayouts = require('express-ejs-layouts');
 const app = express();
 
-const userRoutes = require('./routes/userRoutes');
-
 //router
-//const searchRouter = require('./routes/searchRouter')
+const userRoutes = require('./routes/userRoutes');
 
 // EJS layouts
 app.use(ejsLayouts);
@@ -21,17 +19,33 @@ app.set("layout", "./layouts/layout");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Router middleware
-//app.use(searchRouter);
-
 //static files
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
-app.use(userRoutes);
 
 app.get('/', (req, res) => {
     res.render("index");
 })
+
+app.post('/', (req, res) => {
+
+    let {
+        provinces: province,
+        districts: district
+    } = req.body;
+
+    if (province == undefined || district == undefined) {
+
+        //res.send("il ve ilçeyi seçmeniz gerekiyor");
+        res.render("index.ejs", );
+    }
+    if (province !== undefined && district !== undefined) {
+        res.redirect(`${province}/${district}`);
+    }
+})
+
+// Router middleware
+app.use(userRoutes);
 
 // bilinmeyen route yapmak için herhangi bir değer yazmamalıyız
 /* app.use((req, res) => {

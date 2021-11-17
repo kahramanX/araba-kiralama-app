@@ -1,17 +1,14 @@
 const express = require('express');
-const router = express.Router();
-
 const userController = require('../controller/userController');
 
-app.post("/", userController.postHomePage);
+const router = express.Router();
 
-app.get("/giris", userController.getGirisPage);
+router.get("/giris", userController.getGirisPage);
 
-app.post("/giris", userController.postGirisPage);
+router.post("/giris", userController.postGirisPage);
 
-app.get("/kayit", userController.getKayitPage);
+router.get("/kayit", userController.getKayitPage);
 
-
-app.post("/kayit", usercontroller.postKayitPage);
+router.post("/kayit", userController.postKayitPage);
 
 module.exports = router;
