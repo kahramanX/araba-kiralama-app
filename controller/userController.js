@@ -25,15 +25,23 @@ module.exports.postKayitPage = (req, res) => {
     })
 
     User.findOne({mail}).then((mail) => {
+
         if (mail){
             console.log("Giriş yapamazsın");
-            res.send(`Sayın ${username}, kayıt işleminiz başarısız.`);
-
+            res.send(`Bu mail => (${mail.mail}), zaten kullanılıyor.`);
         } else {
             console.log("Giriş yapabilirsin");
-            newUser.save().then(res => console.log("üye kaydı yapıldı"));
+
+            newUser.save().then((res) => {
+                console.log("üye kaydı yapıldı");
+                res.send(`Bu mail => (${res.mail}) ile giriş yapıldı`);
+                
+            }).catch((res) => {
+                console.log(res)
+                console.log("kayıt yapılamadı");
+            })
+
+
         }
     })
-    
-    res.send(`Sayın ${username}, kayıt işleminiz başarılı.`);
 };
