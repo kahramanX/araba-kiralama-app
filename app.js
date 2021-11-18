@@ -12,7 +12,7 @@ mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirst
         console.log("Database bağlandı!");
     }
     else{
-        console.log(error);
+        console.log("Database bağlanamadı!");
     }
 })
 
