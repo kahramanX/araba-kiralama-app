@@ -32,6 +32,7 @@ module.exports.getKayitPage = (req, res) => {
 };
 
 module.exports.postKayitPage = (req, res) => {
+
     let {
         username,
         surname,
@@ -78,3 +79,10 @@ module.exports.postKayitPage = (req, res) => {
         console.log(err);
     })
 };
+
+
+// kullanıcı paneli
+module.exports.getKullaniciPage = (req, res) => {
+    res.send("kullanıcı sayfasına hoşgeldin");
+
+}

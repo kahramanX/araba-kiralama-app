@@ -20,60 +20,12 @@
 </head>
 
 <body>
-    <header>
-        <a href="/" class="logo">
-            iCAR
-        </a>
-        <div class="account-container">
-            <a href="/giris" class="login">Giriş yap</a>
-            <a href="/kayit" class="sign-up">Üye ol</a>
-    </header>
+    
+    <%- include("../partials/header") %> 
 
     <%- body %> 
 
-    <footer>
-        <div class="ft-part-logo">
-            <div class="ft-logo">
-                iCAR
-            </div>
-        </div>
-    
-        <div>
-            <ul>
-                <li class="ul-header-in-ft">Sosyal medya</li>
-                <li>Instagram</li>
-                <li>Facebook</li>
-                <li>Twitter</li>
-            </ul>
-        </div>
-    
-        <div>
-            <ul>
-                <li class="ul-header-in-ft">Kiralayan</li>
-                <li>İlgili Kişi Başvuru Formu</li>
-                <li>Kiralama Şartları</li>
-                <li>Genel Kiralama Koşulları</li>
-            </ul>
-        </div>
-    
-        <div>
-            <ul>
-                <li class="ul-header-in-ft">Genel</li>
-                <li>Hakkımızda</li>
-                <li>Çerez Politikası</li>
-                <li>İş fırsatları</li>
-            </ul>
-        </div>
-    
-        <div>
-            <ul>
-                <li class="ul-header-in-ft">İletişim</li>
-                <li>0 (532) 444 44 44</li>
-                <li>bilgi@iCar.com</li>
-            </ul>
-        </div>
-    </footer>
-    
+    <%- include("../partials/footer") %>
 
     <script type="module" src="public/js/search-box.js"></script>
 </body>

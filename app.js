@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const ejsLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
-const passport = require('passport');
+// const passport = require('passport');
 const app = express();
 
 // db connection
@@ -17,7 +17,7 @@ mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirst
 })
 
 //start passport
-passport.initialize();
+// passport.initialize();
 
 //router
 const userRoutes = require('./routes/userRoutes');
@@ -62,10 +62,10 @@ app.post('/', (req, res) => {
 // Router middleware
 app.use(userRoutes);
 
-// bilinmeyen route yapmak için herhangi bir değer yazmamalıyız
-/* app.use((req, res) => {
+// bilinmeyen route yapmak için
+app.use((req, res) => {
     res.send("BİLİNMEYEN BİR ADRES GİRİLDİ!");
-}) */
+})
 
 //listening
 app.listen(5000, () => {

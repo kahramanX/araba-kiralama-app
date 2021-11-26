@@ -11,4 +11,8 @@ router.get("/kayit", userController.getKayitPage);
 
 router.post("/kayit", userController.postKayitPage);
 
+// Kullanıcı paneli
+
+router.get("/kullanici", userController.getKullaniciPage);
+
 module.exports = router;
