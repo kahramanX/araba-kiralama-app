@@ -3,21 +3,29 @@ const express = require('express');
 const path = require('path');
 const ejsLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
+const session = require('express-session');
 // const passport = require('passport');
 const app = express();
 
 // db connection
-mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", (error)=>{
-    if(!error){
+mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", (error) => {
+    if (!error) {
         console.log("Database bağlandı!");
-    }
-    else{
+    } else {
         console.log("Database bağlanamadı!");
     }
 })
 
 //start passport
 // passport.initialize();
+
+// session start
+app.use(session({
+    secret: 'secretKey',
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }))
 
 //router
 const userRoutes = require('./routes/userRoutes');
@@ -32,7 +40,9 @@ app.set("layout", "./layouts/layout");
 
 // express body parser
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+    extended: true
+}));
 
 //static files
 app.use("/public", express.static(path.join(__dirname, 'public')));
@@ -41,6 +51,7 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.render("index");
 })
+
 
 app.post('/', (req, res) => {
 
