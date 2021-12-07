@@ -55,12 +55,27 @@ app.use(express.urlencoded({
 //static files
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
+/*  let isAuth = (req, res, next) => {
+    console.log(req.session.isAuth);
+    if (req.session.isAuth) {
+
+        res.render("index",{isAuth : true});
+        next();
+
+    } else {
+        res.render("index");
+    }
+} */
 
 app.get('/', (req, res) => {
 
     console.log(req.session.id);
     console.log(req.session.mail);
-    res.render("index");
+    console.log(req.session.username);
+
+    let isAuth = req.session.isAuth;
+
+    res.render("index", {isAuth});
 })
 
 

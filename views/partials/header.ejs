@@ -3,6 +3,11 @@
         iCAR
     </a>
     <div class="account-container">
+
+        <% if(!isAuth) {%>
         <a href="/giris" class="login">Giriş yap</a>
         <a href="/kayit" class="sign-up">Üye ol</a>
+        <%} else { %>
+            <a href="/kullanici" class="login">Hesabım</a>
+        <% } %>
 </header>
