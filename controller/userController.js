@@ -2,10 +2,6 @@ const User = require('../model/User');
 
 module.exports.getGirisPage = (req, res) => {
 
-    req.session.user = User();
-    req.session.save();
-    console.log(req.session.user);
-
     res.render("login.ejs");
 };
 
@@ -17,7 +13,16 @@ module.exports.postGirisPage = (req, res) => {
 
     User.findOne(req.body).then((response) => {
 
+        req.session.username = response.username;
+        req.session.mail = response.mail;
+        req.session.surname = response.surname;
+
+        console.log(req.session.mail)
+
+        req.session.save();
+
         res.send(`Mail: ${response.mail} <br> Şifre: ${response.password} <br> Bu bilgi ile giriş yaptınız`);
+
 
     }).catch((err) => {
 
@@ -64,6 +69,7 @@ module.exports.postKayitPage = (req, res) => {
 
             newUser.save().then((response2) => {
 
+                console.log(req.session.surname);
                 console.log("üye kaydı yapıldı");
 
                 res.send(`Bu mail => (${response2.mail}) ile kayıt yapıldı `);
@@ -89,23 +95,24 @@ module.exports.postKayitPage = (req, res) => {
 // kullanıcı paneli
 module.exports.getKullaniciPage = (req, res) => {
 
-    res.send(req.session.user);
+    console.log(req.session.user);
     res.send(`<h1>${req.session.user}</h1>`);
 }
 
 module.exports.getCikisPage = (req, res) => {
-    console.log(req.sessionID);
 
-    req.session.destroy(function (err) {
-        if (err) {
+    console.log(req.session.mail)
 
-            console.log("session erişilemiyor");
-            console.log(err);
+    
+     req.session.destroy(function (err) {
+        if (!err) {
 
+            console.log(req.sessionID);
+            res.send("session silindi<br><a href='/'> anasayfaya dön</a>");
         } else {
 
-            res.send("session silindi<br><a href='/'> anasayfaya dön</a>");
-
+            console.log(err);
+            res.send("session erişilemiyor");
         }
-    })
+    });
 }

@@ -4,7 +4,13 @@ const path = require('path');
 const ejsLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const session = require('express-session');
-// const passport = require('passport');
+
+//session store
+const MongoStore = require('connect-mongo')
+
+//router
+const userRoutes = require('./routes/userRoutes');
+
 const app = express();
 
 // db connection
@@ -16,19 +22,21 @@ mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirst
     }
 })
 
-//start passport
-// passport.initialize();
 
 // session start
 app.use(session({
     secret: 'secretKey',
+    store: MongoStore.create({
+        mongoUrl: "mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    }),
     resave: true,
-    saveUninitialized: true,
-    cookie: { secure: false }
-  }))
+    saveUninitialized: true, // true ise session store'a kaydediliyor.
+    cookie: {
+        maxAge: 30 * 60 * 1000, // session süresini belirler, süre bittiğinde db den silinir
+        secure: false
+    }
+}))
 
-//router
-const userRoutes = require('./routes/userRoutes');
 
 // EJS layouts
 app.use(ejsLayouts);
@@ -49,6 +57,8 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', (req, res) => {
+
+    console.log(req.session.id);
     res.render("index");
 })
 
@@ -62,7 +72,6 @@ app.post('/', (req, res) => {
 
     if (province == undefined || district == undefined) {
 
-        //res.send("il ve ilçeyi seçmeniz gerekiyor");
         res.render("index.ejs", );
     }
     if (province !== undefined && district !== undefined) {
@@ -79,6 +88,6 @@ app.use((req, res) => {
 })
 
 //listening
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.info("Server running on http://localhost:5000")
 })

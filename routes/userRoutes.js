@@ -15,5 +15,6 @@ router.post("/kayit", userController.postKayitPage);
 
 router.get("/kullanici", userController.getKullaniciPage);
 
-router.get("/cikis", userController.getCikisPage)
+router.get("/cikis", userController.getCikisPage);
+
 module.exports = router;
