@@ -59,6 +59,7 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
 
     console.log(req.session.id);
+    console.log(req.session.mail);
     res.render("index");
 })
 
