@@ -170,6 +170,22 @@ header .account-container .logout:hover {
   width: 50px;
 }
 
+.search-boxs-container .nereden-search-box .select-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.search-boxs-container .nereden-search-box .select-section .province-section {
+  margin-right: 10px;
+}
+
 .search-boxs-container .search-btn {
   border-radius: 10px;
   border: none;

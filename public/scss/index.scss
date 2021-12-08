@@ -149,6 +149,16 @@ header {
                 width: 50px;
             }
         }
+
+        .select-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .province-section {
+                margin-right: 10px;
+            }
+        }
     }
 
     .search-btn {
