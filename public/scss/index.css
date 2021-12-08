@@ -65,7 +65,8 @@ header .account-container :not(:first-child) {
   margin-left: 50px;
 }
 
-header .account-container .login {
+header .account-container .login,
+header .account-container .account {
   width: 100px;
   height: 50px;
   font-size: 700;
@@ -76,12 +77,13 @@ header .account-container .login {
   background: linear-gradient(130deg, #ff868d, #ea3943);
 }
 
-header .account-container .login:hover {
+header .account-container .login:hover,
+header .account-container .account:hover {
   cursor: pointer;
-  background: linear-gradient(130deg, #ff868d 50%, #ea3943);
 }
 
-header .account-container .sign-up {
+header .account-container .sign-up,
+header .account-container .logout {
   width: 100px;
   height: 50px;
   font-size: 700;
@@ -92,7 +94,8 @@ header .account-container .sign-up {
   background-color: #3861FB;
 }
 
-header .account-container .sign-up:hover {
+header .account-container .sign-up:hover,
+header .account-container .logout:hover {
   cursor: pointer;
 }
 

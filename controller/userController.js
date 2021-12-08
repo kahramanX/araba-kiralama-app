@@ -2,10 +2,15 @@ const User = require('../model/User');
 
 module.exports.getGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    console.log(req.baseUrl)
 
-    res.render("login.ejs", {
-        isAuth
-    });
+    if (!isAuth) {
+        res.render("login.ejs", {
+            isAuth
+        });
+    } else {
+        res.redirect("/");
+    }
 };
 
 module.exports.postGirisPage = (req, res) => {
@@ -20,9 +25,6 @@ module.exports.postGirisPage = (req, res) => {
         req.session.mail = response.mail;
         req.session.surname = response.surname;
         req.session.isAuth = true;
-
-        console.log(req.session.mail);
-        console.log(req.session.username)
 
         req.session.save();
 
@@ -41,10 +43,13 @@ module.exports.postGirisPage = (req, res) => {
 module.exports.getKayitPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    res.render("register.ejs", {
-        isAuth
-    });
-
+    if (!isAuth) {
+        res.render("register.ejs", {
+            isAuth
+        });
+    } else {
+        res.redirect("/");
+    }
 };
 
 module.exports.postKayitPage = (req, res) => {
@@ -98,7 +103,6 @@ module.exports.postKayitPage = (req, res) => {
     })
 };
 
-
 // kullanıcı paneli
 module.exports.getKullaniciPage = (req, res) => {
 
@@ -114,20 +118,20 @@ module.exports.getKullaniciPage = (req, res) => {
 }
 
 module.exports.getCikisPage = (req, res) => {
-
     let isAuth = req.session.isAuth;
 
     if (!isAuth) {
-        res.redirect("/")
+        res.redirect("/");
     } else {
         req.session.destroy(function (err) {
             if (!err) {
 
-                console.log(req.sessionID);
-                res.send("Çıkış yapıldı <br><a href='/'> anasayfaya dön</a>");
+                res.render("logout", {
+                    layout: "layouts/info-layout"
+                })
             } else {
-
                 console.log(err);
+
                 res.send("session erişilemiyor");
             }
         });
