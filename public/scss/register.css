@@ -52,6 +52,7 @@
   margin-bottom: 30px;
   height: 30px;
   font-size: 1em;
+  text-transform: capitalize;
 }
 
 .register-page-elements .rp-container #surname {
@@ -69,6 +70,7 @@
   margin-bottom: 30px;
   height: 30px;
   font-size: 1em;
+  text-transform: capitalize;
 }
 
 .register-page-elements .rp-container #mail-label {
