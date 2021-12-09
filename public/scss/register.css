@@ -2,13 +2,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 80vh;
+  height: auto;
 }
 
 .register-page-elements label {
@@ -20,7 +17,7 @@
 }
 
 .register-page-elements .rp-container {
-  padding: 20px 0;
+  padding: 40px 0;
   border-radius: 10px;
   -webkit-box-shadow: #32325d40 0px 0px 5px 1px;
           box-shadow: #32325d40 0px 0px 5px 1px;
@@ -32,17 +29,14 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
-.register-page-elements .rp-container #username {
+.register-page-elements .rp-container .label-block {
   font-size: 1.3em;
   font-weight: 500;
 }
 
-.register-page-elements .rp-container #username input {
+.register-page-elements .rp-container .label-block input {
   margin-top: 10px;
   border-radius: 5px;
   border-style: none;
@@ -52,67 +46,32 @@
   margin-bottom: 30px;
   height: 30px;
   font-size: 1em;
-  text-transform: capitalize;
+  padding: 5px 10px 5px 10px;
 }
 
-.register-page-elements .rp-container #surname {
-  font-size: 1.3em;
-  font-weight: 500;
-}
-
-.register-page-elements .rp-container #surname input {
+.register-page-elements .rp-container .address-label textarea {
+  display: block;
+  width: auto;
+  height: 100px;
+  overflow-y: scroll;
+  resize: none;
   margin-top: 10px;
   border-radius: 5px;
   border-style: none;
   -webkit-box-shadow: #32325d40 0px 0px 5px 1px;
           box-shadow: #32325d40 0px 0px 5px 1px;
   width: 300px;
-  margin-bottom: 30px;
-  height: 30px;
-  font-size: 1em;
-  text-transform: capitalize;
-}
-
-.register-page-elements .rp-container #mail-label {
-  font-size: 1.3em;
-  font-weight: 500;
-}
-
-.register-page-elements .rp-container #mail-label input {
-  margin-top: 10px;
-  border-radius: 5px;
-  border-style: none;
-  -webkit-box-shadow: #32325d40 0px 0px 5px 1px;
-          box-shadow: #32325d40 0px 0px 5px 1px;
-  width: 300px;
-  margin-bottom: 30px;
-  height: 30px;
-  font-size: 1em;
-}
-
-.register-page-elements .rp-container #pass-label {
-  font-size: 1.3em;
-  font-weight: 500;
-}
-
-.register-page-elements .rp-container #pass-label input {
-  margin-top: 10px;
-  border-radius: 5px;
-  border-style: none;
-  -webkit-box-shadow: #32325d40 0px 0px 5px 1px;
-          box-shadow: #32325d40 0px 0px 5px 1px;
-  width: 300px;
-  margin-bottom: 30px;
-  height: 30px;
-  font-size: 1em;
+  font: inherit;
+  font-weight: 400;
 }
 
 .register-page-elements .rp-container .rp-btn {
+  margin-top: 20px;
   background: #3861fb;
   padding: 8px 13px 8px 13px;
   border-radius: 10px;
   border-style: none;
   color: white;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 /*# sourceMappingURL=register.css.map */

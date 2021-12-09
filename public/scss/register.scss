@@ -1,8 +1,7 @@
 .register-page-elements {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 80vh;
+    height: auto;
 
     label {
         display: block;
@@ -13,18 +12,18 @@
     }
 
     .rp-container {
-        padding: 20px 0;
+        padding: 40px 0;
         border-radius: 10px;
         box-shadow: #32325d40 0px 0px 5px 1px;
         width: 500px;
         height: auto;
         display: flex;
         justify-content: center;
-        align-items: center;
 
-        #username {
+        .label-block {
             font-size: 1.3em;
             font-weight: 500;
+
             input {
                 margin-top: 10px;
                 border-radius: 5px;
@@ -34,62 +33,36 @@
                 margin-bottom: 30px;
                 height: 30px;
                 font-size: 1em;
-                text-transform: capitalize;
+                padding: 5px 10px 5px 10px;
             }
         }
 
-        #surname {
-            font-size: 1.3em;
-            font-weight: 500;
-            input {
+        .address-label {
+            textarea {
+                display: block;
+                width: auto;
+                height: 100px;
+                overflow-y: scroll;
+                resize: none;
+
                 margin-top: 10px;
                 border-radius: 5px;
                 border-style: none;
                 box-shadow: #32325d40 0px 0px 5px 1px;
                 width: 300px;
-                margin-bottom: 30px;
-                height: 30px;
-                font-size: 1em;
-                text-transform: capitalize;
+                font: inherit;
+                font-weight: 400;
             }
         }
 
-        #mail-label {
-            font-size: 1.3em;
-            font-weight: 500;
-            input {
-                margin-top: 10px;
-                border-radius: 5px;
-                border-style: none;
-                box-shadow: #32325d40 0px 0px 5px 1px;
-                width: 300px;
-                margin-bottom: 30px;
-                height: 30px;
-                font-size: 1em;
-            }
-        }
-        #pass-label {
-            font-size: 1.3em;
-            font-weight: 500;
-            input {
-                margin-top: 10px;
-                border-radius: 5px;
-                border-style: none;
-                box-shadow: #32325d40 0px 0px 5px 1px;
-                width: 300px;
-                margin-bottom: 30px;
-                height: 30px;
-                font-size: 1em;
-            }
-        }
-
-        .rp-btn{
+        .rp-btn {
+            margin-top: 20px;
             background: rgb(56, 97, 251);
             padding: 8px 13px 8px 13px;
             border-radius: 10px;
             border-style: none;
             color: white;
-            font-size: 1.1em;
+            font-size: 1.2em;
         }
     }
 }

@@ -304,6 +304,7 @@ header .account-container .logout:hover {
 }
 
 footer {
+  bottom: 0;
   color: white;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;

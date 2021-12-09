@@ -57,14 +57,20 @@ module.exports.postKayitPage = (req, res) => {
         username,
         surname,
         mail,
-        password
+        password,
+        age,
+        phone,
+        address
     } = req.body;
 
     const newUser = User({
         username,
         surname,
         mail,
-        password
+        password,
+        age,
+        phone,
+        address
     });
 
     User.findOne({
