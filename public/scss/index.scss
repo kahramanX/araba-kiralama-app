@@ -5,6 +5,11 @@ body {
     margin: 0;
     box-sizing: border-box;
     overflow-x: hidden;
+    user-select: none;
+
+    a {
+        text-decoration: none;
+    }
 }
 
 // Reset SCSS
@@ -57,7 +62,7 @@ header {
             margin-left: 50px;
         }
 
-        .login, 
+        .login,
         .account {
             width: 100px;
             height: 50px;
@@ -73,7 +78,7 @@ header {
         }
 
         .sign-up,
-         .logout{
+        .logout {
             width: 100px;
             height: 50px;
             font-size: 700;
@@ -88,6 +93,7 @@ header {
         }
     }
 }
+
 //header
 
 // map-location image
@@ -154,7 +160,7 @@ header {
             display: flex;
             align-items: center;
             justify-content: center;
-            
+
             .province-section {
                 margin-right: 10px;
             }
@@ -297,4 +303,5 @@ footer {
     }
 
 }
+
 //Footer section

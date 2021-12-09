@@ -5,6 +5,14 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   overflow-x: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body a {
+  text-decoration: none;
 }
 
 ::-webkit-scrollbar-track {

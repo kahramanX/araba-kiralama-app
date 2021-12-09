@@ -13,7 +13,7 @@ router.post("/kayit", userController.postKayitPage);
 
 // Kullanıcı paneli
 
-router.get("/kullanici", userController.getKullaniciPage);
+router.get("/profil", userController.getKullaniciPage);
 
 router.get("/cikis", userController.getCikisPage);
 

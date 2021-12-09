@@ -21,6 +21,7 @@ module.exports.postGirisPage = (req, res) => {
 
     User.findOne(req.body).then((response) => {
 
+        console.log(response)
         req.session.username = response.username;
         req.session.mail = response.mail;
         req.session.surname = response.surname;
@@ -28,14 +29,11 @@ module.exports.postGirisPage = (req, res) => {
 
         req.session.save();
 
-        res.send(`Mail: ${response.mail} <br> Şifre: ${response.password} <br> Bu bilgi ile giriş yaptınız`);
-
+        res.redirect("/profil");
 
     }).catch((err) => {
 
-        console.log("Bu mailde bir kullanıcı bulunamadı");
-
-        res.send(`Mail: ${err.mail} <br> Şifre: ${err.password} <br> Bu bilgide kullanıcı bulunamadı`);
+        res.send("Bu bilgide kullanıcı bulunamadı");
 
     })
 };
@@ -78,13 +76,9 @@ module.exports.postKayitPage = (req, res) => {
 
         } else {
 
-            console.log("Bu mail ile giriş yapılabilir");
-
             newUser.save().then((response2) => {
 
                 console.log("üye kaydı yapıldı");
-
-                res.send(`Bu mail => (${response2.mail}) ile kayıt yapıldı `);
 
             }).catch((err) => {
 
@@ -108,11 +102,18 @@ module.exports.getKullaniciPage = (req, res) => {
 
     let isAuth = req.session.isAuth;
 
+    let userInfoForProfile = {
+        username: req.session.username,
+        surname: req.session.surname,
+        mail: req.session.mail
+    }
+
     if (!isAuth) {
         res.redirect("/")
     } else {
         res.render("profile", {
-            isAuth
+            isAuth,
+            userInfoForProfile
         });
     }
 }
