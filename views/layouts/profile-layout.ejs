@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--SCSS COMPILER-->
+    <link rel="stylesheet" href="/public/scss/index.css">
+    <link rel="stylesheet" href="/public/scss/profile.css">
+    <!--SCSS COMPILER-->
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <!--Google Fonts-->
+    <title>iCAR - Hesabım</title>
+</head>
+    <%- include("../partials/header", {isAuth}) %>
+
+    <section class="profile-header">
+    <div class="profile-wrapper">
+        <div class="photo-container">
+            <img src="https://i.pravatar.cc/200" alt="Profil Fotoğrafı">
+        </div>
+    </div>
+</section>
+
+<section class="profile-settings-container">
+    <nav>
+        <div class="settings-tab">
+            <div class="tab user-infos">
+                <a href="/profil">Bilgiler</a>
+            </div>
+            <div class="tab edit-user-info">
+                <a href="/profil/duzenle">Düzenle</a>
+            </div>
+            <div class="tab my-rental-cars">
+                <a href="/profil/kiralanan-araclar">Kiralanan Araçlar</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="infos-container">
+        <div class="all-user-info">
+
+            <%- body %> 
+        </div>
+    </div>
+</section>
+
+<%- include("../partials/footer") %>
+
+</html>

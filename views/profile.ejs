@@ -1,44 +1,23 @@
-<section class="profile-header">
-    <div class="profile-wrapper">
-        <div class="photo-container">
-            <img src="https://i.pravatar.cc/200" alt="Profil Fotoğrafı">
-        </div>
-    </div>
-</section>
-
-<section class="profile-settings-container">
-    <nav>
-        <div class="settings-tab">
-            <div class="tab">
-                <a href="">Bilgiler</a>
-            </div>
-            <div class="tab">
-                <a href="">Düzenle</a>
-            </div>
-            <div class="tab">
-                <a href="">Kiralanan Araçlar</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="infos-container">
-        <div class="all-user-info">
-
-            <div class="title-info">
+           <div class="title-info">
                 <h1>Bilgiler:</h1>
             </div>
+
             <div class="username-info info">
-                <p><span>Adı:</span><%= userInfoForProfile.username %> </p>
+                <p style="text-transform: capitalize;"><span>Adı:</span><%= userInfoForProfile.username %> </p>
             </div>
 
             <div class="surname-info info">
-                <p><span>Soyadı:</span><%= userInfoForProfile.surname %> </p>
+                <p style="text-transform: capitalize;"><span>Soyadı:</span><%= userInfoForProfile.surname %> </p>
             </div>
 
             <div class="email-info info">
                 <p><span>E-mail:</span><%= userInfoForProfile.mail %> </p>
             </div>
 
-        </div>
-    </div>
-</section>
+            <div class="tel-info info">
+                <p><span>Tel:</span>0000000 </p>
+            </div>
+
+            <div class="Address-info info">
+                <p><span>Adresim:</span> xxx mahallesi, xxx.sokak xxx sitesi B Blok no 15/1</p>
+            </div>

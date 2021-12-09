@@ -51,6 +51,7 @@ module.exports.getKayitPage = (req, res) => {
 };
 
 module.exports.postKayitPage = (req, res) => {
+    let isAuth = req.session.isAuth;
 
     let {
         username,
@@ -79,6 +80,7 @@ module.exports.postKayitPage = (req, res) => {
             newUser.save().then((response2) => {
 
                 console.log("üye kaydı yapıldı");
+                res.redirect("/giris");
 
             }).catch((err) => {
 
@@ -98,7 +100,7 @@ module.exports.postKayitPage = (req, res) => {
 };
 
 // kullanıcı paneli
-module.exports.getKullaniciPage = (req, res) => {
+module.exports.getProfilePage = (req, res) => {
 
     let isAuth = req.session.isAuth;
 
@@ -113,9 +115,38 @@ module.exports.getKullaniciPage = (req, res) => {
     } else {
         res.render("profile", {
             isAuth,
-            userInfoForProfile
+            userInfoForProfile,
+            layout: "layouts/profile-layout"
         });
     }
+}
+
+module.exports.getDuzenlePage = (req, res) => {
+    let isAuth = req.session.isAuth;
+
+    res.render("profile-edit", {
+        isAuth,
+        layout: "layouts/profile-layout"
+    })
+}
+
+module.exports.postDuzenlePage = (req, res) => {
+
+    /* res.send("düzenleme sayfası") */
+}
+
+module.exports.getMyRentalCarsPage = (req, res) => {
+    let isAuth = req.session.isAuth;
+
+    res.render("profile-my-rental-cars", {
+        isAuth,
+        layout: "layouts/profile-layout"
+    })
+}
+
+module.exports.postMyRentalCarsPage = (req, res) => {
+
+    /* res.send("rental cars sayfası") */
 }
 
 module.exports.getCikisPage = (req, res) => {
