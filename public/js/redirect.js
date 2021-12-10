@@ -3,7 +3,7 @@ function runRedirect(direction) {
         
         setTimeout(() => {
             window.location.href = '/';
-        }, 2000);
+        }, 2500);
     }
 }
 

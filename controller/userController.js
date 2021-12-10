@@ -1,7 +1,12 @@
+const {
+    response
+} = require("express");
 let {
     check,
     validationResult
 } = require("express-validator");
+
+let User = require("../model/User");
 
 module.exports.getGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
@@ -19,8 +24,8 @@ module.exports.getGirisPage = (req, res) => {
 module.exports.postGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    let errors = validationResult(req)
-    console.log(errors)
+    let errors = validationResult(req);
+
     if (!errors.isEmpty()) {
 
         let alert = errors.array();
@@ -76,8 +81,8 @@ module.exports.getKayitPage = (req, res) => {
 module.exports.postKayitPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    let errors = validationResult(req)
-    console.log(errors)
+    let errors = validationResult(req);
+
     if (!errors.isEmpty()) {
 
         let alert = errors.array();
@@ -114,7 +119,14 @@ module.exports.postKayitPage = (req, res) => {
             // response db'de bulunan tüm objeyi getiriyor
             if (response) {
 
-                res.send(`Bu mail => (${response.mail}), zaten kullanılıyor.`);
+                res.render("register", {
+                    isAuth,
+                    alert: [{
+                        value: '',
+                        msg: `Bu mail (${response.mail}) adresi zaten kullanılıyor!`,
+                        param: 'mail',
+                    }]
+                });
 
             } else {
 
@@ -148,20 +160,33 @@ module.exports.getProfilePage = (req, res) => {
 
     let isAuth = req.session.isAuth;
 
-    let userInfoForProfile = {
-        username: req.session.username,
-        surname: req.session.surname,
-        mail: req.session.mail
-    }
+    let mailForFindOne = req.session.mail;
 
     if (!isAuth) {
         res.redirect("/")
     } else {
-        res.render("profile", {
-            isAuth,
-            userInfoForProfile,
-            layout: "layouts/profile-layout"
-        });
+
+        User.findOne({
+                mailForFindOne
+            })
+            .then((response) => {
+
+                let userInfoForProfile = {
+                    username: req.session.username,
+                    surname: req.session.surname,
+                    mail: req.session.mail,
+                    age: response.age,
+                    phone: response.phone,
+                    address: response.address
+                }
+
+                res.render("profile", {
+                    isAuth,
+                    userInfoForProfile,
+                    layout: "layouts/profile-layout"
+                });
+
+            })
     }
 }
 
@@ -203,6 +228,7 @@ module.exports.getCikisPage = (req, res) => {
             if (!err) {
 
                 res.render("logout", {
+                    infoMessage: "Çıkış başarılı!",
                     layout: "layouts/info-layout"
                 })
             } else {

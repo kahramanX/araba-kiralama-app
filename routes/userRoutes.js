@@ -4,8 +4,6 @@ let {
     validationResult
 } = require("express-validator");
 
-const bodyParser = require("body-parser");
-
 const userController = require('../controller/userController');
 
 const router = express.Router();
@@ -13,17 +11,20 @@ const router = express.Router();
 router.get("/giris", userController.getGirisPage);
 
 router.post("/giris", [
+
     check("mail", "Mail alanı boş bırakılamaz!")
     .isEmail(),
-    check("password", "Şifre en az 5 karakterli olmalı!")
+    check("password", "Şifre boş bırakılamaz!")
     .isLength({
         min: 5
     })
+
 ], userController.postGirisPage);
 
 router.get("/kayit", userController.getKayitPage);
 
 router.post("/kayit", [
+
     check("username", "Adınız, 2 harften az olamaz!")
     .exists()
     .isLength({
@@ -35,7 +36,7 @@ router.post("/kayit", [
         min: 2
     }),
     check("mail", "Mail adresi boş bırakılamaz!")
-    .isEmpty(),
+    .isEmail(),
     check("password", "Şifre en az 5 karakterli olmalı!")
     .isLength({
         min: 5
@@ -49,6 +50,7 @@ router.post("/kayit", [
     .isLength({
         min: 15
     })
+
 ], userController.postKayitPage);
 
 // Kullanıcı paneli
