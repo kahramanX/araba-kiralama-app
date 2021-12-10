@@ -193,15 +193,41 @@ module.exports.getProfilePage = (req, res) => {
 module.exports.getDuzenlePage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    res.render("profile-edit", {
-        isAuth,
-        layout: "layouts/profile-layout"
-    })
+    let mailForFindOne = req.session.mail;
+
+    if (!isAuth) {
+        res.redirect("/")
+    } else {
+
+        User.findOne({
+                mailForFindOne
+            })
+            .then((response) => {
+
+                let userInfoForProfile = {
+                    username: req.session.username,
+                    surname: req.session.surname,
+                    mail: req.session.mail,
+                    age: response.age,
+                    phone: response.phone,
+                    address: response.address
+                }
+
+                res.render("profile-edit", {
+                    isAuth,
+                    userInfoForProfile,
+                    layout: "layouts/profile-layout"
+                });
+
+            })
+    }
 }
 
 module.exports.postDuzenlePage = (req, res) => {
 
-    /* res.send("düzenleme sayfası") */
+    
+
+     res.send("düzenleme sayfası");
 }
 
 module.exports.getMyRentalCarsPage = (req, res) => {
