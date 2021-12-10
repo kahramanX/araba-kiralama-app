@@ -1,11 +1,21 @@
 <div class="login-page-elements">
     <div class="lp-header">
-        <h1>Giriş Yap </h1>
-        <div class="lp-container">
+        <div class="alert-info-area">
+            <% if(typeof alert != 'undefined') { %>
+            <% alert.forEach(function(error) { %>
+            <div style="margin-bottom: 20px;" class="info-alert">
+                <%= error.msg %>
+            </div>
+            <% }) %>
+            <% } %>
+        </div>
 
+        <h1>Giriş Yap </h1>
+
+        <div class="lp-container">
             <form action="" method="POST">
                 <label id="mail-label" for="mail">Mail:
-                    <input type="text" name="mail" id="mail">
+                    <input type="email" name="mail" id="mail">
                 </label>
 
                 <label id="pass-label" for="password">Şifre:

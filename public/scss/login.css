@@ -19,6 +19,24 @@
   display: block;
 }
 
+.login-page-elements .alert-info-area {
+  width: 400px;
+  height: auto;
+  padding: 20px 15px 20px 15px;
+}
+
+.login-page-elements .alert-info-area .info-alert {
+  width: 100%;
+  height: auto;
+  border: 5px solid rgba(243, 104, 24, 0.692);
+  background-color: rgba(255, 138, 70, 0.178);
+  border-radius: 20px;
+  padding: 10px 10px 10px 25px;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #ff5e00;
+}
+
 .login-page-elements .lp-container {
   border-radius: 10px;
   -webkit-box-shadow: #32325d40 0px 0px 5px 1px;

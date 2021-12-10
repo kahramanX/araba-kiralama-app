@@ -5,6 +5,12 @@ const ejsLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const session = require('express-session');
 
+let {
+    check,
+    validationResult
+} = require("express-validator");
+
+
 //session store
 const MongoStore = require('connect-mongo')
 
@@ -48,7 +54,7 @@ app.set("layout", "./layouts/layout");
 // express body parser
 app.use(express.json());
 app.use(express.urlencoded({
-    extended: true
+    extended: false
 }));
 
 //static files
@@ -82,9 +88,9 @@ app.post('/', (req, res) => {
 app.use(userRoutes);
 
 // bilinmeyen route yapmak için
-app.use((req, res) => {
+/* app.use((req, res) => {
     res.send("BİLİNMEYEN BİR ADRES GİRİLDİ!");
-})
+}) */
 
 //listening
 app.listen(process.env.PORT || 5000, () => {

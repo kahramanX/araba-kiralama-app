@@ -1,15 +1,55 @@
 const express = require('express');
+let {
+    check,
+    validationResult
+} = require("express-validator");
+
+const bodyParser = require("body-parser");
+
 const userController = require('../controller/userController');
 
 const router = express.Router();
 
 router.get("/giris", userController.getGirisPage);
 
-router.post("/giris", userController.postGirisPage);
+router.post("/giris", [
+    check("mail", "Mail alanı boş bırakılamaz!")
+    .isEmail(),
+    check("password", "Şifre en az 5 karakterli olmalı!")
+    .isLength({
+        min: 5
+    })
+], userController.postGirisPage);
 
 router.get("/kayit", userController.getKayitPage);
 
-router.post("/kayit", userController.postKayitPage);
+router.post("/kayit", [
+    check("username", "Adınız, 2 harften az olamaz!")
+    .exists()
+    .isLength({
+        min: 2
+    }),
+    check("surname", "Soyadınız, 2 harften az olamaz!")
+    .exists()
+    .isLength({
+        min: 2
+    }),
+    check("mail", "Mail adresi boş bırakılamaz!")
+    .isEmpty(),
+    check("password", "Şifre en az 5 karakterli olmalı!")
+    .isLength({
+        min: 5
+    }),
+    check("phone", "Telefon numarası en fazla 10 karakter olmalı ve '0' ile başlamamalı!")
+    .isLength({
+        min: 10,
+        max: 10
+    }),
+    check("address", "Adres en az 15 karakterden oluşmalı!")
+    .isLength({
+        min: 15
+    })
+], userController.postKayitPage);
 
 // Kullanıcı paneli
 

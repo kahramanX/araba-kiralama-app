@@ -12,6 +12,24 @@
         display: block;
     }
 
+    .alert-info-area {
+        width: 400px;
+        height: auto;
+        padding: 20px 15px 20px 15px;
+
+        .info-alert {
+            width: 100%;
+            height: auto;
+            border: 5px solid rgba(243, 104, 24, 0.692);
+            background-color: rgba(255, 138, 70, 0.178);
+            border-radius: 20px;
+            padding: 10px 10px 10px 25px;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: rgb(255, 94, 0);
+        }
+    }
+
     .lp-container {
         border-radius: 10px;
         box-shadow: #32325d40 0px 0px 5px 1px;
@@ -24,20 +42,7 @@
         #mail-label {
             font-size: 1.3em;
             font-weight: 500;
-            input {
-                margin-top: 10px;
-                border-radius: 5px;
-                border-style: none;
-                box-shadow: #32325d40 0px 0px 5px 1px;
-                width: 300px;
-                margin-bottom: 30px;
-                height: 30px;
-                font-size: 1em;
-            }
-        }
-        #pass-label {
-            font-size: 1.3em;
-            font-weight: 500;
+
             input {
                 margin-top: 10px;
                 border-radius: 5px;
@@ -50,7 +55,23 @@
             }
         }
 
-        .lp-btn{
+        #pass-label {
+            font-size: 1.3em;
+            font-weight: 500;
+
+            input {
+                margin-top: 10px;
+                border-radius: 5px;
+                border-style: none;
+                box-shadow: #32325d40 0px 0px 5px 1px;
+                width: 300px;
+                margin-bottom: 30px;
+                height: 30px;
+                font-size: 1em;
+            }
+        }
+
+        .lp-btn {
             background: rgb(56, 97, 251);
             padding: 8px 13px 8px 13px;
             border-radius: 10px;

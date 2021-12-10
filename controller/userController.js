@@ -1,4 +1,7 @@
-const User = require('../model/User');
+let {
+    check,
+    validationResult
+} = require("express-validator");
 
 module.exports.getGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
@@ -14,28 +17,45 @@ module.exports.getGirisPage = (req, res) => {
 };
 
 module.exports.postGirisPage = (req, res) => {
-    let {
-        mail,
-        password
-    } = req.body;
+    let isAuth = req.session.isAuth;
 
-    User.findOne(req.body).then((response) => {
+    let errors = validationResult(req)
+    console.log(errors)
+    if (!errors.isEmpty()) {
 
-        console.log(response)
-        req.session.username = response.username;
-        req.session.mail = response.mail;
-        req.session.surname = response.surname;
-        req.session.isAuth = true;
+        let alert = errors.array();
 
-        req.session.save();
+        res.render("login", {
+            isAuth,
+            alert
+        });
 
-        res.redirect("/profil");
+    } else {
 
-    }).catch((err) => {
+        let {
+            mail,
+            password
+        } = req.body;
 
-        res.send("Bu bilgide kullanıcı bulunamadı");
+        User.findOne(req.body).then((response) => {
 
-    })
+            console.log(response)
+            req.session.username = response.username;
+            req.session.mail = response.mail;
+            req.session.surname = response.surname;
+            req.session.isAuth = true;
+
+            req.session.save();
+
+            res.redirect("/profil");
+
+        }).catch((err) => {
+
+            res.send("Bu bilgide kullanıcı bulunamadı");
+
+        })
+
+    }
 };
 
 module.exports.getKayitPage = (req, res) => {
@@ -45,64 +65,82 @@ module.exports.getKayitPage = (req, res) => {
         res.render("register.ejs", {
             isAuth
         });
+
     } else {
+
         res.redirect("/");
+
     }
 };
 
 module.exports.postKayitPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    let {
-        username,
-        surname,
-        mail,
-        password,
-        age,
-        phone,
-        address
-    } = req.body;
+    let errors = validationResult(req)
+    console.log(errors)
+    if (!errors.isEmpty()) {
 
-    const newUser = User({
-        username,
-        surname,
-        mail,
-        password,
-        age,
-        phone,
-        address
-    });
+        let alert = errors.array();
 
-    User.findOne({
-        mail
-    }).then((response) => { // maili object olarak ekle
-        // response db'de bulunan tüm objeyi getiriyor
-        if (response) {
+        res.render("register", {
+            isAuth,
+            alert
+        });
 
-            res.send(`Bu mail => (${response.mail}), zaten kullanılıyor.`);
+    } else {
+        let {
+            username,
+            surname,
+            mail,
+            password,
+            age,
+            phone,
+            address
+        } = req.body;
 
-        } else {
+        const newUser = User({
+            username,
+            surname,
+            mail,
+            password,
+            age,
+            phone,
+            address
+        });
 
-            newUser.save().then((response2) => {
+        User.findOne({
+            mail
+        }).then((response) => { // maili object olarak ekle
+            // response db'de bulunan tüm objeyi getiriyor
+            if (response) {
 
-                console.log("üye kaydı yapıldı");
-                res.redirect("/giris");
+                res.send(`Bu mail => (${response.mail}), zaten kullanılıyor.`);
 
-            }).catch((err) => {
+            } else {
 
-                console.log("kayıt yapılamadı");
+                newUser.save().then((response2) => {
 
-                console.log(err);
+                    console.log("üye kaydı yapıldı");
 
-            })
+                    res.redirect("/giris");
 
-        }
-    }).catch((err) => {
+                }).catch((err) => {
 
-        console.log("olmadı");
+                    console.log("kayıt yapılamadı");
 
-        console.log(err);
-    })
+                    console.log(err);
+
+                })
+
+            }
+        }).catch((err) => {
+
+            console.log("olmadı");
+
+            console.log(err);
+        })
+    }
+
 };
 
 // kullanıcı paneli

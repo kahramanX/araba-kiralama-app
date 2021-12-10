@@ -1,36 +1,47 @@
 <div class="register-page-elements">
     <div class="rp-header">
+
+        <div class="alert-info-area">
+            <% if(typeof alert != 'undefined') { %>
+            <% alert.forEach(function(error) { %>
+            <div style="margin-bottom: 20px;" class="info-alert">
+                <%= error.msg %>
+            </div>
+            <% }) %>
+            <% } %>
+        </div>
+
         <h1>Kayıt ol</h1>
         <div class="rp-container">
 
-            <form action="" method="POST">
+            <form action="" method="POST" autocomplete="on">
 
                 <label id="username" for="username" class="username label-block">Ad:
-                    <input type="text" name="username" id="username" required>
+                    <input type="text" name="username" id="username" class="username-js">
                 </label>
 
                 <label id="surname" for="surname" class="surname label-block">Soyad:
-                    <input type="text" name="surname" id="surname" required>
+                    <input type="text" name="surname" id="surname" class="surname-js">
                 </label>
 
                 <label id="mail-label" for="mail" class="mail-label label-block">Mail:
-                    <input type="text" name="mail" id="mail" required>
+                    <input type="email" name="mail" id="mail" class="mail-js">
                 </label>
 
                 <label id="pass-label" for="password" class="pass-label label-block">Şifre:
-                    <input type="password" name="password" id="password" required>
+                    <input type="password" name="password" id="password" class="pass-js">
                 </label>
 
                 <label id="age-label" for="age" class="age-label label-block">Yaş:
-                    <input type="number" name="age" min="18" max="100" id="age" required>
+                    <input type="number" name="age" min="18" max="100" id="age" class="age-js">
                 </label>
 
                 <label id="phone-label" for="phone" class="phone-label label-block">Telefon:
-                    <input type="tel" name="phone" id="phone" max="10" required placeholder="542 555 55 55" pattern="[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}">
+                    <input type="tel" name="phone" id="phone" placeholder="5427774433" class="phone-js">
                 </label>
 
                 <label id="address-label" for="address" class="address-label label-block">Adres:
-                    <textarea id="address" name="address" minlength="15" maxlength="200" required></textarea>
+                    <textarea id="address" name="address" maxlength="200" class="address-js"></textarea>
                 </label>
 
                 <button class="rp-btn" type="submit">Kayıt</button>
