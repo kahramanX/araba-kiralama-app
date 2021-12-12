@@ -1,7 +1,6 @@
 .profile-header {
     width: auto;
     height: 140px;
-    border-bottom: 10px solid rgb(116, 116, 116);
 }
 
 .profile-wrapper {
@@ -76,6 +75,7 @@
         align-items: center;
         justify-content: center;
         padding-top: 50px;
+        width: 100%;
 
         .title-info {
             color: rgb(56, 97, 251);

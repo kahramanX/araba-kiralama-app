@@ -2,26 +2,72 @@
     <h1>Bilgilerini düzenle:</h1>
 </div>
 
+<div class="alert-info-area">
+    <% if(typeof alert != 'undefined') { %>
+    <% alert.forEach(function(error) { %>
+    <div style="margin-bottom: 20px;" class="info-alert">
+        <%= error.msg %>
+    </div>
+    <% }) %>
+    <% } %>
+</div>
+
 <div class="username-info info">
-    <p style="text-transform: capitalize;"><span>Adı:</span><%= userInfoForProfile.username %> </p>
+    <h3>Adı düzenle:</h3>
+    <form action="" method="post">
+        <div class="edit-container">
+
+            <input type="text" name="username" id="username" value="<%= userInfoForProfile.username %>">
+        </div>
 </div>
 
 <div class="surname-info info">
-    <p style="text-transform: capitalize;"><span>Soyadı:</span><%= userInfoForProfile.surname %> </p>
+    <h3>Soyadı düzenle:</h3>
+
+    <div class="edit-container">
+        <input type="text" name="surname" id="surname" value="<%= userInfoForProfile.surname %>">
+    </div>
 </div>
 
 <div class="email-info info">
-    <p><span>E-mail:</span><%= userInfoForProfile.mail %> </p>
+    <h3>Maili düzenle:</h3>
+
+    <div class="edit-container">
+        <input type="email" name="mail" id="mail" value="<%= userInfoForProfile.mail %>">
+    </div>
+</div>
+
+<div class="pass-info info">
+    <h3>Şifreyi düzenle:</h3>
+
+    <div class="edit-container">
+        <input type="password" name="password" id="password" value="<%= userInfoForProfile.password %>">
+    </div>
 </div>
 
 <div class="age-info info">
-    <p><span>Yaş:</span><%= userInfoForProfile.age %> </p>
+    <h3>Yaşı düzenle:</h3>
+
+    <div class="edit-container">
+        <input type="number" min="18" max="100" name="age" id="age" value="<%= userInfoForProfile.age %>">
+    </div>
 </div>
 
 <div class="tel-info info">
-    <p><span>Tel:</span><%= userInfoForProfile.phone %> </p>
+    <h3>Telefonu düzenle:</h3>
+
+    <div class="edit-container">
+        <input type="text" name="phone" id="phone" value="<%= userInfoForProfile.phone %>">
+    </div>
 </div>
 
 <div class="Address-info info">
-    <p><span>Adresim:</span> <%= userInfoForProfile.address %></p>
+    <h3>Adresi düzenle:</h3>
+
+    <div class="edit-container">
+        <textarea name="address" id="address"><%= userInfoForProfile.address%></textarea>
+    </div>
 </div>
+
+<button type="submit"><i class="far fa-edit"></i>Düzenle</button>
+</form>

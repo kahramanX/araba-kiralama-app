@@ -1,6 +1,7 @@
 const {
     response
 } = require("express");
+
 let {
     check,
     validationResult
@@ -160,21 +161,21 @@ module.exports.getProfilePage = (req, res) => {
 
     let isAuth = req.session.isAuth;
 
-    let mailForFindOne = req.session.mail;
+    let findOneForMail = req.session.mail;
 
     if (!isAuth) {
         res.redirect("/")
     } else {
 
         User.findOne({
-                mailForFindOne
+                findOneForMail
             })
             .then((response) => {
 
                 let userInfoForProfile = {
-                    username: req.session.username,
-                    surname: req.session.surname,
-                    mail: req.session.mail,
+                    username: response.username,
+                    surname: response.surname,
+                    mail: response.mail,
                     age: response.age,
                     phone: response.phone,
                     address: response.address
@@ -193,41 +194,166 @@ module.exports.getProfilePage = (req, res) => {
 module.exports.getDuzenlePage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    let mailForFindOne = req.session.mail;
+    let findOneForMail = req.session.mail;
 
     if (!isAuth) {
-        res.redirect("/")
+        res.redirect("/");
     } else {
 
         User.findOne({
-                mailForFindOne
+                findOneForMail
             })
             .then((response) => {
 
                 let userInfoForProfile = {
-                    username: req.session.username,
-                    surname: req.session.surname,
-                    mail: req.session.mail,
+                    username: response.username,
+                    surname: response.surname,
+                    mail: response.mail,
+                    password: response.password,
                     age: response.age,
                     phone: response.phone,
                     address: response.address
-                }
+                };
 
                 res.render("profile-edit", {
                     isAuth,
                     userInfoForProfile,
                     layout: "layouts/profile-layout"
                 });
-
             })
     }
 }
 
 module.exports.postDuzenlePage = (req, res) => {
+    let isAuth = req.session.isAuth;
 
-    
+    let errors = validationResult(req);
 
-     res.send("düzenleme sayfası");
+    let findOneForMail = req.session.mail;
+
+    //User.updateOne() kısmında hata vermemesi için burada undefined olarak tanımlandı
+    let alert = undefined;
+
+    if (!errors.isEmpty()) {
+
+        alert = errors.array();
+
+        User.findOne({
+                findOneForMail
+            })
+            .then((response) => {
+
+                let userInfoForProfile = {
+                    username: response.username,
+                    surname: response.surname,
+                    mail: response.mail,
+                    password: response.password,
+                    age: response.age,
+                    phone: response.phone,
+                    address: response.address
+                };
+
+                res.render("profile-edit", {
+                    isAuth,
+                    userInfoForProfile,
+                    alert,
+                    layout: "layouts/profile-layout"
+                });
+            })
+
+    } else {
+        console.log(req.body)
+        // kullanıcı bilgilerini düzenleme sayfası için yeni bilgiler
+        const {
+            username,
+            surname,
+            mail,
+            password,
+            age,
+            phone,
+            address
+        } = req.body;
+
+        console.log(req.body)
+
+        console.log("güncelleme alanı");
+
+        User.findOne({
+            findOneForMail
+        }).then((response) => {
+            console.log("güncelleme alanına girildi");
+
+            let userInfoForProfile = {
+                username: response.username,
+                surname: response.surname,
+                mail: response.mail,
+                password: response.password,
+                age: response.age,
+                phone: response.phone,
+                address: response.address
+            };
+
+            User.updateOne({
+                    username: response.username
+                }, {
+                    username: username
+                })
+                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+            User.updateOne({
+                    surname: response.surname
+                }, {
+                    surname: surname
+                })
+                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+            User.updateOne({
+                    mail: response.mail
+                }, {
+                    mail: mail
+                })
+                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+            User.updateOne({
+                    password: response.password
+                }, {
+                    password: password
+                })
+                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+            User.updateOne({
+                    age: response.age
+                }, {
+                    age: age
+                })
+                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+            User.updateOne({
+                    phone: response.phone
+                }, {
+                    phone: phone
+                })
+                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+            User.updateOne({
+                    address: response.address
+                }, {
+                    address: address
+                })
+                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+            res.render("profile-edit", {
+                isAuth,
+                userInfoForProfile,
+                alert: [{
+                    value: '',
+                    msg: `Güncelleme başarılı!`,
+                    param: 'mail',
+                }],
+                layout: "layouts/profile-layout"
+            });
+        })
+    }
 }
 
 module.exports.getMyRentalCarsPage = (req, res) => {

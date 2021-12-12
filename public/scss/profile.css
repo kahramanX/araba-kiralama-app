@@ -1,7 +1,6 @@
 .profile-header {
   width: auto;
   height: 140px;
-  border-bottom: 10px solid #747474;
 }
 
 .profile-wrapper {
@@ -98,6 +97,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   padding-top: 50px;
+  width: 100%;
 }
 
 .profile-settings-container .infos-container .title-info {

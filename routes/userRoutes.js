@@ -61,7 +61,27 @@ router.get("/cikis", userController.getCikisPage);
 
 router.get("/profil/duzenle", userController.getDuzenlePage);
 
-router.post("/profil/duzenle", userController.postDuzenlePage);
+router.post("/profil/duzenle", [
+    check("username", "Adınız en az 2 karakter içermeli!")
+    .exists()
+    .isLength({min: 2})
+    .trim(),
+    check("surname", "Adınız en az 2 karakter içermeli!")
+    .exists()
+    .isLength({min: 2})
+    .trim(),
+    check("password", "Şifre en az 5 karakterli olmalı!")
+    .isLength({
+        min: 5
+    }),
+    check("mail", "Mail adresinizi doğru yazınız")
+    .isEmail()
+    .normalizeEmail(),
+    check("phone", "Telefon numarası en fazla 10 karakter olmalı ve '0' ile başlamamalı")
+    .isLength({min: 10, max: 10}),
+    check("address", "Adresiniz en az 15 karakter olmalı!")
+    .isLength({min: 15})
+], userController.postDuzenlePage);
 
 router.get("/profil/kiralanan-araclar", userController.getMyRentalCarsPage);
 
