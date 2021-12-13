@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Cars = require("./Cars");
 
 const Schema = mongoose.Schema;
 
@@ -18,6 +19,18 @@ const usersSchema = new Schema({
     createdDate: {
         type: Date,
         default: Date.now
+    },
+    ownCars: {
+        type: Schema.Types.ObjectId,
+        ref: "Cars"
+    },
+    rentedCar: {
+        type: Schema.Types.ObjectId,
+        ref: "Cars"
+    },
+    rentedOutCar: {
+        type: Schema.Types.ObjectId,
+        ref: "Cars"
     }
 })
 

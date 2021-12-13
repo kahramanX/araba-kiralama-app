@@ -87,4 +87,16 @@ router.get("/profil/kiralanan-araclar", userController.getMyRentalCarsPage);
 
 router.post("/profil/kiralanan-araclar", userController.postMyRentalCarsPage);
 
+router.get("/profil/arac-ekle", userController.getAddACarPage);
+
+router.post("/profil/arac-ekle", userController.postAddACarPage);
+
+router.get("/profil/araclarim", userController.getOwnCarsPage);
+
+router.post("/profil/araclarim", userController.postOwnCarsPage);
+
+
+
+
+
 module.exports = router;

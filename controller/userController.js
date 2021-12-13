@@ -1,6 +1,4 @@
-const {
-    response
-} = require("express");
+const express = require("express");
 
 let {
     check,
@@ -359,15 +357,55 @@ module.exports.postDuzenlePage = (req, res) => {
 module.exports.getMyRentalCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    res.render("profile-my-rental-cars", {
+    res.render("my-rental-cars", {
         isAuth,
         layout: "layouts/profile-layout"
     })
 }
 
 module.exports.postMyRentalCarsPage = (req, res) => {
+    let isAuth = req.session.isAuth;
 
-    /* res.send("rental cars sayfası") */
+    res.render("my-rental-cars", {
+        isAuth,
+        layout: "layouts/profile-layout"
+    })
+}
+
+module.exports.getAddACarPage = (req, res) => {
+    let isAuth = req.session.isAuth;
+
+    res.render("add-a-car", {
+        isAuth,
+        layout: "layouts/profile-layout"
+    })
+}
+
+module.exports.postAddACarPage = (req, res) => {
+    let isAuth = req.session.isAuth;
+
+    res.render("rent-a-car", {
+        isAuth,
+        layout: "layouts/profile-layout"
+    })
+}
+
+module.exports.getOwnCarsPage = (req, res) => {
+    let isAuth = req.session.isAuth;
+
+    res.render("own-cars", {
+        isAuth,
+        layout: "layouts/profile-layout"
+    })
+}
+
+module.exports.postOwnCarsPage = (req, res) => {
+    let isAuth = req.session.isAuth;
+
+    res.render("own-cars", {
+        isAuth,
+        layout: "layouts/profile-layout"
+    })
 }
 
 module.exports.getCikisPage = (req, res) => {
