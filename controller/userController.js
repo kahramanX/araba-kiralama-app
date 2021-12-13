@@ -357,55 +357,86 @@ module.exports.postDuzenlePage = (req, res) => {
 module.exports.getMyRentalCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    res.render("my-rental-cars", {
-        isAuth,
-        layout: "layouts/profile-layout"
-    })
+    if (!isAuth) {
+        res.redirect("/");
+    } else {
+
+        res.render("my-rental-cars", {
+            isAuth,
+            layout: "layouts/profile-layout"
+        })
+
+    }
 }
 
 module.exports.postMyRentalCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    res.render("my-rental-cars", {
-        isAuth,
-        layout: "layouts/profile-layout"
-    })
+    if (!isAuth) {
+        res.redirect("/");
+    } else {
+
+        res.render("my-rental-cars", {
+            isAuth,
+            layout: "layouts/profile-layout"
+        })
+    }
 }
 
 module.exports.getAddACarPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    res.render("add-a-car", {
-        isAuth,
-        layout: "layouts/profile-layout"
-    })
+    if (!isAuth) {
+        res.redirect("/");
+    } else {
+
+        res.render("add-a-car", {
+            isAuth,
+            layout: "layouts/profile-layout"
+        })
+    }
 }
 
 module.exports.postAddACarPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    res.render("rent-a-car", {
-        isAuth,
-        layout: "layouts/profile-layout"
-    })
+    if (!isAuth) {
+        res.redirect("/");
+    } else {
+
+        res.render("add-a-car", {
+            isAuth,
+            layout: "layouts/profile-layout"
+        })
+    }
 }
 
 module.exports.getOwnCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    res.render("own-cars", {
-        isAuth,
-        layout: "layouts/profile-layout"
-    })
+    if (!isAuth) {
+        res.redirect("/");
+    } else {
+
+        res.render("own-cars", {
+            isAuth,
+            layout: "layouts/profile-layout"
+        })
+    }
 }
 
 module.exports.postOwnCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
-    res.render("own-cars", {
-        isAuth,
-        layout: "layouts/profile-layout"
-    })
+    if (!isAuth) {
+        res.redirect("/");
+    } else {
+
+        res.render("own-cars", {
+            isAuth,
+            layout: "layouts/profile-layout"
+        })
+    }
 }
 
 module.exports.getCikisPage = (req, res) => {

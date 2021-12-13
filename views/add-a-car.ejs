@@ -1,0 +1,57 @@
+<div class="title-info">
+    <h1>Araç ekle:</h1>
+</div>
+
+<div class="alert-info-area">
+    <% if(typeof alert != 'undefined') { %>
+    <% alert.forEach(function(error) { %>
+    <div style="margin-bottom: 20px;" class="info-alert">
+        <%= error.msg %>
+    </div>
+    <% }) %>
+    <% } %>
+</div>
+
+<div class="carName-info info">
+    <h3>Araç adı:</h3>
+    <form action="" method="post">
+        <div class="edit-container">
+
+            <input type="text" name="carName" id="carName">
+        </div>
+</div>
+
+<div class="carModel-info info">
+    <h3>Araç Modeli:</h3>
+        <div class="edit-container">
+
+            <input type="text" name="carModel" id="carModel">
+        </div>
+</div>
+
+
+<div class="carBodyType-info info">
+    <h3>Araç Gövde Tipi:</h3>
+        <div class="edit-container">
+
+            <input type="text" name="carBodyType" id="carBodyType">
+        </div>
+</div>
+
+<div class="carEngineCapacity-info info">
+    <h3>Araç Motor Hacmi:</h3>
+        <div class="edit-container">
+
+            <input type="text" name="carEngineCapacity" id="carEngineCapacity">
+        </div>
+</div>
+
+<div class="fuelConsumption-info info">
+    <h3>Araç Yakıt Tipi:</h3>
+        <div class="edit-container">
+
+            <input type="text" name="fuelConsumption" id="fuelConsumption">
+        </div>
+</div>
+
+
