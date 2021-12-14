@@ -11,7 +11,6 @@ let AdminModel = require("../model/adminUsers");
 
 module.exports.getGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
-    console.log(req.baseUrl)
 
     if (!isAuth) {
         res.render("login.ejs", {
@@ -38,29 +37,63 @@ module.exports.postGirisPage = (req, res) => {
 
     } else {
 
-        let {
-            mail,
-            password
-        } = req.body;
+        if (req.body.isAdmin == "on") {
 
-        UserModel.findOne(req.body).then((response) => {
+            req.body.isAdmin = true;
+            req.session.isAdmin = true;
 
-            console.log(response)
-            req.session.username = response.username;
-            req.session.mail = response.mail;
-            req.session.surname = response.surname;
-            req.session.isAuth = true;
+        } else if (req.body.isAdmin == undefined) {
 
-            req.session.save();
+            req.body.isAdmin = false;
+            req.session.isAdmin = false;
 
-            res.redirect("/profil");
+        }
 
-        }).catch((err) => {
+        if (req.session.isAdmin) {
 
-            res.send("Bu bilgide kullanıcı bulunamadı");
+            AdminModel.findOne(req.body).then((response) => {
 
-        })
+                console.log(response)
+                req.session.username = response.username;
+                req.session.mail = response.mail;
+                req.session.surname = response.surname;
+                req.session.isAuth = true;
 
+                req.session.save();
+
+                res.redirect("/profil");
+
+            }).catch((err) => {
+
+                res.send("Bu bilgide kullanıcı bulunamadı");
+
+            })
+
+        } else {
+
+            let {
+                mail,
+                password
+            } = req.body;
+
+            UserModel.findOne(req.body).then((response) => {
+
+                console.log(response)
+                req.session.username = response.username;
+                req.session.mail = response.mail;
+                req.session.surname = response.surname;
+                req.session.isAuth = true;
+
+                req.session.save();
+
+                res.redirect("/profil");
+
+            }).catch((err) => {
+
+                res.send("Bu bilgide kullanıcı bulunamadı");
+
+            })
+        }
     }
 };
 
@@ -94,6 +127,7 @@ module.exports.postKayitPage = (req, res) => {
         });
 
     } else {
+
         let {
             username,
             surname,
@@ -104,62 +138,129 @@ module.exports.postKayitPage = (req, res) => {
             address
         } = req.body;
 
-        const newUser = UserModel({
-            username,
-            surname,
-            mail,
-            password,
-            age,
-            phone,
-            address
-        });
+        if (req.body.isAdmin == "on") {
 
-        UserModel.findOne({
-            mail
-        }).then((response) => { // maili object olarak ekle
-            // response db'de bulunan tüm objeyi getiriyor
-            if (response) {
+            req.body.isAdmin = true;
+            req.session.isAdmin = true;
 
-                res.render("register", {
-                    isAuth,
-                    alert: [{
-                        value: '',
-                        msg: `Bu mail (${response.mail}) adresi zaten kullanılıyor!`,
-                        param: 'mail',
-                    }]
-                });
+        } else if (req.body.isAdmin == undefined) {
 
-            } else {
+            req.body.isAdmin = false;
+            req.session.isAdmin = false;
 
-                newUser.save().then((response2) => {
+        }
 
-                    console.log("üye kaydı yapıldı");
+        if (req.body.isAdmin) {
 
-                    res.redirect("/giris");
+            const newUserAdmin = AdminModel({
+                username,
+                surname,
+                mail,
+                password,
+                age,
+                phone,
+                address
+            });
 
-                }).catch((err) => {
+            AdminModel.findOne({
+                mail
+            }).then((response) => { // maili object olarak ekle
+                // response db'de bulunan tüm objeyi getiriyor
+                if (response) {
 
-                    console.log("kayıt yapılamadı");
+                    res.render("register", {
+                        isAuth,
+                        alert: [{
+                            value: '',
+                            msg: `Bu mail (${response.mail}) adresi zaten kullanılıyor!`,
+                            param: 'mail',
+                        }]
+                    });
 
-                    console.log(err);
+                } else {
 
-                })
+                    newUserAdmin.save().then(() => {
 
-            }
-        }).catch((err) => {
+                        console.log("üye kaydı yapıldı");
 
-            console.log("olmadı");
+                        res.redirect("/giris");
 
-            console.log(err);
-        })
+                    }).catch((err) => {
+
+                        console.log("kayıt yapılamadı");
+
+                        console.log(err);
+
+                    })
+
+                }
+            }).catch((err) => {
+
+                console.log("olmadı");
+
+                console.log(err);
+            })
+
+
+        } else {
+
+            const newUser = UserModel({
+                username,
+                surname,
+                mail,
+                password,
+                age,
+                phone,
+                address
+            });
+
+            UserModel.findOne({
+                mail
+            }).then((response) => { // maili object olarak ekle
+                // response db'de bulunan tüm objeyi getiriyor
+                if (response) {
+
+                    res.render("register", {
+                        isAuth,
+                        alert: [{
+                            value: '',
+                            msg: `Bu mail (${response.mail}) adresi zaten kullanılıyor!`,
+                            param: 'mail',
+                        }]
+                    });
+
+                } else {
+
+                    newUser.save().then(() => {
+
+                        console.log("üye kaydı yapıldı");
+
+                        res.redirect("/giris");
+
+                    }).catch((err) => {
+
+                        console.log("kayıt yapılamadı");
+
+                        console.log(err);
+
+                    })
+
+                }
+            }).catch((err) => {
+
+                console.log("olmadı");
+
+                console.log(err);
+            })
+        }
     }
-
 };
 
 // kullanıcı paneli
 module.exports.getProfilePage = (req, res) => {
 
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     let findOneForMail = req.session.mail;
 
@@ -167,32 +268,62 @@ module.exports.getProfilePage = (req, res) => {
         res.redirect("/")
     } else {
 
-        UserModel.findOne({
-                findOneForMail
-            })
-            .then((response) => {
+        if (isAdmin) {
 
-                let userInfoForProfile = {
-                    username: response.username,
-                    surname: response.surname,
-                    mail: response.mail,
-                    age: response.age,
-                    phone: response.phone,
-                    address: response.address
-                }
+            AdminModel.findOne({
+                    findOneForMail
+                })
+                .then((response) => {
 
-                res.render("profile", {
-                    isAuth,
-                    userInfoForProfile,
-                    layout: "layouts/profile-layout"
-                });
+                    let userInfoForProfile = {
+                        username: response.username,
+                        surname: response.surname,
+                        mail: response.mail,
+                        age: response.age,
+                        phone: response.phone,
+                        address: response.address
+                    }
 
-            })
+                    res.render("profile", {
+                        isAuth,
+                        userInfoForProfile,
+                        isAdmin,
+                        layout: "layouts/profile-layout"
+                    });
+
+
+                })
+
+        } else {
+
+            UserModel.findOne({
+                    findOneForMail
+                })
+                .then((response) => {
+
+                    let userInfoForProfile = {
+                        username: response.username,
+                        surname: response.surname,
+                        mail: response.mail,
+                        age: response.age,
+                        phone: response.phone,
+                        address: response.address
+                    }
+
+                    res.render("profile", {
+                        isAuth,
+                        userInfoForProfile,
+                        isAdmin,
+                        layout: "layouts/profile-layout"
+                    });
+                })
+        }
     }
 }
 
 module.exports.getDuzenlePage = (req, res) => {
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     let findOneForMail = req.session.mail;
 
@@ -218,6 +349,7 @@ module.exports.getDuzenlePage = (req, res) => {
                 res.render("profile-edit", {
                     isAuth,
                     userInfoForProfile,
+                    isAdmin,
                     layout: "layouts/profile-layout"
                 });
             })
@@ -226,6 +358,7 @@ module.exports.getDuzenlePage = (req, res) => {
 
 module.exports.postDuzenlePage = (req, res) => {
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     let errors = validationResult(req);
 
@@ -255,6 +388,7 @@ module.exports.postDuzenlePage = (req, res) => {
 
                 res.render("profile-edit", {
                     isAuth,
+                    isAdmin,
                     userInfoForProfile,
                     alert,
                     layout: "layouts/profile-layout"
@@ -294,7 +428,7 @@ module.exports.postDuzenlePage = (req, res) => {
             };
 
             UserModel.updateOne({
-                username: response.username
+                    username: response.username
                 }, {
                     username: username
                 })
@@ -344,6 +478,7 @@ module.exports.postDuzenlePage = (req, res) => {
 
             res.render("profile-edit", {
                 isAuth,
+                isAdmin,
                 userInfoForProfile,
                 alert: [{
                     value: '',
@@ -358,6 +493,7 @@ module.exports.postDuzenlePage = (req, res) => {
 
 module.exports.getMyRentalCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     if (!isAuth) {
         res.redirect("/");
@@ -365,14 +501,15 @@ module.exports.getMyRentalCarsPage = (req, res) => {
 
         res.render("my-rental-cars", {
             isAuth,
+            isAdmin,
             layout: "layouts/profile-layout"
         })
-
     }
 }
 
 module.exports.postMyRentalCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     if (!isAuth) {
         res.redirect("/");
@@ -380,6 +517,7 @@ module.exports.postMyRentalCarsPage = (req, res) => {
 
         res.render("my-rental-cars", {
             isAuth,
+            isAdmin,
             layout: "layouts/profile-layout"
         })
     }
@@ -387,6 +525,7 @@ module.exports.postMyRentalCarsPage = (req, res) => {
 
 module.exports.getAddACarPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     if (!isAuth) {
         res.redirect("/");
@@ -394,6 +533,7 @@ module.exports.getAddACarPage = (req, res) => {
 
         res.render("add-a-car", {
             isAuth,
+            isAdmin,
             layout: "layouts/profile-layout"
         })
     }
@@ -401,6 +541,7 @@ module.exports.getAddACarPage = (req, res) => {
 
 module.exports.postAddACarPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     let mail = req.session.mail;
 
@@ -443,12 +584,15 @@ module.exports.postAddACarPage = (req, res) => {
         });
 
 
-        UserModel.findOne({mail})
+        UserModel.findOne({
+            mail
+        })
     }
 }
 
 module.exports.getOwnCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     if (!isAuth) {
         res.redirect("/");
@@ -456,6 +600,7 @@ module.exports.getOwnCarsPage = (req, res) => {
 
         res.render("own-cars", {
             isAuth,
+            isAdmin,
             layout: "layouts/profile-layout"
         })
     }
@@ -463,6 +608,7 @@ module.exports.getOwnCarsPage = (req, res) => {
 
 module.exports.postOwnCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     if (!isAuth) {
         res.redirect("/");
@@ -470,6 +616,7 @@ module.exports.postOwnCarsPage = (req, res) => {
 
         res.render("own-cars", {
             isAuth,
+            isAdmin,
             layout: "layouts/profile-layout"
         })
     }

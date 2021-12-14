@@ -40,10 +40,13 @@
             <div class="tab edit-user-info">
                 <a href="/profil/duzenle">Düzenle</a>
             </div>
+            <% if(!isAdmin) {%>
             <div class="tab my-rental-cars">
                 <a href="/profil/kiralanan-araclar">Kiralanan Araçlar</a>
             </div>
+            <% } %>
 
+            <% if(isAdmin) {%>
             <div class="tab rent-a-car">
                 <a href="/profil/arac-ekle">Araç ekle</a>
             </div>
@@ -51,6 +54,7 @@
             <div class="tab own-cars">
                 <a href="/profil/araclarim">Araçlarım</a>
             </div>
+            <% } %>
         </div>
     </nav>
 

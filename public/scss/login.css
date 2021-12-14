@@ -8,7 +8,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 70vh;
+  height: 80vh;
 }
 
 .login-page-elements label {
@@ -42,7 +42,7 @@
   -webkit-box-shadow: #32325d40 0px 0px 5px 1px;
           box-shadow: #32325d40 0px 0px 5px 1px;
   width: 500px;
-  height: 300px;
+  height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -52,6 +52,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 30px 5px 30px 5px;
 }
 
 .login-page-elements .lp-container #mail-label {
@@ -95,5 +96,50 @@
   border-style: none;
   color: white;
   font-size: 1.1em;
+}
+
+.login-page-elements .toggle {
+  margin-bottom: 30px;
+}
+
+.login-page-elements .toggle .toggle-control {
+  -webkit-transition: 0.3s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  transition: 0.3s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  width: 4em;
+  height: 2em;
+  display: block;
+  border: 2px solid #8E8E93;
+  border-radius: 2em;
+  background-color: rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.login-page-elements .toggle .toggle-control:after {
+  -webkit-transition: 0.3s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  transition: 0.3s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  content: "";
+  width: 2em;
+  height: 2em;
+  display: block;
+  background-color: #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 3px 2px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 3px 2px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.login-page-elements .toggle .toggle-input {
+  display: none;
+}
+
+.login-page-elements .toggle .toggle-input:checked + .toggle-control {
+  border-color: #4cd964;
+  background-color: #4cd964;
+}
+
+.login-page-elements .toggle .toggle-input:checked + .toggle-control:after {
+  left: 2em;
 }
 /*# sourceMappingURL=login.css.map */

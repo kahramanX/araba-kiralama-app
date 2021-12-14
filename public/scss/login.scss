@@ -1,8 +1,14 @@
+$color_checkbox_success:#4cd964;
+$color_checkbox_default:#8E8E93;
+$transition: .3s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+$width: 4em;
+$height: $width/2;
+
 .login-page-elements {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    height: 80vh;
 
     label {
         display: block;
@@ -34,10 +40,11 @@
         border-radius: 10px;
         box-shadow: #32325d40 0px 0px 5px 1px;
         width: 500px;
-        height: 300px;
+        height: auto;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 30px 5px 30px 5px;
 
         #mail-label {
             font-size: 1.3em;
@@ -80,4 +87,47 @@
             font-size: 1.1em;
         }
     }
+
+    .toggle {
+        margin-bottom: 30px;
+
+        .toggle-control {
+            transition: $transition;
+            width: $width;
+            height: $height;
+            display: block;
+            border: 2px solid $color_checkbox_default;
+            border-radius: $height;
+            background-color: rgba(black, .06);
+            position: relative;
+
+            &:after {
+                transition: $transition;
+                content: "";
+                width: $width/2;
+                height: $height;
+                display: block;
+                background-color: #fff;
+                border-radius: 50%;
+                box-shadow: 0 1px 2px rgba(black, .4), 0 3px 2px rgba(black, .4);
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        .toggle-input {
+            display: none;
+
+            &:checked+.toggle-control {
+                border-color: $color_checkbox_success;
+                background-color: $color_checkbox_success;
+
+                &:after {
+                    left: $width/2;
+                }
+            }
+        }
+    }
+
 }

@@ -64,6 +64,8 @@ app.use("/public", express.static('public'));
 app.get('/', (req, res) => {
     let isAuth = req.session.isAuth;
 
+    console.log(req.sessionID);
+
     res.render("index", {isAuth});
 })
 
