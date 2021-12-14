@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const usersSchema = new Schema({
+const AdminSchema = new Schema({
     username: String,
     surname: String,
     mail: String,
@@ -19,9 +19,10 @@ const usersSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    rentedCar: Array,
+    ownCars: Array,
+    rentedOutCar: Array
 })
 
-const UserModel = mongoose.model("User", usersSchema);
+const AdminModel = mongoose.model("Admin", AdminSchema);
 
-module.exports = UserModel;
+module.exports = AdminSchema;

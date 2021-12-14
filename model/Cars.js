@@ -18,14 +18,8 @@ const carsSchema = new Schema({
     gear: String,
     fuelType: String,
     cruiseControl: String,
-    ownerUser: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    },
-    renterUser: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    }
+    ownerAdmin: Array, 
+    renterUser: Array
 })
 
 const Cars = mongoose.model("Cars", carsSchema);

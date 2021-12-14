@@ -5,7 +5,9 @@ let {
     validationResult
 } = require("express-validator");
 
-let User = require("../model/User");
+let UserModel = require("../model/User");
+let CarModel = require("../model/Cars");
+let AdminModel = require("../model/adminUsers");
 
 module.exports.getGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
@@ -41,7 +43,7 @@ module.exports.postGirisPage = (req, res) => {
             password
         } = req.body;
 
-        User.findOne(req.body).then((response) => {
+        UserModel.findOne(req.body).then((response) => {
 
             console.log(response)
             req.session.username = response.username;
@@ -102,7 +104,7 @@ module.exports.postKayitPage = (req, res) => {
             address
         } = req.body;
 
-        const newUser = User({
+        const newUser = UserModel({
             username,
             surname,
             mail,
@@ -112,7 +114,7 @@ module.exports.postKayitPage = (req, res) => {
             address
         });
 
-        User.findOne({
+        UserModel.findOne({
             mail
         }).then((response) => { // maili object olarak ekle
             // response db'de bulunan tüm objeyi getiriyor
@@ -165,7 +167,7 @@ module.exports.getProfilePage = (req, res) => {
         res.redirect("/")
     } else {
 
-        User.findOne({
+        UserModel.findOne({
                 findOneForMail
             })
             .then((response) => {
@@ -198,7 +200,7 @@ module.exports.getDuzenlePage = (req, res) => {
         res.redirect("/");
     } else {
 
-        User.findOne({
+        UserModel.findOne({
                 findOneForMail
             })
             .then((response) => {
@@ -229,14 +231,14 @@ module.exports.postDuzenlePage = (req, res) => {
 
     let findOneForMail = req.session.mail;
 
-    //User.updateOne() kısmında hata vermemesi için burada undefined olarak tanımlandı
+    //UserModel.updateOne() kısmında hata vermemesi için burada undefined olarak tanımlandı
     let alert = undefined;
 
     if (!errors.isEmpty()) {
 
         alert = errors.array();
 
-        User.findOne({
+        UserModel.findOne({
                 findOneForMail
             })
             .then((response) => {
@@ -276,7 +278,7 @@ module.exports.postDuzenlePage = (req, res) => {
 
         console.log("güncelleme alanı");
 
-        User.findOne({
+        UserModel.findOne({
             findOneForMail
         }).then((response) => {
             console.log("güncelleme alanına girildi");
@@ -291,49 +293,49 @@ module.exports.postDuzenlePage = (req, res) => {
                 address: response.address
             };
 
-            User.updateOne({
-                    username: response.username
+            UserModel.updateOne({
+                username: response.username
                 }, {
                     username: username
                 })
                 .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
 
-            User.updateOne({
+            UserModel.updateOne({
                     surname: response.surname
                 }, {
                     surname: surname
                 })
                 .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
 
-            User.updateOne({
+            UserModel.updateOne({
                     mail: response.mail
                 }, {
                     mail: mail
                 })
                 .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
 
-            User.updateOne({
+            UserModel.updateOne({
                     password: response.password
                 }, {
                     password: password
                 })
                 .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
 
-            User.updateOne({
+            UserModel.updateOne({
                     age: response.age
                 }, {
                     age: age
                 })
                 .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
 
-            User.updateOne({
+            UserModel.updateOne({
                     phone: response.phone
                 }, {
                     phone: phone
                 })
                 .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
 
-            User.updateOne({
+            UserModel.updateOne({
                     address: response.address
                 }, {
                     address: address
@@ -400,14 +402,48 @@ module.exports.getAddACarPage = (req, res) => {
 module.exports.postAddACarPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
+    let mail = req.session.mail;
+
     if (!isAuth) {
         res.redirect("/");
     } else {
 
-        res.render("add-a-car", {
-            isAuth,
-            layout: "layouts/profile-layout"
-        })
+        let {
+            carName,
+            carModel,
+            carBodyType,
+            carEngineCapacity,
+            fuelConsumption,
+            abs,
+            airBag,
+            carbonEmission,
+            seats,
+            carTrunk,
+            doors,
+            gear,
+            fuelType,
+            cruiseControl
+        } = req.body;
+
+        const newCar = CarModel({
+            carName,
+            carModel,
+            carBodyType,
+            carEngineCapacity,
+            fuelConsumption,
+            abs,
+            airBag,
+            carbonEmission,
+            seats,
+            carTrunk,
+            doors,
+            gear,
+            fuelType,
+            cruiseControl
+        });
+
+
+        UserModel.findOne({mail})
     }
 }
 
