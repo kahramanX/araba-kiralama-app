@@ -23,6 +23,6 @@ const AdminSchema = new Schema({
     rentedOutCar: Array
 })
 
-const AdminModel = mongoose.model("Admin", AdminSchema);
+const AdminModel = mongoose.model("Admins", AdminSchema);
 
 module.exports = AdminModel;

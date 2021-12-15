@@ -8,6 +8,9 @@ let {
 let UserModel = require("../model/User");
 let CarModel = require("../model/Cars");
 let AdminModel = require("../model/adminUsers");
+const {
+    response
+} = require("express");
 
 module.exports.getGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
@@ -545,8 +548,21 @@ module.exports.postAddACarPage = (req, res) => {
 
     let mail = req.session.mail;
 
-    if (!isAuth) {
-        res.redirect("/");
+    let alert = undefined;
+
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+
+        let alert = errors.array();
+
+        res.render("add-a-car", {
+            isAuth,
+            isAdmin,
+            alert,
+            layout: "layouts/profile-layout"
+        })
+
     } else {
 
         let {
@@ -580,13 +596,31 @@ module.exports.postAddACarPage = (req, res) => {
             doors,
             gear,
             fuelType,
-            cruiseControl
+            cruiseControl,
         });
 
+        AdminModel.findOne({
+                mail
+            })
+            .then((response) => {
 
-        UserModel.findOne({
-            mail
-        })
+                newCar.ownerAdmin.ownerName = response.username;
+                newCar.ownerAdmin.ownerSurname = response.surname;
+                newCar.ownerAdmin.ownerMail = response.mail;
+                newCar.ownerAdmin.ownerPhone = response.phone;
+                newCar.ownerAdmin.ownerAddress = response.address;
+
+                response.ownCars.push(newCar);
+
+                newCar.save();
+                response.save();
+
+                res.render("add-a-car", {
+                    isAuth,
+                    isAdmin,
+                    layout: "layouts/profile-layout"
+                })
+            })
     }
 }
 

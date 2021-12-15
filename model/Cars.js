@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const User = require("./User");
 
 const Schema = mongoose.Schema;
 
@@ -18,8 +17,20 @@ const carsSchema = new Schema({
     gear: String,
     fuelType: String,
     cruiseControl: String,
-    ownerAdmin: Array, 
-    renterUser: Array
+    ownerAdmin: {
+        ownerName: String,
+        ownerSurname: String,
+        ownerMail: String,
+        ownerPhone: String,
+        ownerAddress: String
+    },
+    renterUser: {
+        renterName: String,
+        renterSurname: String,
+        renterMail: String,
+        renterPhone: String,
+        renterAddress: String
+    }
 })
 
 const Cars = mongoose.model("Cars", carsSchema);
