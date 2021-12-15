@@ -628,9 +628,16 @@ module.exports.getOwnCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
 
+    let mail = req.session.mail;
+
     if (!isAuth) {
         res.redirect("/");
     } else {
+
+        AdminModel.findOne({mail})
+        .then((response) => {
+            console.log(response.ownCars)
+        })
 
         res.render("own-cars", {
             isAuth,
