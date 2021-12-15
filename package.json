@@ -4,6 +4,7 @@
   "description": "car rent app for school project",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "runOnDesk": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
