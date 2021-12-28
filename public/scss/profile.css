@@ -25,6 +25,7 @@
 }
 
 .profile-wrapper .photo-container img {
+  width: 200px;
   border-radius: 50%;
   border: 6px solid #3861FB;
   outline: 4px solid white;

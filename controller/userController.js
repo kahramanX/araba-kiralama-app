@@ -561,6 +561,8 @@ module.exports.postAddACarPage = (req, res) => {
 
     } else {
 
+        console.log(req.body);
+
         let {
             carName,
             carModel,
@@ -617,13 +619,8 @@ module.exports.postAddACarPage = (req, res) => {
                 newCar.save();
                 response.save();
 
-                res.json(response);
+                res.redirect("/profil/araclarim");
 
-                /* res.render("add-a-car", {
-                    isAuth,
-                    isAdmin,
-                    layout: "layouts/profile-layout"
-                }) */
             }).catch((err) => {
                 console.log(err);
             })
