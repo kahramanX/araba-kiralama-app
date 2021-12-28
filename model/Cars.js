@@ -17,6 +17,10 @@ const carsSchema = new Schema({
     gear: String,
     fuelType: String,
     cruiseControl: String,
+    yearOfProduction: String,
+    deposit: Number,
+    hourlyRate: Number,
+    isRented: Boolean,
     ownerAdmin: {
         ownerName: String,
         ownerSurname: String,

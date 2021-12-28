@@ -38,7 +38,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true, // true ise session store'a kaydediliyor.
     cookie: {
-        maxAge: 30 * 60 * 1000, // session süresini belirler, süre bittiğinde db den silinir
+        maxAge: 30 * 60 * 1000 * 5000000, // session süresini belirler, süre bittiğinde db den silinir
         secure: false
     }
 }))
@@ -63,6 +63,8 @@ app.use("/public", express.static('public'));
 
 app.get('/', (req, res) => {
     let isAuth = req.session.isAuth;
+
+    console.log(req.session.isAdmin)
 
     console.log(req.sessionID);
 

@@ -11,6 +11,7 @@
     <% }) %>
     <% } %>
 </div>
+
 <form action="" method="post">
 
     <div class="carName-info info">
@@ -33,8 +34,17 @@
     <div class="carBodyType-info info">
         <h3>Gövde Tipi:</h3>
         <div class="edit-container">
-
-            <input type="text" name="carBodyType" id="carBodyType" value="test">
+            <select name="carBodyType" id="carBodyType" required>
+                <option value="Seç" selected disabled>Seç</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="Cabriolet">Cabriolet</option>
+                <option value="Mini Van">Mini Van</option>
+                <option value="Panel Van">Panel Van</option>
+                <option value="Pick Up">Pick Up</option>
+                <option value="Station Wagon">Coupe</option>
+                <option value="SUV">SUV</option>
+            </select>
         </div>
     </div>
 
@@ -42,7 +52,7 @@
         <h3>Motor Hacmi:</h3>
         <div class="edit-container">
 
-            <input type="text" name="carEngineCapacity" id="carEngineCapacity" value="test">
+            <input type="number" min="0" name="carEngineCapacity" id="carEngineCapacity" value="test">
         </div>
     </div>
 
@@ -50,7 +60,7 @@
         <h3>Yakıt Tüketimi:</h3>
         <div class="edit-container">
 
-            <input type="text" name="fuelConsumption" id="fuelConsumption" value="test">
+            <input type="number" min="0" name="fuelConsumption" id="fuelConsumption" value="test">
         </div>
     </div>
 
@@ -58,7 +68,11 @@
         <h3>ABS:</h3>
         <div class="edit-container">
 
-            <input type="text" name="abs" id="abs" value="test">
+            <select name="abs" id="abs" required>
+                <option value="Seç" selected disabled>Seç</option>
+                <option value="Var">Var</option>
+                <option value="Yok">Yok</option>
+            </select>
         </div>
     </div>
 
@@ -66,7 +80,11 @@
         <h3>Airbag:</h3>
         <div class="edit-container">
 
-            <input type="text" name="airBag" id="airBag" value="test">
+            <select name="airBag" id="airBag" required>
+                <option value="Seç" selected disabled>Seç</option>
+                <option value="Var">Var</option>
+                <option value="Yok">Yok</option>
+            </select>
         </div>
     </div>
 
@@ -74,7 +92,7 @@
         <h3>Karbon emisyonu:</h3>
         <div class="edit-container">
 
-            <input type="text" name="carbonEmission" id="carbonEmission" value="test">
+            <input type="number" min="0" max="150" name="carbonEmission" id="carbonEmission" value="test">
         </div>
     </div>
 
@@ -82,7 +100,7 @@
         <h3>Koltuk sayısı:</h3>
         <div class="edit-container">
 
-            <input type="text" name="seats" id="seats" value="test">
+            <input type="number" min="0" max="10" name="seats" id="seats" value="test">
         </div>
     </div>
 
@@ -90,7 +108,7 @@
         <h3>Bagaj Hacmi:</h3>
         <div class="edit-container">
 
-            <input type="text" name="carTrunk" id="carTrunk" value="test">
+            <input type="number" min="0" max="1000" name="carTrunk" id="carTrunk" value="test">
         </div>
     </div>
 
@@ -98,7 +116,7 @@
         <h3>Kapı sayısı:</h3>
         <div class="edit-container">
 
-            <input type="text" name="doors" id="doors" value="test">
+            <input type="number" min="2" max="4" name="doors" id="doors" value="test">
         </div>
     </div>
 
@@ -106,7 +124,11 @@
         <h3>Vites:</h3>
         <div class="edit-container">
 
-            <input type="text" name="gear" id="gear" value="test">
+            <select name="gear" id="gear" required>
+                <option value="Seç" selected disabled>Seç</option>
+                <option value="Manuel">Manuel</option>
+                <option value="Otomatik">Otomatik</option>
+            </select>
         </div>
     </div>
 
@@ -114,7 +136,14 @@
         <h3>Yakıt tipi:</h3>
         <div class="edit-container">
 
-            <input type="text" name="fuelType" id="fuelType" value="test">
+            <select name="fuelType" id="fuelType" required>
+                <option value="Seç" selected disabled>Seç</option>
+                <option value="Benzin">Benzin</option>
+                <option value="Dizel">Dizel</option>
+                <option value="LPG">LPG</option>
+                <option value="Elektrik">Elektrik</option>
+                <option value="Hibrit">Hibrit</option>
+            </select>
         </div>
     </div>
 
@@ -122,7 +151,35 @@
         <h3>Hız Sabitleyici:</h3>
         <div class="edit-container">
 
-            <input type="text" name="cruiseControl" id="cruiseControl" value="test">
+            <select name="cruiseControl" id="cruiseControl" required>
+                <option value="Seç" selected disabled>Seç</option>
+                <option value="Var">Var</option>
+                <option value="Yok">Yok</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="yearOfProduction-info info">
+        <h3>Üretim Yılı:</h3>
+        <div class="edit-container">
+
+            <input type="number" min="2000" max="2022" name="yearOfProduction" id="yearOfProduction">
+        </div>
+    </div>
+
+    <div class="deposit-info info">
+        <h3>Deposit Miktarı:</h3>
+        <div class="edit-container">
+
+            <input type="number" min="0" max="2000" name="deposit" id="deposit">
+        </div>
+    </div>
+
+    <div class="hourlyRate-info info">
+        <h3>Saatlik Ücret:</h3>
+        <div class="edit-container">
+
+            <input type="number" min="0" max="5000" name="hourlyRate" id="hourlyRate">
         </div>
     </div>
 

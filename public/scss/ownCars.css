@@ -1,0 +1,360 @@
+.car-container {
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px 10px 15px 10px;
+  width: 600px;
+  margin-bottom: 20px;
+}
+
+.car-container .card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+  border: 1px solid #222831;
+  padding: 10px 5px 10px 5px;
+}
+
+.car-container .card-header .delete-right-container {
+  border: 1px solid #F05454;
+  background-color: #F05454;
+  margin-right: 10px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 60px;
+  cursor: pointer;
+}
+
+.car-container .card-header .delete-right-container i {
+  font-size: 2em;
+  color: white;
+  pointer-events: none;
+}
+
+.car-container .card-header :last-child {
+  margin-left: 20px;
+}
+
+.car-container .card-header .car-name {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.car-container .card-header .car-model {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.car-container .card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.car-container .card-body .card-body-left {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.car-container .card-body .card-body-left img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.car-container .card-body .card-body-left .mini-car-info-left {
+  font-size: 1em;
+  border: 1px solid green;
+  border-radius: 3px;
+  padding: 5px;
+  height: auto;
+}
+
+.car-container .card-body .card-body-left .mini-car-info-left i {
+  margin-left: 8px;
+  margin-right: 4px;
+  color: #218DD4;
+}
+
+.car-container .card-body .card-body-right {
+  font-size: 0.9em;
+  width: 100%;
+}
+
+.car-container .card-body .card-body-right .mini-car-info-right {
+  width: 100%;
+}
+
+.car-container .card-body .card-body-right .mini-car-info-right i {
+  margin-left: 10px;
+  color: #1b78b6;
+}
+
+.car-container .card-body .card-body-right .mini-car-info-right .info-block {
+  padding: 8px 0 8px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.car-container .card-body .card-body-right .mini-car-info-right .info-block span {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: 500;
+}
+
+.car-container .card-body .card-body-right .car-wage-info {
+  border: 1px solid blue;
+}
+
+.car-container .card-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 10px 5px 10px 5px;
+  position: relative;
+}
+
+.car-container .card-footer .car-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.car-container .card-footer .car-buttons .go-rent-car {
+  background-color: green;
+  color: white;
+}
+
+.car-container .card-footer .car-buttons .delete-car {
+  background-color: red;
+  color: white;
+}
+
+.car-container .card-footer .car-buttons .remove-renting-car {
+  background-color: orange;
+  color: white;
+}
+
+.car-container .card-footer .car-buttons button {
+  border: none;
+  padding: 5px 10px 5px 10px;
+}
+
+.car-container .card-footer .car-buttons button:not(:last-child) {
+  margin-right: 20px;
+}
+
+.car-container .card-footer .dropdown-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1em;
+  border-radius: 10px;
+  background-color: #30475E;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.car-container .card-footer .dropdown-menu .fas {
+  font-size: 1.5em;
+  margin: auto;
+  pointer-events: none;
+}
+
+.car-container:not(:last-child) {
+  margin-bottom: 50px;
+}
+
+.all-car-info {
+  position: fixed;
+  right: 0;
+  top: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  width: 50%;
+  height: 100vh;
+  z-index: 3;
+  background-color: #f7f7f7;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  -webkit-box-shadow: -100px 0px 500px 200px rgba(0, 0, 0, 0.514);
+          box-shadow: -100px 0px 500px 200px rgba(0, 0, 0, 0.514);
+  overflow-y: scroll;
+}
+
+.all-car-info .card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+  border: 1px solid #222831;
+  padding: 10px 5px 10px 5px;
+}
+
+.all-car-info .card-header .delete-right-container {
+  border: 1px solid #F05454;
+  background-color: #F05454;
+  margin-right: 10px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 60px;
+  cursor: pointer;
+}
+
+.all-car-info .card-header .delete-right-container i {
+  font-size: 2em;
+  color: white;
+  pointer-events: none;
+}
+
+.all-car-info .card-header :last-child {
+  margin-left: 20px;
+}
+
+.all-car-info .card-header .car-name {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.all-car-info .card-header .car-model {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.all-car-info .card-body-top {
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.all-car-info .card-body-top img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 350px;
+}
+
+.all-car-info .card-body-info-title {
+  font-weight: 900;
+  font-size: 1.5em;
+  margin: 10px;
+  color: #F05454;
+}
+
+.all-car-info .card-body-infos {
+  border: 1px solid #222831;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 10px 0 10px;
+}
+
+.all-car-info .card-body-infos .card-body-info-1 div {
+  padding: 10px 5px;
+}
+
+.all-car-info .card-body-infos .card-body-info-1 div span {
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.all-car-info .card-body-infos .card-body-info-2 div {
+  padding: 10px 5px;
+}
+
+.all-car-info .card-body-infos .card-body-info-2 div span {
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.all-car-info .card-body-owner-title {
+  font-weight: 900;
+  font-size: 1.5em;
+  margin: 10px;
+  color: #F05454;
+}
+
+.all-car-info .car-owner-info {
+  border: 1px solid #222831;
+  border-radius: 10px;
+  padding: 0 10px 0 10px;
+}
+
+.all-car-info .car-owner-info div {
+  padding: 5px 5px;
+}
+
+.all-car-info .car-owner-info div span {
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.all-car-info .car-owner-info .car-owner-image img {
+  width: 40px;
+  border-radius: 50%;
+}
+/*# sourceMappingURL=ownCars.css.map */

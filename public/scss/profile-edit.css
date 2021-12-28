@@ -11,6 +11,19 @@
           flex-direction: column;
 }
 
+.all-user-info .info select {
+  border-radius: 10px;
+  padding: 10px 8px 10px 8px;
+}
+
+.all-user-info .info select option {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 10px;
+  padding: 10px 8px 10px 8px;
+}
+
 .all-user-info .info input {
   border-radius: 10px;
   padding: 10px 8px 10px 8px;

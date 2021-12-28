@@ -52,11 +52,12 @@ module.exports.postGirisPage = (req, res) => {
 
         }
 
+        console.log(req.session.isAdmin);
+
         if (req.session.isAdmin) {
 
             AdminModel.findOne(req.body).then((response) => {
 
-                console.log(response)
                 req.session.username = response.username;
                 req.session.mail = response.mail;
                 req.session.surname = response.surname;
@@ -73,11 +74,6 @@ module.exports.postGirisPage = (req, res) => {
             })
 
         } else {
-
-            let {
-                mail,
-                password
-            } = req.body;
 
             UserModel.findOne(req.body).then((response) => {
 
@@ -261,10 +257,10 @@ module.exports.postKayitPage = (req, res) => {
 
 // kullanıcı paneli
 module.exports.getProfilePage = (req, res) => {
+    // ekrana yazdırma hatası var
 
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
-
     let findOneForMail = req.session.mail;
 
     if (!isAuth) {
@@ -579,7 +575,10 @@ module.exports.postAddACarPage = (req, res) => {
             doors,
             gear,
             fuelType,
-            cruiseControl
+            cruiseControl,
+            yearOfProduction,
+            deposit,
+            hourlyRate
         } = req.body;
 
         const newCar = CarModel({
@@ -597,6 +596,9 @@ module.exports.postAddACarPage = (req, res) => {
             gear,
             fuelType,
             cruiseControl,
+            yearOfProduction,
+            deposit,
+            hourlyRate
         });
 
         AdminModel.findOne({
@@ -615,11 +617,15 @@ module.exports.postAddACarPage = (req, res) => {
                 newCar.save();
                 response.save();
 
-                res.render("add-a-car", {
+                res.json(response);
+
+                /* res.render("add-a-car", {
                     isAuth,
                     isAdmin,
                     layout: "layouts/profile-layout"
-                })
+                }) */
+            }).catch((err) => {
+                console.log(err);
             })
     }
 }
@@ -634,32 +640,68 @@ module.exports.getOwnCarsPage = (req, res) => {
         res.redirect("/");
     } else {
 
-        AdminModel.findOne({mail})
-        .then((response) => {
-            console.log(response.ownCars)
-        })
+        AdminModel.findOne({
+                mail
+            })
+            .then((response) => {
+                let arrayOfCars = response.ownCars;
 
-        res.render("own-cars", {
-            isAuth,
-            isAdmin,
-            layout: "layouts/profile-layout"
-        })
+                res.render("own-cars", {
+                    isAuth,
+                    isAdmin,
+                    arrayOfCars,
+                    layout: "layouts/profile-layout"
+                })
+            })
     }
 }
 
 module.exports.postOwnCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
-    let isAdmin = req.session.isAdmin;
+    let mail = req.session.mail;
+
+    let deleteCar = req.body.carIdForDelete;
+    let goRentCar = req.body.carIdForRent;
 
     if (!isAuth) {
         res.redirect("/");
     } else {
 
-        res.render("own-cars", {
-            isAuth,
-            isAdmin,
-            layout: "layouts/profile-layout"
-        })
+        if (deleteCar) {
+
+            CarModel.findByIdAndRemove(deleteCar)
+                .then((response) => {
+                    console.log("id:" + response + " silindi");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    console.log("silinemedi")
+                })
+
+            AdminModel.findOne({
+                    mail
+                })
+                .then((response2) => {
+
+                    for (let i = 0; i < response2.ownCars.length; i++) {
+                        let getIDFromDoc = response2.ownCars[i]._id.toString();
+
+                        if (getIDFromDoc.includes(deleteCar)) {
+                            console.log("seçildi");
+
+                            response2.ownCars.splice(i, 1);
+                        }
+                    }
+
+                    response2.save();
+                })
+
+        } else if (goRentCar) {
+
+
+        }
+
+        res.redirect("/profil/araclarim");
     }
 }
 

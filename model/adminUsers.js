@@ -8,11 +8,11 @@ const AdminSchema = new Schema({
     mail: String,
     password: String,
     age: {
-        type: Number,
+        type: String,
         min: 18
     },
     phone: {
-        type: Number,
+        type: String,
     },
     address: String,
     createdDate: {

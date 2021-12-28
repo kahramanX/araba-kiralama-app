@@ -4,6 +4,19 @@
     flex-direction: column;
 
     .info {
+
+        select {
+            border-radius: 10px;
+            padding: 10px 8px 10px 8px;
+
+            option {
+                appearance: none;
+                border-radius: 10px;
+                padding: 10px 8px 10px 8px;
+    
+            }
+        }
+
         input {
             border-radius: 10px;
             padding: 10px 8px 10px 8px;
