@@ -60,31 +60,78 @@ app.use(express.urlencoded({
 //static files
 app.use("/public", express.static('public'));
 
+const Country = require("./model/Country.js");
 
 app.get('/', (req, res) => {
     let isAuth = req.session.isAuth;
 
-    console.log(req.session.isAdmin)
-
-    console.log(req.sessionID);
-
-    res.render("index", {isAuth});
+    res.render("index", {
+        isAuth
+    });
 })
 
-
 app.post('/', (req, res) => {
+    let isAuth = req.session.isAuth;
 
     let {
-        provinces: province,
-        districts: district
+        provinces,
+        districts
     } = req.body;
 
-    if (province == undefined || district == undefined) {
+    req.session.il = provinces;
+    req.session.ilce = districts;
 
-        res.render("index.ejs", );
+    if (provinces == undefined || districts == undefined) {
+
+        res.render("index.ejs", {
+            isAuth
+        });
     }
-    if (province !== undefined && district !== undefined) {
-        res.redirect(`${province}/${district}`);
+
+    if (provinces !== undefined && districts !== undefined) {
+
+        Country.findOne()
+            .then((response) => {
+                let country = response.turkey;
+
+                for (let i = 0; i < country.length; i++) {
+
+                    if (country[i].il == provinces) {
+
+                        for (let j = 0; j < country[i].ilceler.length; j++) {
+
+                            if (country[i].ilceler[j][0] == districts) {
+
+                                let newProvince = country[i].il;
+                                let newDistrict = country[i].ilceler[j][0];
+
+                                res.redirect("/arac-secimi");
+                            }
+                        }
+                    }
+                }
+            })
+    }
+})
+
+app.get("/arac-secimi", (req, res) => {
+    let isAuth = req.session.isAuth;
+
+    if (!isAuth) {
+
+        res.redirect("/");
+
+    } else {
+
+        console.log("araç seçimi kısmı");
+        console.log(req.session.il);
+        console.log(req.session.ilce);
+
+        res.render(`car-list`, {
+            layout: "layouts/car-select-layout",
+            isAuth,
+        });
+
     }
 })
 

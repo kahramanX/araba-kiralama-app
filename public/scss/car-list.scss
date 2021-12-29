@@ -1,0 +1,66 @@
+.stage-container {
+
+    .stage-wrapper {
+        padding-bottom: 50px;
+
+        .stage-texts {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            div {
+                font-size: 1.2em;
+                font-weight: 700;
+                color: #222831;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 80px;
+            }
+        }
+
+        .stage-line {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: rgb(128, 128, 128);
+            height: 5px;
+        }
+
+        .first-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            width: 30px;
+            height: 30px;
+            background-color: cornflowerblue;
+            color: white;
+            border-radius: 50%;
+        }
+
+        .second-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            width: 30px;
+            height: 30px;
+            background-color: cornflowerblue;
+            color: white;
+            border-radius: 50%;
+        }
+
+        .third-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            width: 30px;
+            height: 30px;
+            background-color: rgb(224, 152, 69);
+            color: white;
+            border-radius: 50%;
+        }
+    }
+}
