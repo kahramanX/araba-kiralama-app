@@ -20,6 +20,8 @@ const carsSchema = new Schema({
     yearOfProduction: String,
     deposit: Number,
     hourlyRate: Number,
+    carProvince: String,
+    carDistrict: String,
     isRented: Boolean,
     ownerAdmin: {
         ownerName: String,
@@ -37,6 +39,6 @@ const carsSchema = new Schema({
     }
 })
 
-const Cars = mongoose.model("Cars", carsSchema);
+const CarsModel = mongoose.model("Cars", carsSchema);
 
-module.exports = Cars;
+module.exports = CarsModel;

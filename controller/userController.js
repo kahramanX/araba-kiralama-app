@@ -8,6 +8,7 @@ let {
 let UserModel = require("../model/User");
 let CarModel = require("../model/Cars");
 let AdminModel = require("../model/adminUsers");
+
 const {
     response
 } = require("express");
@@ -561,8 +562,6 @@ module.exports.postAddACarPage = (req, res) => {
 
     } else {
 
-        console.log(req.body);
-
         let {
             carName,
             carModel,
@@ -580,10 +579,12 @@ module.exports.postAddACarPage = (req, res) => {
             cruiseControl,
             yearOfProduction,
             deposit,
-            hourlyRate
+            hourlyRate,
+            province,
+            district
         } = req.body;
 
-        const newCar = CarModel({
+        let newCar = CarModel({
             carName,
             carModel,
             carBodyType,
@@ -600,8 +601,12 @@ module.exports.postAddACarPage = (req, res) => {
             cruiseControl,
             yearOfProduction,
             deposit,
-            hourlyRate
+            hourlyRate,
+            province,
+            district
         });
+
+        console.log(newCar);
 
         AdminModel.findOne({
                 mail
@@ -620,6 +625,9 @@ module.exports.postAddACarPage = (req, res) => {
                 response.save();
 
                 res.redirect("/profil/araclarim");
+
+                console.log(req.body);
+                console.log(newCar);
 
             }).catch((err) => {
                 console.log(err);

@@ -87,5 +87,3 @@ function addDistrict() {
     console.log(arr);
     return arr;
 }
-
-// ES6 çevrilecek
