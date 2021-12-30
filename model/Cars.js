@@ -20,9 +20,12 @@ const carsSchema = new Schema({
     yearOfProduction: String,
     deposit: Number,
     hourlyRate: Number,
-    carProvince: String,
-    carDistrict: String,
-    isRented: Boolean,
+    carProvince: {
+        type: String
+    },
+    carDistrict: {
+        type: String
+    },
     ownerAdmin: {
         ownerName: String,
         ownerSurname: String,

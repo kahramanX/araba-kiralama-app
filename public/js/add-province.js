@@ -1,7 +1,7 @@
 import turkey from "../api/il-api.js";
 
-let province = document.querySelector("#province");
-let district = document.querySelector("#district");
+let province = document.querySelector("#carProvince");
+let district = document.querySelector("#carDistrict");
 
 addProvinces();
 

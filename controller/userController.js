@@ -580,8 +580,8 @@ module.exports.postAddACarPage = (req, res) => {
             yearOfProduction,
             deposit,
             hourlyRate,
-            province,
-            district
+            carProvince,
+            carDistrict
         } = req.body;
 
         let newCar = CarModel({
@@ -602,11 +602,9 @@ module.exports.postAddACarPage = (req, res) => {
             yearOfProduction,
             deposit,
             hourlyRate,
-            province,
-            district
+            carProvince,
+            carDistrict
         });
-
-        console.log(newCar);
 
         AdminModel.findOne({
                 mail
@@ -625,9 +623,6 @@ module.exports.postAddACarPage = (req, res) => {
                 response.save();
 
                 res.redirect("/profil/araclarim");
-
-                console.log(req.body);
-                console.log(newCar);
 
             }).catch((err) => {
                 console.log(err);
