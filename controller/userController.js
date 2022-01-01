@@ -790,7 +790,7 @@ module.exports.postOwnCarsPage = (req, res) => {
 
         if (deleteCar) {
 
-            console.log("deletecar alanı")
+            console.log("deletecar alanı: " + deleteCar)
 
             CarModel.findByIdAndRemove(deleteCar)
                 .then((response) => {
@@ -815,16 +815,16 @@ module.exports.postOwnCarsPage = (req, res) => {
 
                             response.ownCars.splice(i, 1);
 
+                            response.save();
+
                             res.redirect("/profil/araclarim");
                         }
                     }
-
-                    response.save();
                 })
 
         } else if (goRentCar) {
 
-            console.log("gorentcar alanı")
+            console.log("gorentcar alanı: " + goRentCar)
 
             AdminModel.findOne({
                     mail: mail

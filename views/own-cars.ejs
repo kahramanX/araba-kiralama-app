@@ -165,4 +165,11 @@
             }
         })
     })
+
+    let allCarContainer = document.querySelector(".all-user-info");
+    let carContainer = document.querySelectorAll(".car-container");
+
+    if (carContainer.length == 0) {
+        allCarContainer.innerHTML = "<h1>Burada hiç araç yok <i class='far fa-frown'></i></h1>"
+    }
 </script>
