@@ -52,19 +52,17 @@ module.exports.postGirisPage = (req, res) => {
             req.session.isAdmin = false;
 
         }
-
-        console.log(req.session.isAdmin);
+        console.log("admin kontrolü: "+req.session.isAdmin)
+        let findOneForMail = req.body.mail;
 
         if (req.session.isAdmin) {
 
-            AdminModel.findOne(req.body).then((response) => {
+            AdminModel.findOne({mail:findOneForMail}).then((response) => {
 
                 req.session.username = response.username;
                 req.session.mail = response.mail;
                 req.session.surname = response.surname;
                 req.session.isAuth = true;
-
-                req.session.save();
 
                 res.redirect("/profil");
 
@@ -76,15 +74,13 @@ module.exports.postGirisPage = (req, res) => {
 
         } else {
 
-            UserModel.findOne(req.body).then((response) => {
+            UserModel.findOne({mail:findOneForMail}).then((response) => {
 
                 console.log(response)
                 req.session.username = response.username;
                 req.session.mail = response.mail;
                 req.session.surname = response.surname;
                 req.session.isAuth = true;
-
-                req.session.save();
 
                 res.redirect("/profil");
 
@@ -258,8 +254,6 @@ module.exports.postKayitPage = (req, res) => {
 
 // kullanıcı paneli
 module.exports.getProfilePage = (req, res) => {
-    // ekrana yazdırma hatası var
-
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
     let findOneForMail = req.session.mail;
@@ -270,28 +264,24 @@ module.exports.getProfilePage = (req, res) => {
 
         if (isAdmin) {
 
-            AdminModel.findOne({
-                    findOneForMail
-                })
+            AdminModel.findOne({mail:findOneForMail}) // mail property olarak belirtilmeli
                 .then((response) => {
 
                     let userInfoForProfile = {
                         username: response.username,
                         surname: response.surname,
-                        mail: response.mail,
+                        mail: req.session.mail,
                         age: response.age,
                         phone: response.phone,
-                        address: response.address
+                        address: response.address,
                     }
 
-                    res.render("profile", {
+                    res.render("profile", { 
+                        layout: "layouts/profile-layout",
                         isAuth,
                         userInfoForProfile,
-                        isAdmin,
-                        layout: "layouts/profile-layout"
+                        isAdmin
                     });
-
-
                 })
 
         } else {
@@ -669,38 +659,60 @@ module.exports.postOwnCarsPage = (req, res) => {
 
         if (deleteCar) {
 
+            console.log("deletecar alanı")
+
             CarModel.findByIdAndRemove(deleteCar)
                 .then((response) => {
                     console.log("id:" + response + " silindi");
                 })
                 .catch((err) => {
                     console.log(err);
-                    console.log("silinemedi")
+                    console.log("silinemedi");
                 })
 
             AdminModel.findOne({
                     mail
                 })
-                .then((response2) => {
+                .then((response) => {
 
-                    for (let i = 0; i < response2.ownCars.length; i++) {
-                        let getIDFromDoc = response2.ownCars[i]._id.toString();
+                    for (let i = 0; i < response.ownCars.length; i++) {
+                        let getIDFromDoc = response.ownCars[i]._id.toString();
 
                         if (getIDFromDoc.includes(deleteCar)) {
                             console.log("seçildi");
 
-                            response2.ownCars.splice(i, 1);
+                            response.ownCars.splice(i, 1);
+
+                            res.redirect("/profil/araclarim");
                         }
                     }
 
-                    response2.save();
+                    response.save();
                 })
 
         } else if (goRentCar) {
 
+            console.log("gorentcar alanı")
 
+            AdminModel.findOne({
+                    mail
+                })
+                .then((response) => {
+
+                    for (let i = 0; i < response.ownCars.length; i++) {
+
+                        let getIDFromDoc = response.ownCars[i]._id.toString();
+
+                        if (getIDFromDoc.includes(goRentCar)) {
+
+                            console.log(response.ownCars[i]._id);
+
+                            AdminModel.updateOne({_id: getIDFromDoc}, {$set:{ [`ownCars${i}.isRented`]: "true"}}).then((res3)=> console.log(res3)).catch((err)=> console.log(err))
+                            console.log(response)
+                        }
+                    }
+                })
         }
-
         res.redirect("/profil/araclarim");
     }
 }
