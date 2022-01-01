@@ -52,12 +52,14 @@ module.exports.postGirisPage = (req, res) => {
             req.session.isAdmin = false;
 
         }
-        console.log("admin kontrolü: "+req.session.isAdmin)
+        console.log("admin kontrolü: " + req.session.isAdmin)
         let findOneForMail = req.body.mail;
 
         if (req.session.isAdmin) {
 
-            AdminModel.findOne({mail:findOneForMail}).then((response) => {
+            AdminModel.findOne({
+                mail: findOneForMail
+            }).then((response) => {
 
                 req.session.username = response.username;
                 req.session.mail = response.mail;
@@ -74,7 +76,9 @@ module.exports.postGirisPage = (req, res) => {
 
         } else {
 
-            UserModel.findOne({mail:findOneForMail}).then((response) => {
+            UserModel.findOne({
+                mail: findOneForMail
+            }).then((response) => {
 
                 console.log(response)
                 req.session.username = response.username;
@@ -264,7 +268,9 @@ module.exports.getProfilePage = (req, res) => {
 
         if (isAdmin) {
 
-            AdminModel.findOne({mail:findOneForMail}) // mail property olarak belirtilmeli
+            AdminModel.findOne({
+                    mail: findOneForMail
+                }) // mail property olarak belirtilmeli
                 .then((response) => {
 
                     let userInfoForProfile = {
@@ -276,7 +282,7 @@ module.exports.getProfilePage = (req, res) => {
                         address: response.address,
                     }
 
-                    res.render("profile", { 
+                    res.render("profile", {
                         layout: "layouts/profile-layout",
                         isAuth,
                         userInfoForProfile,
@@ -321,28 +327,56 @@ module.exports.getDuzenlePage = (req, res) => {
         res.redirect("/");
     } else {
 
-        UserModel.findOne({
-                findOneForMail
-            })
-            .then((response) => {
+        if (isAdmin) {
 
-                let userInfoForProfile = {
-                    username: response.username,
-                    surname: response.surname,
-                    mail: response.mail,
-                    password: response.password,
-                    age: response.age,
-                    phone: response.phone,
-                    address: response.address
-                };
+            AdminModel.findOne({
+                    mail: findOneForMail
+                })
+                .then((response) => {
 
-                res.render("profile-edit", {
-                    isAuth,
-                    userInfoForProfile,
-                    isAdmin,
-                    layout: "layouts/profile-layout"
-                });
-            })
+                    let userInfoForProfile = {
+                        username: response.username,
+                        surname: response.surname,
+                        mail: response.mail,
+                        password: response.password,
+                        age: response.age,
+                        phone: response.phone,
+                        address: response.address
+                    };
+
+                    res.render("profile-edit", {
+                        isAuth,
+                        userInfoForProfile,
+                        isAdmin,
+                        layout: "layouts/profile-layout"
+                    });
+                })
+
+        } else {
+
+            UserModel.findOne({
+                    mail: findOneForMail
+                })
+                .then((response) => {
+
+                    let userInfoForProfile = {
+                        username: response.username,
+                        surname: response.surname,
+                        mail: response.mail,
+                        password: response.password,
+                        age: response.age,
+                        phone: response.phone,
+                        address: response.address
+                    };
+
+                    res.render("profile-edit", {
+                        isAuth,
+                        userInfoForProfile,
+                        isAdmin,
+                        layout: "layouts/profile-layout"
+                    });
+                })
+        }
     }
 }
 
@@ -362,7 +396,7 @@ module.exports.postDuzenlePage = (req, res) => {
         alert = errors.array();
 
         UserModel.findOne({
-                findOneForMail
+                mail: findOneForMail
             })
             .then((response) => {
 
@@ -388,96 +422,193 @@ module.exports.postDuzenlePage = (req, res) => {
     } else {
         console.log(req.body)
         // kullanıcı bilgilerini düzenleme sayfası için yeni bilgiler
-        const {
-            username,
-            surname,
-            mail,
-            password,
-            age,
-            phone,
-            address
-        } = req.body;
 
-        console.log(req.body)
+        if (isAdmin) {
 
-        console.log("güncelleme alanı");
+            const {
+                username,
+                surname,
+                mail,
+                password,
+                age,
+                phone,
+                address
+            } = req.body;
 
-        UserModel.findOne({
-            findOneForMail
-        }).then((response) => {
-            console.log("güncelleme alanına girildi");
+            console.log(req.body)
 
-            let userInfoForProfile = {
-                username: response.username,
-                surname: response.surname,
-                mail: response.mail,
-                password: response.password,
-                age: response.age,
-                phone: response.phone,
-                address: response.address
-            };
+            console.log("güncelleme alanı");
 
-            UserModel.updateOne({
-                    username: response.username
-                }, {
-                    username: username
-                })
-                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+            AdminModel.findOne({
+                mail: findOneForMail
+            }).then((response) => {
+                console.log("güncelleme alanına girildi");
 
-            UserModel.updateOne({
-                    surname: response.surname
-                }, {
-                    surname: surname
-                })
-                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
-
-            UserModel.updateOne({
-                    mail: response.mail
-                }, {
-                    mail: mail
-                })
-                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
-
-            UserModel.updateOne({
-                    password: response.password
-                }, {
-                    password: password
-                })
-                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
-
-            UserModel.updateOne({
-                    age: response.age
-                }, {
-                    age: age
-                })
-                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
-
-            UserModel.updateOne({
-                    phone: response.phone
-                }, {
-                    phone: phone
-                })
-                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
-
-            UserModel.updateOne({
+                let userInfoForProfile = {
+                    username: response.username,
+                    surname: response.surname,
+                    mail: response.mail,
+                    password: response.password,
+                    age: response.age,
+                    phone: response.phone,
                     address: response.address
-                }, {
-                    address: address
-                })
-                .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+                };
 
-            res.render("profile-edit", {
-                isAuth,
-                isAdmin,
-                userInfoForProfile,
-                alert: [{
-                    value: '',
-                    msg: `Güncelleme başarılı!`,
-                    param: 'mail',
-                }],
-                layout: "layouts/profile-layout"
-            });
-        })
+                AdminModel.updateOne({
+                        username: response.username
+                    }, {
+                        username: username
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                AdminModel.updateOne({
+                        surname: response.surname
+                    }, {
+                        surname: surname
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                AdminModel.updateOne({
+                        mail: response.mail
+                    }, {
+                        mail: mail
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                AdminModel.updateOne({
+                        password: response.password
+                    }, {
+                        password: password
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                AdminModel.updateOne({
+                        age: response.age
+                    }, {
+                        age: age
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                AdminModel.updateOne({
+                        phone: response.phone
+                    }, {
+                        phone: phone
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                AdminModel.updateOne({
+                        address: response.address
+                    }, {
+                        address: address
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                res.render("profile-edit", {
+                    isAuth,
+                    isAdmin,
+                    userInfoForProfile,
+                    alert: [{
+                        value: '',
+                        msg: `Güncelleme başarılı!`,
+                        param: 'mail',
+                    }],
+                    layout: "layouts/profile-layout"
+                });
+            })
+
+        } else {
+
+            const {
+                username,
+                surname,
+                mail,
+                password,
+                age,
+                phone,
+                address
+            } = req.body;
+
+            console.log(req.body)
+
+            console.log("güncelleme alanı");
+
+            UserModel.findOne({
+                mail: findOneForMail
+            }).then((response) => {
+                console.log("güncelleme alanına girildi");
+
+                let userInfoForProfile = {
+                    username: response.username,
+                    surname: response.surname,
+                    mail: response.mail,
+                    password: response.password,
+                    age: response.age,
+                    phone: response.phone,
+                    address: response.address
+                };
+
+                UserModel.updateOne({
+                        username: response.username
+                    }, {
+                        username: username
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                UserModel.updateOne({
+                        surname: response.surname
+                    }, {
+                        surname: surname
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                UserModel.updateOne({
+                        mail: response.mail
+                    }, {
+                        mail: mail
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                UserModel.updateOne({
+                        password: response.password
+                    }, {
+                        password: password
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                UserModel.updateOne({
+                        age: response.age
+                    }, {
+                        age: age
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                UserModel.updateOne({
+                        phone: response.phone
+                    }, {
+                        phone: phone
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                UserModel.updateOne({
+                        address: response.address
+                    }, {
+                        address: address
+                    })
+                    .then(() => console.log("Success!")).catch((errorUpdate) => console.log(errorUpdate));
+
+                res.render("profile-edit", {
+                    isAuth,
+                    isAdmin,
+                    userInfoForProfile,
+                    alert: [{
+                        value: '',
+                        msg: `Güncelleme başarılı!`,
+                        param: 'mail',
+                    }],
+                    layout: "layouts/profile-layout"
+                });
+            })
+        }
     }
 }
 
@@ -663,7 +794,8 @@ module.exports.postOwnCarsPage = (req, res) => {
 
             CarModel.findByIdAndRemove(deleteCar)
                 .then((response) => {
-                    console.log("id:" + response + " silindi");
+
+                    console.log("id: silindi");
                 })
                 .catch((err) => {
                     console.log(err);
@@ -671,7 +803,7 @@ module.exports.postOwnCarsPage = (req, res) => {
                 })
 
             AdminModel.findOne({
-                    mail
+                    mail: mail
                 })
                 .then((response) => {
 
@@ -695,7 +827,7 @@ module.exports.postOwnCarsPage = (req, res) => {
             console.log("gorentcar alanı")
 
             AdminModel.findOne({
-                    mail
+                    mail: mail
                 })
                 .then((response) => {
 
@@ -707,7 +839,13 @@ module.exports.postOwnCarsPage = (req, res) => {
 
                             console.log(response.ownCars[i]._id);
 
-                            AdminModel.updateOne({_id: getIDFromDoc}, {$set:{ [`ownCars${i}.isRented`]: "true"}}).then((res3)=> console.log(res3)).catch((err)=> console.log(err))
+                            AdminModel.updateOne({
+                                _id: getIDFromDoc
+                            }, {
+                                $set: {
+                                    [`ownCars${i}.isRented`]: "true"
+                                }
+                            }).then((res3) => console.log(res3)).catch((err) => console.log(err))
                             console.log(response)
                         }
                     }
