@@ -8,10 +8,14 @@ let {
 let UserModel = require("../model/User");
 let CarModel = require("../model/Cars");
 let AdminModel = require("../model/adminUsers");
+let CountryModel = require("../model/Country");
 
 const {
     response
 } = require("express");
+const {
+    json
+} = require("body-parser");
 
 module.exports.getGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
@@ -705,6 +709,8 @@ module.exports.postAddACarPage = (req, res) => {
             carDistrict
         } = req.body;
 
+        let isRented = false;
+
         let newCar = CarModel({
             carName,
             carModel,
@@ -724,7 +730,8 @@ module.exports.postAddACarPage = (req, res) => {
             deposit,
             hourlyRate,
             carProvince,
-            carDistrict
+            carDistrict,
+            isRented,
         });
 
         AdminModel.findOne({
@@ -762,7 +769,7 @@ module.exports.getOwnCarsPage = (req, res) => {
     } else {
 
         AdminModel.findOne({
-                mail
+                mail: mail
             })
             .then((response) => {
                 let arrayOfCars = response.ownCars;
@@ -783,6 +790,7 @@ module.exports.postOwnCarsPage = (req, res) => {
 
     let deleteCar = req.body.carIdForDelete;
     let goRentCar = req.body.carIdForRent;
+    let removeRenting = req.body.carIdForRemoveRenting;
 
     if (!isAuth) {
         res.redirect("/");
@@ -824,7 +832,7 @@ module.exports.postOwnCarsPage = (req, res) => {
 
         } else if (goRentCar) {
 
-            console.log("gorentcar alanı: " + goRentCar)
+            console.log("gorentcar alanı: " + goRentCar);
 
             AdminModel.findOne({
                     mail: mail
@@ -834,24 +842,91 @@ module.exports.postOwnCarsPage = (req, res) => {
                     for (let i = 0; i < response.ownCars.length; i++) {
 
                         let getIDFromDoc = response.ownCars[i]._id.toString();
+                        let getPersonIDFromDoc = response._id.toString();
+                        let getObjectOfCar = response.ownCars[i];
+
+                        console.log("id kontrol")
+                        console.log(getPersonIDFromDoc)
 
                         if (getIDFromDoc.includes(goRentCar)) {
 
-                            console.log(response.ownCars[i]._id);
+                            let provinceOfCar = response.ownCars[i].carProvince;
+                            let districtOfCar = response.ownCars[i].carDistrict;
 
-                            AdminModel.updateOne({
-                                _id: getIDFromDoc
-                            }, {
-                                $set: {
-                                    [`ownCars${i}.isRented`]: "true"
-                                }
-                            }).then((res3) => console.log(res3)).catch((err) => console.log(err))
-                            console.log(response)
+                            console.log("müdahale edilmemiş isRented = ")
+                            console.log(response.ownCars[i].isRented)
+
+                            CountryModel.find()
+                                .then((response2) => {
+
+                                    let turkey = response2[0].turkey;
+
+                                    turkey.forEach(country => {
+                                        if (country.il == provinceOfCar) {
+
+                                            for (let j = 0; j < country.ilceler.length; j++) {
+
+                                                if (country.ilceler[j][0] == districtOfCar) {
+                                                    console.log("seçilen ilçe: " + country.ilceler[j][0]);
+                                                    console.log("seçilen il: " + country.il);
+                                                    console.log("ikinci id test")
+                                                    console.log(getPersonIDFromDoc)
+
+                                                    // güncelleme alanı
+                                                    AdminModel.findOneAndUpdate({
+                                                            mail: mail,
+                                                        }, {
+                                                            [`ownCars.${i}.isRented`]: true
+                                                        }, {
+                                                            new: true
+                                                        })
+                                                        .then(() => {});
+
+                                                    res.redirect("/profil/araclarim")
+                                                }
+                                            }
+                                        }
+                                    });
+                                })
                         }
                     }
                 })
+
+        } else if (removeRenting) {
+
+            console.log("araş kaldırma id = ")
+            console.log(removeRenting)
+
+            AdminModel.findOne({
+                    mail: mail
+                })
+                .then((response) => {
+
+                    for (let i = 0; i < response.ownCars.length; i++) {
+
+                        let getIDFromDoc = response.ownCars[i]._id.toString();
+                        let getPersonIDFromDoc = response._id.toString();
+                        let getObjectOfCar = response.ownCars[i];
+
+                        if (getIDFromDoc.includes(removeRenting)) {
+
+                            console.log("güncelleeme alanı")
+                            AdminModel.findOneAndUpdate({
+                                    mail: mail
+                                }, {
+                                    [`ownCars.${i}.isRented`]: false
+                                }, {
+                                    new: true
+                                })
+                                .then(() => {});
+
+                            res.redirect("/profil/araclarim");
+                        }
+
+                    }
+
+                })
         }
-        res.redirect("/profil/araclarim");
     }
 }
 

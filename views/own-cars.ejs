@@ -57,11 +57,20 @@
                 <i class="fas fa-expand-alt"></i>
             </div>
             <div class="car-buttons">
-                <button class="go-rent-car" name="carIdForRent" value="<%= car._id %>">
-                    <i class="fas fa-map-marked"></i>Kiralığa Çıkar</button>
 
-                <!--<button class="remove-renting-car"><i class="fas fa-undo"></i>Kiralamadan Kaldır</button> -->
-                <button class="delete-car" name="carIdForDelete" value="<%= car._id %>"><i class="fas fa-trash-alt"></i>Aracı sil</button>
+                <% if(car.isRented == true) { %>
+                    
+                <button class="remove-renting-car" name="carIdForRemoveRenting" value="<%= car._id %>">
+                    <i class="fas fa-undo"></i> Kiralamadan Kaldır</button>
+
+                <% } else if(car.isRented === undefined || car.isRented == false) { %>
+
+                <button class="go-rent-car" name="carIdForRent" value="<%= car._id %>">
+                    <i class="fas fa-map-marked"></i>Kiralığa Çıkar <%= car.isRented %> </button>
+                <% } %>
+
+                <button class="delete-car" name="carIdForDelete" value="<%= car._id %>"><i
+                        class="fas fa-trash-alt"></i>Aracı sil</button>
             </div>
         </div>
     </div>
@@ -136,7 +145,6 @@
             </div>
         </div>
     </div>
-
     <% }); %>
 </form>
 <script>
