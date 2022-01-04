@@ -64,3 +64,62 @@
         }
     }
 }
+
+.selected-options {
+    display: flex;
+    justify-content: center;
+
+    .selected-province {
+        color: white;
+        background-color: cornflowerblue;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid cornflowerblue;
+        margin-right: 20px;
+
+        span {
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        i {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    .selected-district {
+        color: white;
+        background-color: cornflowerblue;
+        padding: 10px 20px;
+        border-radius: 10px;
+        margin-right: 20px;
+
+        span {
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        i {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    .select-again {
+        color: white;
+        background-color: orange;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid orange;
+
+        span{
+            font-weight: 800;
+        }
+
+        i {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+
+
+}

@@ -97,4 +97,64 @@
   color: white;
   border-radius: 50%;
 }
+
+.selected-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.selected-options .selected-province {
+  color: white;
+  background-color: cornflowerblue;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid cornflowerblue;
+  margin-right: 20px;
+}
+
+.selected-options .selected-province span {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.selected-options .selected-province i {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.selected-options .selected-district {
+  color: white;
+  background-color: cornflowerblue;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.selected-options .selected-district span {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.selected-options .selected-district i {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.selected-options .select-again {
+  color: white;
+  background-color: orange;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid orange;
+}
+
+.selected-options .select-again span {
+  font-weight: 800;
+}
+
+.selected-options .select-again i {
+  color: rgba(0, 0, 0, 0.5);
+}
 /*# sourceMappingURL=car-list.css.map */
