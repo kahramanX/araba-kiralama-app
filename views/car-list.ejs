@@ -30,11 +30,27 @@
 </div>
 
 <section>
-    <div class="all-cars">
-        
+    <div class="selected-options">
+        <div class="selected-province">
+            <span>Seçilen İl</span>
+            <i class="fas fa-arrow-right"></i>
+            <%= selectedProvinceAndDistrict.province %>
+        </div>
+
+        <div class="selected-district">
+            <span>Seçilen İlçe</span>
+                        <i class="fas fa-arrow-right"></i>
+            <%= selectedProvinceAndDistrict.district %>
+        </div>
+        <a href="/" class="select-again">
+            <span>Tekrar Seç</span>
+            <i class="fas fa-exchange-alt"></i>
+        </a>
     </div>
 </section>
 
+<section>
+    <div class="all-cars">
 
-
-<h1>araba listesi</h1>
+    </div>
+</section>
