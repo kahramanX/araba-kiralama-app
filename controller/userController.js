@@ -971,6 +971,60 @@ module.exports.postOwnCarsPage = (req, res) => {
     }
 }
 
+module.exports.postCarListPage = (req, res) => {
+
+}
+
+module.exports.getCarListPage = (req, res) => {
+    let isAuth = req.session.isAuth;
+
+    if (!isAuth) {
+
+        res.redirect("/");
+
+    } else {
+
+        let selectedProvince = req.session.il;
+        let selectedDistrict = req.session.ilce;
+
+        let selectedProvinceAndDistrict = {
+            province: selectedProvince,
+            district: selectedDistrict
+        }
+
+        CountryModel.find({})
+            .then((response) => {
+
+                let country = response[0].turkey;
+
+                for (let i = 0; i < country.length; i++) {
+
+                    if (selectedProvince == country[i].il) {
+                        console.log("seçilen il: " + country[i].il)
+
+                        for (let j = 0; j < country[i].ilceler.length; j++) {
+                            if (selectedDistrict == country[i].ilceler[j][0]) {
+
+                                console.log("Seçilen İlçe: " + country[i].ilceler[j][0])
+                                console.log("içindeki arabalar");
+                                console.log(country[i].ilceler[j][1]);
+
+                                let arrayOfCars = country[i].ilceler[j][1];
+
+                                res.render(`car-list`, {
+                                    layout: "layouts/car-select-layout",
+                                    isAuth,
+                                    selectedProvinceAndDistrict,
+                                    arrayOfCars
+                                });
+                            }
+                        }
+                    }
+                }
+            })
+    }
+}
+
 module.exports.getCikisPage = (req, res) => {
     let isAuth = req.session.isAuth;
 
@@ -989,38 +1043,6 @@ module.exports.getCikisPage = (req, res) => {
 
                 res.send("session erişilemiyor");
             }
-        });
-    }
-}
-
-module.exports.postCarListPage = (req, res) => {
-
-
-
-}
-
-module.exports.getCarListPage = (req, res) => {
-    let isAuth = req.session.isAuth;
-
-    if (!isAuth) {
-
-        res.redirect("/");
-
-    } else {
-
-        console.log("araç seçimi kısmı");
-        console.log(req.session.il);
-        console.log(req.session.ilce);
-
-        let selectedProvinceAndDistrict = {
-            province : req.session.il,
-            district : req.session.ilce
-        }
-
-        res.render(`car-list`, {
-            layout: "layouts/car-select-layout",
-            isAuth,
-            selectedProvinceAndDistrict
         });
     }
 }
