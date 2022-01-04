@@ -114,27 +114,6 @@ app.post('/', (req, res) => {
     }
 })
 
-app.get("/arac-secimi", (req, res) => {
-    let isAuth = req.session.isAuth;
-
-    if (!isAuth) {
-
-        res.redirect("/");
-
-    } else {
-
-        console.log("araç seçimi kısmı");
-        console.log(req.session.il);
-        console.log(req.session.ilce);
-
-        res.render(`car-list`, {
-            layout: "layouts/car-select-layout",
-            isAuth,
-        });
-
-    }
-})
-
 // Router middleware
 app.use(userRoutes);
 

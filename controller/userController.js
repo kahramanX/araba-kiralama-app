@@ -992,3 +992,35 @@ module.exports.getCikisPage = (req, res) => {
         });
     }
 }
+
+module.exports.postCarListPage = (req, res) => {
+
+
+
+}
+
+module.exports.getCarListPage = (req, res) => {
+    let isAuth = req.session.isAuth;
+
+    if (!isAuth) {
+
+        res.redirect("/");
+
+    } else {
+
+        console.log("araç seçimi kısmı");
+        console.log(req.session.il);
+        console.log(req.session.ilce);
+
+        let selectedProvinceAndDistrict = {
+            province : req.session.il,
+            district : req.session.ilce
+        }
+
+        res.render(`car-list`, {
+            layout: "layouts/car-select-layout",
+            isAuth,
+            selectedProvinceAndDistrict
+        });
+    }
+}

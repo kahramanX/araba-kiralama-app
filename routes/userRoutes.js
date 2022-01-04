@@ -95,7 +95,8 @@ router.get("/profil/araclarim", userController.getOwnCarsPage);
 
 router.post("/profil/araclarim", userController.postOwnCarsPage);
 
+router.get("/arac-secimi", userController.getCarListPage);
 
-
+router.post("/arac-secimi", userController.postCarListPage);
 
 module.exports = router;
