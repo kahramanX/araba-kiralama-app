@@ -54,7 +54,6 @@ function removeDisabledAttributesFromInput() {
 
 function removeDisabledAttributesFromButton() {
 
-    console.log("çalıştı mı")
     searchBtn.disabled = false;
     searchBtn.cursor = "pointer";
 }
