@@ -845,32 +845,27 @@ module.exports.postOwnCarsPage = (req, res) => {
                         let getPersonIDFromDoc = response._id.toString();
                         let getObjectOfCar = response.ownCars[i];
 
-                        console.log("id kontrol")
-                        console.log(getPersonIDFromDoc)
-
                         if (getIDFromDoc.includes(goRentCar)) {
 
                             let provinceOfCar = response.ownCars[i].carProvince;
                             let districtOfCar = response.ownCars[i].carDistrict;
 
-                            console.log("müdahale edilmemiş isRented = ")
-                            console.log(response.ownCars[i].isRented)
-
                             CountryModel.find()
                                 .then((response2) => {
 
-                                    let turkey = response2[0].turkey;
+                                    let country = response2[0].turkey;
 
-                                    turkey.forEach(country => {
-                                        if (country.il == provinceOfCar) {
+                                    for (let z = 0; z < country.length; z++) {
 
-                                            for (let j = 0; j < country.ilceler.length; j++) {
+                                        if (country[z].il == provinceOfCar) {
 
-                                                if (country.ilceler[j][0] == districtOfCar) {
-                                                    console.log("seçilen ilçe: " + country.ilceler[j][0]);
-                                                    console.log("seçilen il: " + country.il);
-                                                    console.log("ikinci id test")
-                                                    console.log(getPersonIDFromDoc)
+                                            console.log("önce bu mu")
+
+                                            for (let j = 0; j < country[z].ilceler.length; j++) {
+
+                                                if (country[z].ilceler[j][0] == districtOfCar) {
+                                                    console.log("seçilen ilçe: " + country[z].ilceler[j][0]);
+                                                    console.log("seçilen il: " + country[z].il);
 
                                                     // güncelleme alanı
                                                     AdminModel.findOneAndUpdate({
@@ -880,13 +875,25 @@ module.exports.postOwnCarsPage = (req, res) => {
                                                         }, {
                                                             new: true
                                                         })
-                                                        .then(() => {});
+                                                        .then(() => {
 
-                                                    res.redirect("/profil/araclarim")
+                                                            console.log("güncelleme yerinin için")
+
+                                                        });
+
+                                                    CountryModel.findOneAndUpdate({}, {
+                                                            $push: {
+                                                                [`turkey.${z}.ilceler.${j}.${1}`]: getObjectOfCar
+                                                            }
+                                                        })
+                                                        .then(() => {
+                                                            console.log("Araba objesi pushlandı");
+                                                        });
                                                 }
                                             }
                                         }
-                                    });
+                                    }
+                                    res.redirect("/profil/araclarim");
                                 })
                         }
                     }
@@ -897,6 +904,8 @@ module.exports.postOwnCarsPage = (req, res) => {
             console.log("araş kaldırma id = ")
             console.log(removeRenting)
 
+            //2. örnek kısım
+
             AdminModel.findOne({
                     mail: mail
                 })
@@ -904,27 +913,59 @@ module.exports.postOwnCarsPage = (req, res) => {
 
                     for (let i = 0; i < response.ownCars.length; i++) {
 
-                        let getIDFromDoc = response.ownCars[i]._id.toString();
-                        let getPersonIDFromDoc = response._id.toString();
-                        let getObjectOfCar = response.ownCars[i];
+                        let getIDFromDoc = response.ownCars[i]._id;
+                        let getIDFromDocString = response.ownCars[i]._id.toString();
 
-                        if (getIDFromDoc.includes(removeRenting)) {
 
-                            console.log("güncelleeme alanı")
-                            AdminModel.findOneAndUpdate({
-                                    mail: mail
-                                }, {
-                                    [`ownCars.${i}.isRented`]: false
-                                }, {
-                                    new: true
+                        if (getIDFromDocString.includes(removeRenting)) {
+
+                            let provinceOfCar = response.ownCars[i].carProvince;
+                            let districtOfCar = response.ownCars[i].carDistrict;
+
+                            CountryModel.find()
+                                .then((response2) => {
+
+                                    let country = response2[0].turkey;
+
+                                    for (let z = 0; z < country.length; z++) {
+
+                                        if (country[z].il == provinceOfCar) {
+
+                                            for (let j = 0; j < country[z].ilceler.length; j++) {
+
+                                                if (country[z].ilceler[j][0] == districtOfCar) {
+                                                    console.log("seçilen ilçe: " + country[z].ilceler[j][0]);
+                                                    console.log("seçilen il: " + country[z].il);
+
+                                                    CountryModel.findOneAndUpdate({}, {
+                                                            $pull: {
+                                                                [`turkey.${z}.ilceler.${j}.${1}`]: {
+                                                                    _id: getIDFromDoc
+                                                                }
+                                                            }
+                                                        })
+                                                        .then(() => {
+                                                            console.log("Araba objesi silindi");
+                                                        });
+
+                                                    AdminModel.findOneAndUpdate({
+                                                            mail: mail
+                                                        }, {
+                                                            [`ownCars.${i}.isRented`]: false
+                                                        }, {
+                                                            new: true
+                                                        })
+                                                        .then(() => {
+                                                            console.log("Araç kiralamadan kaldırıldı")
+                                                        });
+                                                }
+                                            }
+                                        }
+                                    }
+                                    res.redirect("/profil/araclarim");
                                 })
-                                .then(() => {});
-
-                            res.redirect("/profil/araclarim");
                         }
-
                     }
-
                 })
         }
     }
