@@ -11,21 +11,36 @@
         </div>
 
         <form action="" method="POST">
-
             <div class="select-section">
                 <div class="province-section">
+                    <label for="provinces">İl Seçin</label>
+                    <select name="provinces" id="provinces">
+                        <option value="İl seç" disabled selected>İl Seç</option>
+                    </select>
 
+                    <div class="dropdown-content">İl seçimi yapmanız gerekiyor</div>
                 </div>
                 <div class="district-section">
+                    <label for="districts">İlçe Seçin</label>
+                    <select name="districts" id="districts" disabled>
+                        <option value="İlçe seç" disabled selected>İlçe Seç</option>
+                    </select>
 
+                    <div class="dropdown-content">İl seçimi yapmanız gerekiyor</div>
                 </div>
 
+                <div class="datePicker-section">
+                    <label for="datetimes">Tarih Seç</label>
+                    <input type="text" class="datetimes" name="datetimes" disabled>
+
+                    <div class="dropdown-content">İlçe seçimi yapmanız gerekiyor</div>
+                </div>
             </div>
-            <p class="delete-after">Nereden almak istiyorsun?</p>
     </div>
 
-    <button type="submit" class="search-btn">
+    <button type="submit" class="search-btn" disabled>
         <img src="public/icons/search-icon.png" alt="">
+        <div class="dropdown-content">Tüm seçimleri yaptığınızda buton aktif olur</div>
     </button>
 
     </form>
@@ -82,4 +97,46 @@
     </div>
 </section>
 
-<script type="module" src="public/js/search-box.js"></script>
+<script type="module" src="../public/js/searchbox.js"></script>
+
+<script>
+    $(function () {
+        $('input[name="datetimes"]').daterangepicker({
+            timePicker: true,
+            "timePicker24Hour": true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+            locale: {
+                format: '',
+                "format": "MM/DD/YYYY",
+                "separator": " - ",
+                "applyLabel": "Kaydet",
+                "cancelLabel": "İptal",
+                "weekLabel": "W",
+                "daysOfWeek": [
+                    "PAZ",
+                    "PZT",
+                    "SAL",
+                    "ÇAR",
+                    "PER",
+                    "CUM",
+                    "CMT"
+                ],
+                "monthNames": [
+                    "Ocak",
+                    "Şubat",
+                    "Mart",
+                    "Nisan",
+                    "Mayıs",
+                    "Haziran",
+                    "Temmuz",
+                    "Ağustos",
+                    "Eylül",
+                    "Ekim",
+                    "Kasım",
+                    "Aralık"
+                ],
+            }
+        });
+    });
+</script>

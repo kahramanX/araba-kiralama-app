@@ -81,6 +81,8 @@ app.post('/', (req, res) => {
     req.session.il = provinces;
     req.session.ilce = districts;
 
+    console.log(req.body);
+
     if (provinces == undefined || districts == undefined) {
 
         res.render("index.ejs", {

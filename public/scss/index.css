@@ -151,6 +151,14 @@ header .account-container .logout:hover {
   background-color: white;
 }
 
+.search-boxs-container select:disabled {
+  cursor: not-allowed;
+}
+
+.search-boxs-container input:disabled {
+  cursor: not-allowed;
+}
+
 .search-boxs-container .nereden-search-box {
   font-weight: 700;
   border-radius: 10px;
@@ -192,6 +200,97 @@ header .account-container .logout:hover {
 
 .search-boxs-container .nereden-search-box .select-section .province-section {
   margin-right: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.search-boxs-container .nereden-search-box .select-section .province-section .dropdown-content {
+  margin-top: 10px;
+  display: none;
+  font-weight: 500;
+  font-size: 1em;
+  width: 100px;
+  height: 60px;
+  border: 1px solid red;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #969696;
+  position: absolute;
+  z-index: 1;
+}
+
+.search-boxs-container .nereden-search-box .select-section .province-section:hover .dropdown-content {
+  display: block;
+}
+
+.search-boxs-container .nereden-search-box .select-section .province-section:disabled {
+  background: linear-gradient(130deg, #d8dff7, #1b2030);
+  cursor: not-allowed;
+}
+
+.search-boxs-container .nereden-search-box .select-section .district-section {
+  position: relative;
+  display: inline-block;
+}
+
+.search-boxs-container .nereden-search-box .select-section .district-section .dropdown-content {
+  margin-top: 10px;
+  display: none;
+  font-weight: 500;
+  font-size: 1em;
+  width: 100px;
+  height: 60px;
+  border: 1px solid red;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #969696;
+  position: absolute;
+  z-index: 1;
+}
+
+.search-boxs-container .nereden-search-box .select-section .district-section:hover .dropdown-content {
+  display: block;
+}
+
+.search-boxs-container .nereden-search-box .select-section .district-section:disabled {
+  background: linear-gradient(130deg, #d8dff7, #1b2030);
+  cursor: not-allowed;
+}
+
+.search-boxs-container .nereden-search-box .select-section .datePicker-section {
+  position: relative;
+  display: inline-block;
+}
+
+.search-boxs-container .nereden-search-box .select-section .datePicker-section .dropdown-content {
+  margin-top: 10px;
+  display: none;
+  font-weight: 500;
+  font-size: 1em;
+  width: 100px;
+  height: 60px;
+  border: 1px solid red;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #969696;
+  position: absolute;
+  z-index: 1;
+}
+
+.search-boxs-container .nereden-search-box .select-section .datePicker-section:hover .dropdown-content {
+  display: block;
+}
+
+.search-boxs-container .nereden-search-box .select-section .datePicker-section:disabled {
+  background: linear-gradient(130deg, #d8dff7, #1b2030);
+  cursor: not-allowed;
+}
+
+.search-boxs-container .nereden-search-box p {
+  pointer-events: none;
 }
 
 .search-boxs-container .search-btn {
@@ -200,6 +299,32 @@ header .account-container .logout:hover {
   width: 100px;
   height: 70px;
   background: linear-gradient(130deg, #9bb0ff, #3861fb);
+  position: relative;
+  display: inline-block;
+}
+
+.search-boxs-container .search-btn .dropdown-content {
+  margin-top: 10px;
+  display: none;
+  font-weight: 500;
+  font-size: 1.2em;
+  width: 100px;
+  border: 1px solid red;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #969696;
+  position: absolute;
+  z-index: 1;
+}
+
+.search-boxs-container .search-btn:hover .dropdown-content {
+  display: block;
+}
+
+.search-boxs-container .search-btn:disabled {
+  background: linear-gradient(130deg, #d8dff7, #1b2030);
+  cursor: not-allowed;
 }
 
 .brand-section {

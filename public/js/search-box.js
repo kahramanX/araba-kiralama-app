@@ -4,6 +4,7 @@ let neredenBox = document.querySelector(".nereden-search-box");
 //let selectSection = document.querySelector(".select-section");
 let provinceSection = document.querySelector(".province-section");
 let districtSection = document.querySelector(".district-section");
+let datePickerSection = document.querySelector(".datePicker-section");
 
 eventListeners();
 
@@ -59,6 +60,10 @@ function createSelectTagForDistricts() {
     </select>`;
 
     districtSection.innerHTML = selectElement;
+
+    datePickerSection.innerHTML = `
+    <input type="text" class="datetimes" name="datetimes">
+    `;
 }
 
 function addDistrict() {
@@ -78,12 +83,10 @@ function addDistrict() {
 
                 let selectedDistrict = `<option value="${districts[i]}">${districts[i]}</option>`;
 
-                console.log(selectedDistrict);
                 arr.push(selectedDistrict);
             }
         }
     });
 
-    console.log(arr);
     return arr;
 }
