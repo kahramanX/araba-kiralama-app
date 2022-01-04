@@ -45,9 +45,7 @@
                         <div><span>Deposito:</span><%= car.deposit %> </div>
                     </div>
                 </div>
-                <!--             <div class="car-wage-info">
-                araç fiyatı
-            </div> -->
+
             </div>
 
         </div>
@@ -59,7 +57,7 @@
             <div class="car-buttons">
 
                 <% if(car.isRented == true) { %>
-                    
+
                 <button class="remove-renting-car" name="carIdForRemoveRenting" value="<%= car._id %>">
                     <i class="fas fa-undo"></i> Kiralamadan Kaldır</button>
 

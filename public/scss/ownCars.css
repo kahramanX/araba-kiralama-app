@@ -130,10 +130,6 @@
   font-weight: 500;
 }
 
-.car-container .card-body .card-body-right .car-wage-info {
-  border: 1px solid blue;
-}
-
 .car-container .card-footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -158,6 +154,51 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+.car-container .card-footer .car-buttons .car-wage-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 20px;
+  border-radius: 10px;
+  display: flex;
+  background-color: #39B54A;
+  color: white;
+  padding: 15px 20px;
+}
+
+.car-container .card-footer .car-buttons .car-wage-info span {
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+.car-container .card-footer .car-buttons .car-wage-info i {
+  color: green;
+  margin-right: 5px;
+}
+
+.car-container .card-footer .car-buttons .rent-button {
+  cursor: pointer;
+  font-size: 1.2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+  display: flex;
+  background-color: cornflowerblue;
+  color: white;
+  padding: 15px 20px;
+}
+
+.car-container .card-footer .car-buttons .rent-button div {
+  margin-right: 10px;
 }
 
 .car-container .card-footer .car-buttons .go-rent-car {

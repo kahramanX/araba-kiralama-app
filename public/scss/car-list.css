@@ -105,6 +105,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-bottom: 30px;
 }
 
 .selected-options .selected-province {
@@ -112,7 +113,7 @@
   background-color: cornflowerblue;
   padding: 10px 20px;
   border-radius: 10px;
-  border: 1px solid cornflowerblue;
+  border: 3px solid #457ee9;
   margin-right: 20px;
 }
 
@@ -129,6 +130,7 @@
   color: white;
   background-color: cornflowerblue;
   padding: 10px 20px;
+  border: 3px solid #457ee9;
   border-radius: 10px;
   margin-right: 20px;
 }
@@ -148,6 +150,7 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: 1px solid orange;
+  line-height: 30px;
 }
 
 .selected-options .select-again span {
@@ -156,5 +159,91 @@
 
 .selected-options .select-again i {
   color: rgba(0, 0, 0, 0.5);
+}
+
+.main-car-list-section {
+  padding: 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 5px solid red;
+}
+
+.main-car-list-section .filter-section {
+  padding: 10px 10px;
+  width: 25%;
+  border: 3px solid green;
+  border-radius: 10px;
+}
+
+.main-car-list-section .filter-section .filter-main-title {
+  text-align: center;
+  color: white;
+  background-color: cornflowerblue;
+  border-radius: 10px;
+  border: 5px solid #457ee9;
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.main-car-list-section .filter-section .filter-main-title i {
+  opacity: 0.8;
+}
+
+.main-car-list-section .filter-section .filter-boxes-container {
+  width: 100%;
+}
+
+.main-car-list-section .filter-section .filter-boxes-container .filter-box-block {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  color: black;
+}
+
+.main-car-list-section .filter-section .filter-boxes-container .filter-box-block .filter-box-title {
+  padding: 5px 10px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.main-car-list-section .filter-section .filter-boxes-container .filter-box-block .filter-box-selections .mini-box {
+  cursor: pointer;
+  margin: 8px;
+  border-radius: 10px;
+  display: inline-block;
+  border: 1px solid #FA737B;
+  width: 100px;
+  height: 50px;
+  color: #646464;
+}
+
+.main-car-list-section .filter-section .filter-boxes-container .filter-box-block .filter-box-selections .mini-box span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  line-height: 50px;
+  font-weight: 600;
+}
+
+.main-car-list-section .filter-section .filter-boxes-container .filter-box-block .filter-box-selections .mini-box:hover {
+  color: white;
+  background-color: #FA737B;
+}
+
+.main-car-list-section .all-cars {
+  padding: 10px 10px;
+  width: 75%;
+  height: 100%;
+  border: 3px solid yellow;
 }
 /*# sourceMappingURL=car-list.css.map */

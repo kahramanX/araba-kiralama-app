@@ -103,10 +103,6 @@
                     }
                 }
             }
-
-            .car-wage-info {
-                border: 1px solid blue;
-            }
         }
     }
 
@@ -122,6 +118,43 @@
         .car-buttons {
             display: flex;
             flex-direction: row;
+
+            .car-wage-info{
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+                border-radius: 10px;
+                display: flex;
+                background-color: #39B54A;
+                color: white;
+                padding: 15px 20px;
+
+                span{
+                    margin-right: 5px;
+                    font-weight: 700;
+                }
+
+                i{
+                    color: green;
+                    margin-right: 5px;
+                }
+            }
+
+            .rent-button{
+                cursor: pointer;
+                font-size: 1.2em;
+                display: flex;
+                align-items: center;
+                border-radius: 10px;
+                display: flex;
+                background-color: cornflowerblue;
+                color: white;
+                padding: 15px 20px;
+
+                div{
+                    margin-right: 10px;
+                }
+            }
 
             .go-rent-car {
                 background-color: green;

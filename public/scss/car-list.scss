@@ -68,13 +68,14 @@
 .selected-options {
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
 
     .selected-province {
         color: white;
         background-color: cornflowerblue;
         padding: 10px 20px;
         border-radius: 10px;
-        border: 1px solid cornflowerblue;
+        border: 3px solid rgb(69, 126, 233);
         margin-right: 20px;
 
         span {
@@ -91,6 +92,7 @@
         color: white;
         background-color: cornflowerblue;
         padding: 10px 20px;
+        border: 3px solid rgb(69, 126, 233);
         border-radius: 10px;
         margin-right: 20px;
 
@@ -110,8 +112,9 @@
         padding: 10px 20px;
         border-radius: 10px;
         border: 1px solid orange;
+        line-height: 30px;
 
-        span{
+        span {
             font-weight: 800;
         }
 
@@ -119,7 +122,86 @@
             color: rgba(0, 0, 0, 0.5);
         }
     }
+}
 
+.main-car-list-section {
+    padding: 10px 10px;
+    display: flex;
+    border: 5px solid red;
 
+    .filter-section {
+        padding: 10px 10px;
+        width: 25%;
+        border: 3px solid green;
+        border-radius: 10px;
 
+        .filter-main-title {
+            text-align: center;
+            color: white;
+            background-color: cornflowerblue;
+            border-radius: 10px;
+            border: 5px solid rgb(69, 126, 233);
+            font-weight: 700;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+
+            i {
+                opacity: 0.8;
+            }
+        }
+
+        .filter-boxes-container {
+            width: 100%;
+
+            .filter-box-block{
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                color: black;
+
+                .filter-box-title{
+                    padding: 5px 10px;
+                    font-size: 1.2em;
+                    font-weight: 600;
+                }
+
+                .filter-box-selections{
+
+                    .mini-box{
+                        cursor: pointer;
+                        margin: 8px;
+                        border-radius: 10px;
+                        display: inline-block;
+                        border: 1px solid #FA737B;
+                        width: 100px;
+                        height: 50px;
+                        color: rgb(100, 100, 100);
+
+                        span{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            line-height: 50px;
+                            font-weight: 600;
+                        }
+
+                        &:hover{
+                            color: white;
+                            background-color: #FA737B;
+                            
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    .all-cars {
+        padding: 10px 10px;
+        width: 75%;
+        height: 100%;
+        border: 3px solid yellow;
+    }
 }
