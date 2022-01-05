@@ -12,25 +12,8 @@
 }
 
 .all-user-info .info .file-container {
-  position: relative;
-  top: 0;
-  left: 0;
   padding: 10px;
   color: #035AA6;
-  border-radius: 10px;
-  border: 1px solid #035AA6;
-  -webkit-box-shadow: inset 0px 0px 15px 1px rgba(3, 90, 166, 0.2);
-          box-shadow: inset 0px 0px 15px 1px rgba(3, 90, 166, 0.2);
-  font-size: 1em;
-  z-index: 4;
-}
-
-.all-user-info .info .file-container .upload-file {
-  opacity: 0;
-  font-size: 1.2em;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .all-user-info .info select {

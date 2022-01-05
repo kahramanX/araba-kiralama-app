@@ -12,7 +12,16 @@
     <% } %>
 </div>
 
-<form action="" method="POST">
+<form action="" method="POST"  enctype="multipart/form-data">
+
+    <div class="photo-info info">
+        <h3>Araç Fotoğrafı :</h3>
+        <div class="edit-container">
+            <div class="file-container">
+                <input class="upload-file" type="file" name="image" id="image">
+            </div>
+        </div>
+    </div>
 
     <div class="carName-info info">
         <h3>Araç Adı:</h3>

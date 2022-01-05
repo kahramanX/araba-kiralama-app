@@ -4,6 +4,7 @@ const path = require('path');
 const ejsLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const multer = require('multer');
 
 let {
     check,
@@ -20,7 +21,7 @@ const userRoutes = require('./routes/userRoutes');
 const app = express();
 
 // db connection
-mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", (error) => {
+mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
     if (!error) {
         console.log("Database bağlandı!");
     } else {
@@ -81,10 +82,10 @@ app.post('/', (req, res) => {
 
     req.session.il = provinces;
     req.session.ilce = districts;
-    req.session.purchaseDay = Number(datetimes.slice(0,2));
-    req.session.purchaseMonth = Number(datetimes.slice(3,5));
-    req.session.deliveryDay = Number(datetimes.slice(13,15));
-    req.session.deliveryMonth = Number(datetimes.slice(16,18));
+    req.session.purchaseDay = Number(datetimes.slice(0, 2));
+    req.session.purchaseMonth = Number(datetimes.slice(3, 5));
+    req.session.deliveryDay = Number(datetimes.slice(13, 15));
+    req.session.deliveryMonth = Number(datetimes.slice(16, 18));
 
     console.log(req.body);
 

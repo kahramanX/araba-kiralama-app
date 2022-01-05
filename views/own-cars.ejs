@@ -9,8 +9,7 @@
         <div class="card-body">
             <div class="card-body-left">
                 <div class="car-photo">
-                    <img src="https://static.yolcu360.com/thumbnails/7b/0e/7b0e571344e78b4f9da6f9279f7d5772.png"
-                        alt="Araba Fotoğrafı">
+                    <img src="../public/uploads/<%= car.image %>">
                 </div>
                 <div class="mini-car-info-left">
                     <i class="fas fa-gas-pump"></i><%= car.fuelType %>
@@ -79,18 +78,18 @@
                         class="fas fa-trash-alt"></i>Aracı sil</button>
                 <% } else if (car.isRented == true && car.isListed == true) {  %>
 
-                    <button disabled class="remove-renting-car" name="carIdForRemoveRenting">
-                        <i class="fas fa-undo"></i>Araç Kullanımda</button>
-    
-                    <button disabled class="delete-car" name="carIdForDelete">
-                        <i class="fas fa-trash-alt"></i>
-                        Aracı sil
-    
-                        <div class="dropdown-content">
-                            Aracı Şuan Kullanımda
-                        </div>
-                    </button>
-                    
+                <button disabled class="remove-renting-car" name="carIdForRemoveRenting">
+                    <i class="fas fa-undo"></i>Araç Kullanımda</button>
+
+                <button disabled class="delete-car" name="carIdForDelete">
+                    <i class="fas fa-trash-alt"></i>
+                    Aracı sil
+
+                    <div class="dropdown-content">
+                        Aracı Şuan Kullanımda
+                    </div>
+                </button>
+
                 <% } %>
             </div>
         </div>
@@ -145,9 +144,6 @@
             </div>
 
             <div class="car-owner-info">
-                <div class="car-owner-image">
-                    <img src="https://i.pravatar.cc/100" alt="Araç Sahibi">
-                </div>
                 <div class="car-owner-name">
                     <div><span>Adı:</span> Deniz</div>
                 </div>

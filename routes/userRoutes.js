@@ -1,4 +1,6 @@
 const express = require('express');
+const multerConfig = require("../multer_config");
+
 let {
     check,
     validationResult
@@ -89,7 +91,7 @@ router.post("/profil/kiralanan-araclar", userController.postMyRentalCarsPage);
 
 router.get("/profil/arac-ekle", userController.getAddACarPage);
 
-router.post("/profil/arac-ekle", userController.postAddACarPage);
+router.post("/profil/arac-ekle", multerConfig.single('image'), userController.postAddACarPage);
 
 router.get("/profil/araclarim", userController.getOwnCarsPage);
 

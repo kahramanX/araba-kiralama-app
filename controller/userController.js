@@ -704,7 +704,6 @@ module.exports.postAddACarPage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
     let mail = req.session.mail;
-
     let alert = undefined;
 
     let errors = validationResult(req);
@@ -741,11 +740,12 @@ module.exports.postAddACarPage = (req, res) => {
             deposit,
             hourlyRate,
             carProvince,
-            carDistrict
+            carDistrict,
         } = req.body;
 
         let isListed = false;
         let isRented = false;
+        let image = req.file.filename;
 
         let newCar = CarModel({
             carName,
@@ -769,6 +769,7 @@ module.exports.postAddACarPage = (req, res) => {
             carDistrict,
             isRented,
             isListed,
+            image
         });
 
         AdminModel.findOne({

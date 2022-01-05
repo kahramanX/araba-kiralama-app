@@ -24,6 +24,7 @@ const carsSchema = new Schema({
     carDistrict: String,
     isRented: Boolean,
     isListed: Boolean,
+    image: String,
     ownerAdmin: {
         ownerName: String,
         ownerSurname: String,
