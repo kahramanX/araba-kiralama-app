@@ -180,7 +180,7 @@
                 <div class="car-buttons">
                     <div class="car-wage-info">
                         <i class="fas fa-lira-sign"></i>
-                        <div><span>Ücret:</span><%= car.hourlyRate %></div>
+                        <div><span>Ücret:</span><%= car.hourlyRate * totalPaidDays %></div>
                     </div>
 
                     <button type="submit" name="rentCar" value="<%= car._id %> " class="rent-button">

@@ -75,11 +75,16 @@ app.post('/', (req, res) => {
 
     let {
         provinces,
-        districts
+        districts,
+        datetimes
     } = req.body;
 
     req.session.il = provinces;
     req.session.ilce = districts;
+    req.session.purchaseDay = Number(datetimes.slice(0,2));
+    req.session.purchaseMonth = Number(datetimes.slice(3,5));
+    req.session.deliveryDay = Number(datetimes.slice(13,15));
+    req.session.deliveryMonth = Number(datetimes.slice(16,18));
 
     console.log(req.body);
 

@@ -984,6 +984,7 @@ module.exports.getCarListPage = (req, res) => {
 
     } else {
 
+
         let selectedProvince = req.session.il;
         let selectedDistrict = req.session.ilce;
 
@@ -992,36 +993,117 @@ module.exports.getCarListPage = (req, res) => {
             district: selectedDistrict
         }
 
-        CountryModel.find({})
-            .then((response) => {
+        let purchaseDay = req.session.purchaseDay;
+        let purchaseMonth = req.session.purchaseMonth;
 
-                let country = response[0].turkey;
+        let deliveryDay = req.session.deliveryDay;
+        let deliveryMonth = req.session.deliveryMonth;
 
-                for (let i = 0; i < country.length; i++) {
+        if (deliveryMonth > purchaseMonth) {
+            console.log("teslim tarihi alış tarihinden büyük");
 
-                    if (selectedProvince == country[i].il) {
-                        console.log("seçilen il: " + country[i].il)
+            let differencBetweenMonths = (deliveryMonth - purchaseMonth) - 2;
 
-                        for (let j = 0; j < country[i].ilceler.length; j++) {
-                            if (selectedDistrict == country[i].ilceler[j][0]) {
+            if (differencBetweenMonths == -1) {
+                differencBetweenMonths = 0;
+            }
 
-                                console.log("Seçilen İlçe: " + country[i].ilceler[j][0])
-                                console.log("içindeki arabalar");
-                                console.log(country[i].ilceler[j][1]);
+            console.log("aylar arasi fark: " + differencBetweenMonths);
 
-                                let arrayOfCars = country[i].ilceler[j][1];
+            let paidDaysOfFirstMonth = 31 - purchaseDay;
 
-                                res.render(`car-list`, {
-                                    layout: "layouts/car-select-layout",
-                                    isAuth,
-                                    selectedProvinceAndDistrict,
-                                    arrayOfCars
-                                });
+            console.log("İlk ay: " + paidDaysOfFirstMonth);
+
+            let paidDaysOfLastMonth = 31 - deliveryDay;
+
+            console.log("Son ay: " + paidDaysOfLastMonth);
+
+
+            let differenceBetweenFromFirstToLastMonths = paidDaysOfLastMonth + paidDaysOfFirstMonth;
+
+            console.log("ilk ve son ay toplamı: " + differenceBetweenFromFirstToLastMonths);
+
+            let totalPaidDays = (differencBetweenMonths * 31) + differenceBetweenFromFirstToLastMonths;
+
+            console.log("toplam ücretli gün: " + totalPaidDays)
+
+            CountryModel.find({})
+                .then((response) => {
+
+                    let country = response[0].turkey;
+
+                    for (let i = 0; i < country.length; i++) {
+
+                        if (selectedProvince == country[i].il) {
+                            console.log("seçilen il: " + country[i].il)
+
+                            for (let j = 0; j < country[i].ilceler.length; j++) {
+                                if (selectedDistrict == country[i].ilceler[j][0]) {
+
+                                    console.log("Seçilen İlçe: " + country[i].ilceler[j][0])
+
+                                    let arrayOfCars = country[i].ilceler[j][1];
+
+                                    res.render(`car-list`, {
+                                        layout: "layouts/car-select-layout",
+                                        isAuth,
+                                        selectedProvinceAndDistrict,
+                                        arrayOfCars,
+                                        totalPaidDays
+                                    });
+                                }
                             }
                         }
                     }
-                }
-            })
+                })
+
+
+        } else if (deliveryMonth == purchaseMonth) {
+
+            console.log("ayların ikisi aynı");
+
+            let totalPaidDays = deliveryDay - purchaseDay;
+
+            console.log("toplam ücretli gün: " + totalPaidDays)
+
+            CountryModel.find({})
+                .then((response) => {
+
+                    let country = response[0].turkey;
+
+                    for (let i = 0; i < country.length; i++) {
+
+                        if (selectedProvince == country[i].il) {
+                            console.log("seçilen il: " + country[i].il)
+
+                            for (let j = 0; j < country[i].ilceler.length; j++) {
+                                if (selectedDistrict == country[i].ilceler[j][0]) {
+
+                                    console.log("Seçilen İlçe: " + country[i].ilceler[j][0])
+                                    console.log("içindeki arabalar");
+                                    console.log(country[i].ilceler[j][1]);
+
+                                    let arrayOfCars = country[i].ilceler[j][1];
+
+                                    res.render(`car-list`, {
+                                        layout: "layouts/car-select-layout",
+                                        isAuth,
+                                        selectedProvinceAndDistrict,
+                                        arrayOfCars,
+                                        totalPaidDays
+                                    });
+                                }
+                            }
+                        }
+                    }
+                })
+
+
+        } else if (deliveryMonth < purchaseMonth) {
+
+            console.log("alış tarihi, teslim tarihinden büyük olamaz!")
+
+        }
     }
 }
 
