@@ -215,7 +215,7 @@ header .account-container .logout:hover {
   color: white;
   padding: 5px;
   border-radius: 10px;
-  background-color: #969696;
+  background: linear-gradient(130deg, #ff868d, #ea3943);
   position: absolute;
   z-index: 1;
 }
@@ -245,7 +245,7 @@ header .account-container .logout:hover {
   color: white;
   padding: 5px;
   border-radius: 10px;
-  background-color: #969696;
+  background: linear-gradient(130deg, #ff868d, #ea3943);
   position: absolute;
   z-index: 1;
 }
@@ -275,7 +275,7 @@ header .account-container .logout:hover {
   color: white;
   padding: 5px;
   border-radius: 10px;
-  background-color: #969696;
+  background: linear-gradient(130deg, #ff868d, #ea3943);
   position: absolute;
   z-index: 1;
 }
@@ -313,7 +313,7 @@ header .account-container .logout:hover {
   color: white;
   padding: 5px;
   border-radius: 10px;
-  background-color: #969696;
+  background: linear-gradient(130deg, #ff868d, #ea3943);
   position: absolute;
   z-index: 1;
 }

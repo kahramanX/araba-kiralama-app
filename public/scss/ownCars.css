@@ -209,6 +209,33 @@
 .car-container .card-footer .car-buttons .delete-car {
   background-color: red;
   color: white;
+  position: relative;
+  display: inline-block;
+}
+
+.car-container .card-footer .car-buttons .delete-car:disabled {
+  cursor: not-allowed;
+  background-color: #353535;
+  color: #aaaaaa;
+}
+
+.car-container .card-footer .car-buttons .delete-car .dropdown-content {
+  margin-top: 10px;
+  display: none;
+  font-weight: 500;
+  font-size: 1em;
+  width: 100px;
+  border: 1px solid red;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  background: linear-gradient(130deg, #ff868d, #ea3943);
+  position: absolute;
+  z-index: 1;
+}
+
+.car-container .card-footer .car-buttons .delete-car:hover .dropdown-content {
+  display: block;
 }
 
 .car-container .card-footer .car-buttons .remove-renting-car {
