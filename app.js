@@ -131,6 +131,6 @@ app.use(userRoutes);
 }) */
 
 //listening
-app.listen(process.env.PORT || 80, () => {
+app.listen(process.env.PORT || 8080, () => {
     console.info("Server running on http://localhost:3000")
 })
