@@ -619,32 +619,68 @@ module.exports.postDuzenlePage = (req, res) => {
 module.exports.getMyRentalCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
+    let mail = req.session.mail;
 
     if (!isAuth) {
         res.redirect("/");
     } else {
 
-        res.render("my-rental-cars", {
-            isAuth,
-            isAdmin,
-            layout: "layouts/profile-layout"
-        })
+        UserModel.findOne({
+                mail: mail
+            })
+            .then((response) => {
+                let arrayOfCars = response.rentedCar;
+
+                res.render("my-rental-cars", {
+                    isAuth,
+                    isAdmin,
+                    arrayOfCars,
+                    layout: "layouts/profile-layout"
+                })
+            })
     }
 }
 
 module.exports.postMyRentalCarsPage = (req, res) => {
+    let mail = req.session.mail;
     let isAuth = req.session.isAuth;
-    let isAdmin = req.session.isAdmin;
 
     if (!isAuth) {
         res.redirect("/");
     } else {
 
-        res.render("my-rental-cars", {
-            isAuth,
-            isAdmin,
-            layout: "layouts/profile-layout"
-        })
+        let carIdForRemoveFromUser = req.body.carIdForRemoveFromUser;
+
+        UserModel.findOne({
+                mail: mail
+            }).then((response) => {
+
+                for (let i = 0; i < response.rentedCar.length; i++) {
+
+                    let removeCar = response.rentedCar[i]._id.toString();
+
+                    console.log(carIdForRemoveFromUser.includes(removeCar))
+
+                    if (carIdForRemoveFromUser.includes(removeCar)) {
+                        console.log("userdan bir obje silindi");
+
+                        response.rentedCar.splice(i, 1);
+
+                        response.save();
+
+                        CarModel.findOneAndUpdate({
+                            "_id": removeCar
+                        }, {
+                            "isRented": false,
+                            "isListed": false
+                        }).then(() => {})
+
+                        res.redirect("/profil/kiralanan-araclar");
+                    }
+                }
+
+            })
+            .catch(err => console.log(err))
     }
 }
 
@@ -667,7 +703,6 @@ module.exports.getAddACarPage = (req, res) => {
 module.exports.postAddACarPage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
-
     let mail = req.session.mail;
 
     let alert = undefined;
@@ -709,6 +744,7 @@ module.exports.postAddACarPage = (req, res) => {
             carDistrict
         } = req.body;
 
+        let isListed = false;
         let isRented = false;
 
         let newCar = CarModel({
@@ -732,6 +768,7 @@ module.exports.postAddACarPage = (req, res) => {
             carProvince,
             carDistrict,
             isRented,
+            isListed,
         });
 
         AdminModel.findOne({
@@ -871,15 +908,18 @@ module.exports.postOwnCarsPage = (req, res) => {
                                                     AdminModel.findOneAndUpdate({
                                                             mail: mail,
                                                         }, {
-                                                            [`ownCars.${i}.isRented`]: true
+                                                            [`ownCars.${i}.isListed`]: true
                                                         }, {
                                                             new: true
                                                         })
-                                                        .then(() => {
+                                                        .then(() => {});
 
-                                                            console.log("güncelleme yerinin için")
-
-                                                        });
+                                                    CarModel.findOneAndUpdate({
+                                                            _id: goRentCar
+                                                        }, {
+                                                            "isListed": true
+                                                        })
+                                                        .then(() => {})
 
                                                     CountryModel.findOneAndUpdate({}, {
                                                             $push: {
@@ -903,8 +943,6 @@ module.exports.postOwnCarsPage = (req, res) => {
 
             console.log("araş kaldırma id = ")
             console.log(removeRenting)
-
-            //2. örnek kısım
 
             AdminModel.findOne({
                     mail: mail
@@ -948,10 +986,17 @@ module.exports.postOwnCarsPage = (req, res) => {
                                                             console.log("Araba objesi silindi");
                                                         });
 
+                                                    CarModel.findOneAndUpdate({
+                                                            _id: removeRenting
+                                                        }, {
+                                                            "isListed": false
+                                                        })
+                                                        .then(() => {})
+
                                                     AdminModel.findOneAndUpdate({
                                                             mail: mail
                                                         }, {
-                                                            [`ownCars.${i}.isRented`]: false
+                                                            [`ownCars.${i}.isListed`]: false
                                                         }, {
                                                             new: true
                                                         })
@@ -972,6 +1017,37 @@ module.exports.postOwnCarsPage = (req, res) => {
 }
 
 module.exports.postCarListPage = (req, res) => {
+    let mail = req.session.mail;
+    let rentCarId = req.body.rentCar;
+
+    CarModel.findOne({
+            _id: rentCarId
+        })
+        .then((response) => {
+
+            UserModel.findOneAndUpdate({
+                mail: mail
+            }, {
+                $push: {
+                    "rentedCar": response
+                }
+            }).then(() => {
+                console.log("başarılı")
+            }).catch((err) => {
+                console.log(err)
+            })
+        })
+
+    CarModel.findByIdAndUpdate({
+        _id: rentCarId
+    }, {
+        "isRented": true,
+        "isListed": false
+    }).then(() => {
+        console.log("car model isrented true")
+    })
+
+    res.redirect("/arac-secimi");
 
 }
 
@@ -986,7 +1062,7 @@ module.exports.getCarListPage = (req, res) => {
     } else {
 
         let totalPaidDays = 0;
-        
+
         let selectedProvince = req.session.il;
         let selectedDistrict = req.session.ilce;
 
@@ -1057,8 +1133,6 @@ module.exports.getCarListPage = (req, res) => {
                             if (selectedDistrict == country[i].ilceler[j][0]) {
 
                                 console.log("Seçilen İlçe: " + country[i].ilceler[j][0])
-                                console.log("içindeki arabalar");
-                                console.log(country[i].ilceler[j][1]);
 
                                 let arrayOfCars = country[i].ilceler[j][1];
 

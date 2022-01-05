@@ -193,12 +193,12 @@
                     </button>
 
                     <% } else { %>
-
-                    <button type="submit" name="rentCar" value="<%= car._id %> " class="rent-button">
-                        <div><span>Kirala</span></div>
-                        <i class="fas fa-arrow-circle-right"></i>
-                    </button>
-
+                    <form action="" method="POST">
+                        <button type="submit" name="rentCar" value="<%= car._id %>" class="rent-button">
+                            <div><span>Kirala</span></div>
+                            <i class="fas fa-arrow-circle-right"></i>
+                        </button>
+                    </form>
                     <% } %>
                 </div>
             </div>

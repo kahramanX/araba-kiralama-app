@@ -1,0 +1,173 @@
+<form action="" method="POST">
+
+    <% arrayOfCars.forEach(car => { %>
+    <div class="car-container">
+        <div class="card-header">
+            <div class="car-name"><%= car.carName %> </div>
+            <div class="car-model"><%= car.carModel %></div>
+        </div>
+        <div class="card-body">
+            <div class="card-body-left">
+                <div class="car-photo">
+                    <img src="https://static.yolcu360.com/thumbnails/7b/0e/7b0e571344e78b4f9da6f9279f7d5772.png"
+                        alt="Araba Fotoğrafı">
+                </div>
+                <div class="mini-car-info-left">
+                    <i class="fas fa-gas-pump"></i><%= car.fuelType %>
+                    <i class="fas fa-cogs"></i><%= car.gear %>
+                    <i class="fas fa-car"></i><%= car.carBodyType %>
+                </div>
+            </div>
+
+            <div class="card-body-right">
+                <div class="mini-car-info-right">
+                    <div class="info-block">
+                        <i class="fas fa-info-circle"></i>
+                        <div><span>Üretim Yılı:</span><%= car.yearOfProduction %> </div>
+                    </div>
+
+                    <div class="info-block">
+                        <i class="fas fa-info-circle"></i>
+                        <div><span>ABS:</span><%= car.abs %> </div>
+                    </div>
+                    <div class="info-block">
+                        <i class="fas fa-info-circle"></i>
+                        <div><span>Airbag:</span><%= car.airBag %> </div>
+                    </div>
+
+                    <div class="info-block">
+                        <i class="fas fa-info-circle"></i>
+                        <div><span>Koltuk:</span><%= car.seats %> </div>
+                    </div>
+
+                    <div class="info-block">
+                        <i class="fas fa-info-circle"></i>
+                        <div><span>Deposito:</span><%= car.deposit %> </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <div class="dropdown-menu">
+                <i class="fas fa-expand-alt"></i>
+            </div>
+            <div class="car-buttons">
+                <form action="" method="post">
+                    <button class="delete-car" name="carIdForRemoveFromUser" value="<%= car._id %> ">
+                        <i class="fas fa-trash-alt"></i>
+                        Aracı Geri Gönder
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: none;" class="right-container">
+        <div class="all-car-info">
+            <div class="card-header">
+                <div class="delete-right-container">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="car-name"><%= car.carName %> </div>
+                <div class="car-model"><%= car.carModel %> </div>
+            </div>
+
+            <div class="card-body-top">
+                <div class="car-photo">
+                    <img src="https://static.yolcu360.com/thumbnails/7b/0e/7b0e571344e78b4f9da6f9279f7d5772.png">
+                </div>
+            </div>
+
+            <div class="card-body-info-title">
+                Araç Bilgileri:
+            </div>
+
+            <div class="card-body-infos">
+
+                <div class="card-body-info-1">
+                    <div><span>Araç Tipi:</span><%= car.carBodyType %> </div>
+                    <div><span>Motor Kapasitesi:</span><%= car.carEngineCapacity %></div>
+                    <div><span>Yakıt Tüketimi:</span><%= car.fuelConsumption %></div>
+                    <div><span>ABS:</span><%= car.abs %></div>
+                    <div><span>Airbag:</span><%= car.airBag %></div>
+                    <div><span>Karbon emisyonu:</span><%= car.carbonEmission %></div>
+                    <div><span>Koltuk:</span><%= car.seats %></div>
+                </div>
+                <div class="card-body-info-2">
+                    <div><span>Bagaj:</span><%= car.carTrunk %></div>
+                    <div><span>Kapı:</span><%= car.doors %></div>
+                    <div><span>Vites:</span><%= car.gear %></div>
+                    <div><span>Yakıt Tipi:</span><%= car.fuelType %></div>
+                    <div><span>Hız sabitleyici:</span><%= car.cruiseControl %></div>
+                    <div><span>Üretim Yılı:</span><%= car.yearOfProduction %></div>
+                    <div><span>Aracın Bulunduğu</span></div>
+                    <div><span>İl:</span><%= car.carProvince %></div>
+                    <div><span>İlçe:</span><%= car.carDistrict %></div>
+                </div>
+            </div>
+
+            <div class="card-body-owner-title">
+                Araç Sahibi:
+            </div>
+
+            <div class="car-owner-info">
+                <div class="car-owner-image">
+                    <img src="https://i.pravatar.cc/100" alt="Araç Sahibi">
+                </div>
+                <div class="car-owner-name">
+                    <div><span>Adı:</span> Deniz</div>
+                </div>
+
+                <div class="car-owner-surname">
+                    <div><span>Soyadı:</span> Kahraman</div>
+                </div>
+
+                <div class="car-owner-phone">
+                    <div><span>Telefon:</span> 5426772225</div>
+                </div>
+
+                <div class="car-owner-address">
+                    <div><span>Adres:</span> Gelincik,30, 63200, Eyyübiye/ Şanliurfa, Turkey</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+</form>
+<script>
+    let openContainerBtn = document.querySelectorAll(".dropdown-menu");
+    let closeContainerBtn = document.querySelectorAll(".delete-right-container");
+    let container = document.querySelectorAll(".right-container");
+
+    Array.from(openContainerBtn).forEach(function (open) {
+
+        open.addEventListener("click", function (e) {
+
+            if (e.target.className == "dropdown-menu") {
+
+                open.parentElement.parentElement.nextElementSibling.style.display = "block";
+            }
+        })
+    })
+
+    Array.from(closeContainerBtn).forEach(function (close) {
+
+        close.addEventListener("click", function (e) {
+
+            if (e.target.className == "delete-right-container") {
+
+                e.target.parentElement.parentElement.parentElement.style.display = "none";
+            }
+        })
+    })
+
+    let allCarContainer = document.querySelector(".all-user-info");
+    let carContainer = document.querySelectorAll(".car-container");
+
+    if (carContainer.length == 0) {
+        allCarContainer.innerHTML = "<h1>Burada hiç araç yok <i class='far fa-frown'></i></h1>"
+    }
+</script>
