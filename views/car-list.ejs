@@ -183,10 +183,23 @@
                         <div><span>Ücret:</span><%= car.hourlyRate * totalPaidDays %></div>
                     </div>
 
+                    <% if(isAdmin) { %>
+
+                    <button disabled type="submit" name="rentCar" value="<%= car._id %> " class="rent-button">
+                        <div><span>Kirala</span></div>
+                        <i class="fas fa-arrow-circle-right"></i>
+
+                        <div class="dropdown-content">Adminler araba kiralayamaz</div>
+                    </button>
+
+                    <% } else { %>
+
                     <button type="submit" name="rentCar" value="<%= car._id %> " class="rent-button">
                         <div><span>Kirala</span></div>
                         <i class="fas fa-arrow-circle-right"></i>
                     </button>
+
+                    <% } %>
                 </div>
             </div>
         </div>

@@ -977,6 +977,7 @@ module.exports.postCarListPage = (req, res) => {
 
 module.exports.getCarListPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    let isAdmin = req.session.isAdmin;
 
     if (!isAuth) {
 
@@ -1018,7 +1019,6 @@ module.exports.getCarListPage = (req, res) => {
 
             console.log("Son ay: " + paidDaysOfLastMonth);
 
-
             let differenceBetweenFromFirstToLastMonths = paidDaysOfLastMonth + paidDaysOfFirstMonth;
 
             console.log("ilk ve son ay toplamı: " + differenceBetweenFromFirstToLastMonths);
@@ -1047,6 +1047,7 @@ module.exports.getCarListPage = (req, res) => {
                                     res.render(`car-list`, {
                                         layout: "layouts/car-select-layout",
                                         isAuth,
+                                        isAdmin,
                                         selectedProvinceAndDistrict,
                                         arrayOfCars,
                                         totalPaidDays
@@ -1088,6 +1089,7 @@ module.exports.getCarListPage = (req, res) => {
                                     res.render(`car-list`, {
                                         layout: "layouts/car-select-layout",
                                         isAuth,
+                                        isAdmin,
                                         selectedProvinceAndDistrict,
                                         arrayOfCars,
                                         totalPaidDays

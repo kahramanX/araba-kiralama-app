@@ -150,6 +150,33 @@
                 background-color: cornflowerblue;
                 color: white;
                 padding: 15px 20px;
+                position: relative;
+
+                &:disabled {
+                    cursor: not-allowed;
+                    background-color: rgb(53, 53, 53);
+                    color: rgb(170, 170, 170);
+                }
+
+                .dropdown-content {
+        
+                    margin-top: -150px;
+                    display: none;
+                    font-weight: 500;
+                    font-size: 1em;
+                    width: 100px;
+                    border: 1px solid red;
+                    color: white;
+                    padding: 5px;
+                    border-radius: 10px;
+                    background: linear-gradient(130deg, rgb(255, 134, 141), rgb(234, 57, 67));
+                    position: absolute;
+                    z-index: 1;
+                }
+
+                &:hover .dropdown-content {
+                    display: block;
+                }
 
                 div {
                     margin-right: 10px;
@@ -188,7 +215,7 @@
                     z-index: 1;
                 }
 
-                &:hover .dropdown-content{
+                &:hover .dropdown-content {
                     display: block;
                 }
             }

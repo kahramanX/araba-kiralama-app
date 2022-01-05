@@ -195,6 +195,32 @@
   background-color: cornflowerblue;
   color: white;
   padding: 15px 20px;
+  position: relative;
+}
+
+.car-container .card-footer .car-buttons .rent-button:disabled {
+  cursor: not-allowed;
+  background-color: #353535;
+  color: #aaaaaa;
+}
+
+.car-container .card-footer .car-buttons .rent-button .dropdown-content {
+  margin-top: -150px;
+  display: none;
+  font-weight: 500;
+  font-size: 1em;
+  width: 100px;
+  border: 1px solid red;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  background: linear-gradient(130deg, #ff868d, #ea3943);
+  position: absolute;
+  z-index: 1;
+}
+
+.car-container .card-footer .car-buttons .rent-button:hover .dropdown-content {
+  display: block;
 }
 
 .car-container .card-footer .car-buttons .rent-button div {
