@@ -124,15 +124,39 @@
     }
 }
 
+.filter {
+    width: 100%;
+    height: auto;
+    padding: 10px 10px;
+    border: 3px solid orange;
+
+    .selected-filter {
+        border-radius: 10px;
+        width: 100px;
+        height: 50px;
+        border: 1px solid #FA737B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        line-height: 50px;
+        font-weight: 600;
+
+        i{
+            font-size: 1.3em;
+            color: red;
+            margin-left: 10px;
+        }
+    }
+}
+
 .main-car-list-section {
     padding: 10px 10px;
     display: flex;
-    border: 5px solid red;
 
     .filter-section {
         padding: 10px 10px;
         width: 25%;
-        border: 3px solid green;
         border-radius: 10px;
 
         .filter-main-title {
@@ -153,21 +177,21 @@
         .filter-boxes-container {
             width: 100%;
 
-            .filter-box-block{
+            .filter-box-block {
                 box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
                 margin-bottom: 20px;
                 border-radius: 10px;
                 color: black;
 
-                .filter-box-title{
+                .filter-box-title {
                     padding: 5px 10px;
                     font-size: 1.2em;
                     font-weight: 600;
                 }
 
-                .filter-box-selections{
+                .filter-box-selections {
 
-                    .mini-box{
+                    .mini-box {
                         cursor: pointer;
                         margin: 8px;
                         border-radius: 10px;
@@ -177,7 +201,7 @@
                         height: 50px;
                         color: rgb(100, 100, 100);
 
-                        span{
+                        span {
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -186,10 +210,10 @@
                             font-weight: 600;
                         }
 
-                        &:hover{
+                        &:hover {
                             color: white;
                             background-color: #FA737B;
-                            
+
                         }
                     }
                 }

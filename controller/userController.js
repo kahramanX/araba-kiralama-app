@@ -806,19 +806,38 @@ module.exports.getOwnCarsPage = (req, res) => {
         res.redirect("/");
     } else {
 
-        AdminModel.findOne({
-                mail: mail
-            })
-            .then((response) => {
-                let arrayOfCars = response.ownCars;
+        let alert = undefined;
 
-                res.render("own-cars", {
-                    isAuth,
-                    isAdmin,
-                    arrayOfCars,
-                    layout: "layouts/profile-layout"
-                })
+        let errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+
+            let alert = errors.array();
+
+            res.render("own-cars", {
+                isAuth,
+                isAdmin,
+                alert,
+                layout: "layouts/profile-layout"
             })
+
+        } else {
+
+            AdminModel.findOne({
+                    mail: mail
+                })
+                .then((response) => {
+                    let arrayOfCars = response.ownCars;
+
+                    res.render("own-cars", {
+                        isAuth,
+                        isAdmin,
+                        arrayOfCars,
+                        alert,
+                        layout: "layouts/profile-layout"
+                    })
+                })
+        }
     }
 }
 

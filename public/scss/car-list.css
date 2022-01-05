@@ -161,18 +161,48 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+.filter {
+  width: 100%;
+  height: auto;
+  padding: 10px 10px;
+  border: 3px solid orange;
+}
+
+.filter .selected-filter {
+  border-radius: 10px;
+  width: 100px;
+  height: 50px;
+  border: 1px solid #FA737B;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  line-height: 50px;
+  font-weight: 600;
+}
+
+.filter .selected-filter i {
+  font-size: 1.3em;
+  color: red;
+  margin-left: 10px;
+}
+
 .main-car-list-section {
   padding: 10px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: 5px solid red;
 }
 
 .main-car-list-section .filter-section {
   padding: 10px 10px;
   width: 25%;
-  border: 3px solid green;
   border-radius: 10px;
 }
 

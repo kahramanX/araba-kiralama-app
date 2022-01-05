@@ -27,7 +27,7 @@
         <h3>Araç Adı:</h3>
         <div class="edit-container">
 
-            <input type="text" name="carName" id="carName" value="test">
+            <input min="3" type="text" name="carName" id="carName">
         </div>
     </div>
 
@@ -35,7 +35,7 @@
         <h3>Araç Modeli:</h3>
         <div class="edit-container">
 
-            <input type="text" name="carModel" id="carModel" value="test">
+            <input min="1" type="text" name="carModel" id="carModel">
         </div>
     </div>
 
@@ -61,7 +61,7 @@
         <h3>Motor Hacmi:</h3>
         <div class="edit-container">
 
-            <input type="number" min="0" name="carEngineCapacity" id="carEngineCapacity" value="test">
+            <input type="number" min="0" name="carEngineCapacity" id="carEngineCapacity">
         </div>
     </div>
 
@@ -69,7 +69,7 @@
         <h3>Yakıt Tüketimi:</h3>
         <div class="edit-container">
 
-            <input type="number" min="0" name="fuelConsumption" id="fuelConsumption" value="test">
+            <input type="number" min="0" name="fuelConsumption" id="fuelConsumption">
         </div>
     </div>
 
@@ -101,7 +101,7 @@
         <h3>Karbon emisyonu:</h3>
         <div class="edit-container">
 
-            <input type="number" min="0" max="150" name="carbonEmission" id="carbonEmission" value="test">
+            <input type="number" min="0" max="150" name="carbonEmission" id="carbonEmission" required>
         </div>
     </div>
 
@@ -109,7 +109,7 @@
         <h3>Koltuk sayısı:</h3>
         <div class="edit-container">
 
-            <input type="number" min="0" max="10" name="seats" id="seats" value="test">
+            <input type="number" min="0" max="10" name="seats" id="seats" required>
         </div>
     </div>
 
@@ -117,7 +117,7 @@
         <h3>Bagaj Hacmi:</h3>
         <div class="edit-container">
 
-            <input type="number" min="0" max="1000" name="carTrunk" id="carTrunk" value="test">
+            <input type="number" min="0" max="1000" name="carTrunk" id="carTrunk" required>
         </div>
     </div>
 
@@ -125,7 +125,7 @@
         <h3>Kapı sayısı:</h3>
         <div class="edit-container">
 
-            <input type="number" min="2" max="4" name="doors" id="doors" value="test">
+            <input type="number" min="2" max="4" name="doors" id="doors" required>
         </div>
     </div>
 
@@ -172,7 +172,7 @@
         <h3>Üretim Yılı:</h3>
         <div class="edit-container">
 
-            <input type="number" min="2000" max="2022" name="yearOfProduction" id="yearOfProduction">
+            <input type="number" min="2000" max="2022" name="yearOfProduction" id="yearOfProduction" required>
         </div>
     </div>
 
@@ -180,7 +180,7 @@
         <h3>Deposit Miktarı:</h3>
         <div class="edit-container">
 
-            <input type="number" min="0" max="2000" name="deposit" id="deposit">
+            <input type="number" min="0" max="2000" name="deposit" id="deposit" required>
         </div>
     </div>
 
@@ -188,7 +188,7 @@
         <h3>Saatlik Ücret:</h3>
         <div class="edit-container">
 
-            <input type="number" min="0" max="5000" name="hourlyRate" id="hourlyRate">
+            <input type="number" min="0" max="5000" name="hourlyRate" id="hourlyRate" required>
         </div>
     </div>
 
@@ -196,12 +196,12 @@
         <h3>Listeneceği Adres:</h3>
         <div class="edit-container">
             <label for="carProvince">İl seç:</label>
-            <select name="carProvince" id="carProvince">
+            <select name="carProvince" id="carProvince" required>
                 <option value="test" disabled>İl seç</option>
             </select>
 
             <label for="carDistrict">İlçe seç:</label>
-            <select name="carDistrict" id="carDistrict">
+            <select name="carDistrict" id="carDistrict" required>
                 <option value="test" disabled>İlçe seç</option>
             </select>
         </div>
