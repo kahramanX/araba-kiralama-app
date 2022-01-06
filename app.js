@@ -11,7 +11,6 @@ let {
     validationResult
 } = require("express-validator");
 
-
 //session store
 const MongoStore = require('connect-mongo')
 

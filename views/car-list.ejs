@@ -49,15 +49,6 @@
     </div>
 </section>
 
-<section class="filter">
-
-    <div class="selected-filter">
-        zoo
-        <i class="fas fa-times-circle"></i>
-    </div>
-
-</section>
-
 <section class="main-car-list-section">
     <div class="filter-section">
         <div class="filter-main-title">
@@ -72,14 +63,18 @@
                 </div>
 
                 <div class="filter-box-selections">
-                    <div class="mini-box"><span>Sedan</span></div>
-                    <div class="mini-box"><span>Hatchback</span></div>
-                    <div class="mini-box"><span>Cabriolet</span></div>
-                    <div class="mini-box"><span>Mini Van</span></div>
-                    <div class="mini-box"><span>Panel Van</span></div>
-                    <div class="mini-box"><span>Pick Up</span></div>
-                    <div class="mini-box"><span>Coupe</span></div>
-                    <div class="mini-box"><span>SUV</span></div>
+                    <div class="mini-box" data-car-body-type="Sedan"><input type="checkbox"><span>Sedan</span></div>
+                    <div class="mini-box" data-car-body-type="Hatchback"><input type="checkbox"><span>Hatchback</span>
+                    </div>
+                    <div class="mini-box" data-car-body-type="Cabriolet"><input type="checkbox"><span>Cabriolet</span>
+                    </div>
+                    <div class="mini-box" data-car-body-type="Mini Van"><input type="checkbox"><span>Mini Van</span>
+                    </div>
+                    <div class="mini-box" data-car-body-type="Panel Van"><input type="checkbox"><span>Panel Van</span>
+                    </div>
+                    <div class="mini-box" data-car-body-type="Pick Up"><input type="checkbox"><span>Pick Up</span></div>
+                    <div class="mini-box" data-car-body-type="Coupe"><input type="checkbox"><span>Coupe</span></div>
+                    <div class="mini-box" data-car-body-type="SUV"><input type="checkbox"><span>SUV</span></div>
                 </div>
             </div>
 
@@ -89,8 +84,8 @@
                 </div>
 
                 <div class="filter-box-selections">
-                    <div class="mini-box"><span>Var</span></div>
-                    <div class="mini-box"><span>Yok</span></div>
+                    <div class="mini-box" data-car-abs="Var"><input type="checkbox"><span>Var</span></div>
+                    <div class="mini-box" data-car-abs="Yok"><input type="checkbox"><span>Yok</span></div>
                 </div>
             </div>
 
@@ -100,8 +95,8 @@
                 </div>
 
                 <div class="filter-box-selections">
-                    <div class="mini-box"><span>Manuel</span></div>
-                    <div class="mini-box"><span>Otomatik</span></div>
+                    <div class="mini-box" data-car-gear="Manuel"><input type="checkbox"><span>Manuel</span></div>
+                    <div class="mini-box" data-car-gear="Otomatik"><input type="checkbox"><span>Otomatik</span></div>
                 </div>
             </div>
 
@@ -111,11 +106,11 @@
                 </div>
 
                 <div class="filter-box-selections">
-                    <div class="mini-box"><span>Benzin</span></div>
-                    <div class="mini-box"><span>Dizel</span></div>
-                    <div class="mini-box"><span>LPG</span></div>
-                    <div class="mini-box"><span>Elektrik</span></div>
-                    <div class="mini-box"><span>Hibrit</span></div>
+                    <div class="mini-box" data-fuel-type="Benzin"><input type="checkbox"><span>Benzin</span></div>
+                    <div class="mini-box" data-fuel-type="Dizel"><input type="checkbox"><span>Dizel</span></div>
+                    <div class="mini-box" data-fuel-type="LPG"><input type="checkbox"><span>LPG</span></div>
+                    <div class="mini-box" data-fuel-type="Elektrik"><input type="checkbox"><span>Elektrik</span></div>
+                    <div class="mini-box" data-fuel-type="Hibrit"><input type="checkbox"><span>Hibrit</span></div>
                 </div>
             </div>
 
@@ -125,8 +120,8 @@
                 </div>
 
                 <div class="filter-box-selections">
-                    <div class="mini-box"><span>Var</span></div>
-                    <div class="mini-box"><span>Yok</span></div>
+                    <div class="mini-box" data-cruise-control="Var"><input type="checkbox"><span>Var</span></div>
+                    <div class="mini-box" data-cruise-control="Yok"><input type="checkbox"><span>Yok</span></div>
                 </div>
             </div>
         </div>
@@ -134,7 +129,9 @@
     </div>
     <div class="all-cars">
         <% arrayOfCars.forEach(car => { %>
-        <div class="car-container">
+        <div class="car-container" data-car-body-type="<%= car.carBodyType %>" data-car-abs="<%= car.abs %>"
+            data-car-gear="<%= car.gear %>" data-cruise-control="<%= car.cruiseControl %>"
+            data-fuel-type="<%= car.fuelType %>">
             <div class="card-header">
                 <div class="car-name"><%= car.carName %> </div>
                 <div class="car-model"><%= car.carModel %></div>
@@ -142,8 +139,7 @@
             <div class="card-body">
                 <div class="card-body-left">
                     <div class="car-photo">
-                        <img src="https://static.yolcu360.com/thumbnails/7b/0e/7b0e571344e78b4f9da6f9279f7d5772.png"
-                            alt="Araba Fotoğrafı">
+                        <img src="../public/uploads/<%= car.image %>">
                     </div>
                     <div class="mini-car-info-left">
                         <i class="fas fa-gas-pump"></i><%= car.fuelType %>
@@ -201,7 +197,7 @@
                         <div class="dropdown-content">Adminler araba kiralayamaz</div>
                     </button>
 
-                    <% } else { %>
+                    <% } else if(isAdmin == false) { %>
                     <form action="" method="POST">
                         <button type="submit" name="rentCar" value="<%= car._id %>" class="rent-button">
                             <div><span>Kirala</span></div>
@@ -225,7 +221,7 @@
 
                 <div class="card-body-top">
                     <div class="car-photo">
-                        <img src="https://static.yolcu360.com/thumbnails/7b/0e/7b0e571344e78b4f9da6f9279f7d5772.png">
+                        <img src="../public/uploads/<%= car.image %>">
                     </div>
                 </div>
 
@@ -262,9 +258,6 @@
                 </div>
 
                 <div class="car-owner-info">
-                    <div class="car-owner-image">
-                        <img src="https://i.pravatar.cc/100" alt="Araç Sahibi">
-                    </div>
                     <div class="car-owner-name">
                         <div><span>Adı:</span> Deniz</div>
                     </div>
@@ -313,3 +306,5 @@
         })
     })
 </script>
+
+<script src="../public/js/car-filter.js"></script>
