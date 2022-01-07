@@ -168,96 +168,15 @@
   display: flex;
 }
 
-.main-car-list-section .filter-section {
-  padding: 10px 10px;
-  width: 25%;
-  border-radius: 10px;
-}
-
-.main-car-list-section .filter-section .filter-main-title {
-  text-align: center;
-  color: white;
-  background-color: cornflowerblue;
-  border-radius: 10px;
-  border: 5px solid #457ee9;
-  font-weight: 700;
-  font-size: 1.5em;
-  margin-bottom: 20px;
-}
-
-.main-car-list-section .filter-section .filter-main-title i {
-  opacity: 0.8;
-}
-
-.main-car-list-section .filter-section .filter-boxes-container {
-  width: 100%;
-}
-
-.main-car-list-section .filter-section .filter-boxes-container .filter-box-block {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
-          box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  color: black;
-}
-
-.main-car-list-section .filter-section .filter-boxes-container .filter-box-block .filter-box-title {
-  padding: 5px 10px;
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
-.main-car-list-section .filter-section .filter-boxes-container .filter-box-block .filter-box-selections .mini-box {
-  cursor: pointer;
-  margin: 8px;
-  border-radius: 10px;
-  display: inline-block;
-  border: 1px solid #FA737B;
-  width: 100px;
-  height: 50px;
-  color: #646464;
-  position: relative;
-}
-
-.main-car-list-section .filter-section .filter-boxes-container .filter-box-block .filter-box-selections .mini-box input {
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-.main-car-list-section .filter-section .filter-boxes-container .filter-box-block .filter-box-selections .mini-box span {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  text-align: center;
-  line-height: 50px;
-  font-weight: 600;
-}
-
-.main-car-list-section .filter-section .filter-boxes-container .filter-box-block .filter-box-selections .mini-box:hover {
-  color: white;
-  background-color: #FA737B;
-}
-
 .main-car-list-section .all-cars {
+  margin-right: auto;
+  margin-left: auto;
   padding: 10px 10px;
   width: 75%;
-  height: 100%;
-  border: 3px solid yellow;
 }
 
-.none {
-  display: none;
-}
-
-.open {
-  display: block;
+.main-car-list-section .all-cars .car-container {
+  margin-right: auto;
+  margin-left: auto;
 }
 /*# sourceMappingURL=car-list.css.map */
