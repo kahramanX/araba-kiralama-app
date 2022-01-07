@@ -4,15 +4,12 @@ const path = require('path');
 const ejsLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const multer = require('multer');
-
-let {
-    check,
-    validationResult
-} = require("express-validator");
 
 //session store
 const MongoStore = require('connect-mongo')
+
+// Veri tabanında Türkiye'nin il ve ilçeleri çekilmesi için kullanılan MODEL
+const Country = require("./model/Country.js");
 
 //router
 const userRoutes = require('./routes/userRoutes');
@@ -60,8 +57,8 @@ app.use(express.urlencoded({
 //static files
 app.use("/public", express.static('public'));
 
-const Country = require("./model/Country.js");
 
+//Ana sayfa işlemleri
 app.get('/', (req, res) => {
     let isAuth = req.session.isAuth;
 
@@ -79,8 +76,11 @@ app.post('/', (req, res) => {
         datetimes
     } = req.body;
 
+    // Veri tabanında il ve ilçelere eklenen araçların bulunabilmesi için seçilen il ve ilçeler session'a eklenir
     req.session.il = provinces;
     req.session.ilce = districts;
+
+    // Kiralanacak aracın fiyatı günlük olarak belirlendiği için seçilen gün ve ay'a göre toplam ücretli günleri bulmamızı sağlayacak olan verileri session'a ekler
     req.session.purchaseDay = Number(datetimes.slice(0, 2));
     req.session.purchaseMonth = Number(datetimes.slice(3, 5));
     req.session.deliveryDay = Number(datetimes.slice(13, 15));
@@ -88,6 +88,7 @@ app.post('/', (req, res) => {
 
     console.log(req.body);
 
+    //Eğer il ve ilçe seçimi yapılmadıysa anasayayı renderlar
     if (provinces == undefined || districts == undefined) {
 
         res.render("index.ejs", {
@@ -95,6 +96,7 @@ app.post('/', (req, res) => {
         });
     }
 
+    // seçilen il ve ilçeye göre veri tabanında bu il ve ilçenin olup olmadığı sorgusu yapılıyor
     if (provinces !== undefined && districts !== undefined) {
 
         Country.findOne()
@@ -124,10 +126,9 @@ app.post('/', (req, res) => {
 // Router middleware
 app.use(userRoutes);
 
-// bilinmeyen route yapmak için
-/* app.use((req, res) => {
+app.use((req, res) => {
     res.send("BİLİNMEYEN BİR ADRES GİRİLDİ!");
-}) */
+})
 
 //listening
 app.listen(process.env.PORT || 8080, () => {

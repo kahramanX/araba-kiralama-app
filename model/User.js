@@ -15,6 +15,7 @@ const usersSchema = new Schema({
         type: Number,
     },
     address: String,
+    //Üye olunan tarihi yazdırır
     createdDate: {
         type: Date,
         default: Date.now

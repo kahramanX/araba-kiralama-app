@@ -10,6 +10,7 @@ const userController = require('../controller/userController');
 
 const router = express.Router();
 
+//Kullanıcı giriş ve kayıt routes
 router.get("/giris", userController.getGirisPage);
 
 router.post("/giris", [
@@ -56,7 +57,6 @@ router.post("/kayit", [
 ], userController.postKayitPage);
 
 // Kullanıcı paneli
-
 router.get("/profil", userController.getProfilePage);
 
 router.get("/cikis", userController.getCikisPage);

@@ -1,3 +1,4 @@
+// Moduller
 const express = require("express");
 
 let {
@@ -16,7 +17,9 @@ const {
 const {
     json
 } = require("body-parser");
+// Moduller
 
+//Kullanıcı giriş ve kayıt işlemlerinin yapıldığı yer
 module.exports.getGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
 

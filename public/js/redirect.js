@@ -1,3 +1,4 @@
+// /cikis adresine geldiğinde 2.5sn beklettikten sonra ana sayfaya yönlendiriyor
 function runRedirect(direction) {
     if(direction == "/cikis"){
         
