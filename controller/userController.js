@@ -22,6 +22,7 @@ const {
 //Kullanıcı giriş ve kayıt işlemlerinin yapıldığı yer
 module.exports.getGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     if (!isAuth) {
         res.render("login.ejs", {
@@ -34,6 +35,7 @@ module.exports.getGirisPage = (req, res) => {
 
 module.exports.postGirisPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     let errors = validationResult(req);
 
@@ -45,9 +47,11 @@ module.exports.postGirisPage = (req, res) => {
             isAuth,
             alert
         });
-
+        // errors değikeni boş değil ise buraya bir json dosyası gönderilir ve onlar ekrana yazılır
     } else {
 
+        // req.body'den gelen isAdmin propertysi on ise admin girişi yapılır
+        // değilse normal üyelik girişi yapılır
         if (req.body.isAdmin == "on") {
 
             req.body.isAdmin = true;
@@ -62,6 +66,7 @@ module.exports.postGirisPage = (req, res) => {
         console.log("admin kontrolü: " + req.session.isAdmin)
         let findOneForMail = req.body.mail;
 
+        // Admin girişi yapıldıysa, admin için ayrılan veritabanına AdminModel modeline bilgiler eklenir
         if (req.session.isAdmin) {
 
             AdminModel.findOne({
@@ -83,6 +88,7 @@ module.exports.postGirisPage = (req, res) => {
 
         } else {
 
+            // req.body.isAdmin = undefined ise kullanıcı girişi yapılır
             UserModel.findOne({
                 mail: findOneForMail
             }).then((response) => {
@@ -106,6 +112,7 @@ module.exports.postGirisPage = (req, res) => {
 
 module.exports.getKayitPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     if (!isAuth) {
         res.render("register.ejs", {
@@ -121,6 +128,7 @@ module.exports.getKayitPage = (req, res) => {
 
 module.exports.postKayitPage = (req, res) => {
     let isAuth = req.session.isAuth;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     let errors = validationResult(req);
 
@@ -132,6 +140,7 @@ module.exports.postKayitPage = (req, res) => {
             isAuth,
             alert
         });
+        // errors değikeni boş değil ise buraya bir json dosyası gönderilir ve onlar ekrana yazılır
 
     } else {
 
@@ -144,7 +153,10 @@ module.exports.postKayitPage = (req, res) => {
             phone,
             address
         } = req.body;
+        // req.body den gelen propertyler değişkenlere atanır
 
+        // req.body'den gelen isAdmin propertysi on ise admin üyeliği yapılır
+        // değilse normal üyelik girişi yapılır
         if (req.body.isAdmin == "on") {
 
             req.body.isAdmin = true;
@@ -157,6 +169,7 @@ module.exports.postKayitPage = (req, res) => {
 
         }
 
+        //isAdmin = true ise Yeni admin üyeliği yapılır ve bu veriler veri tabanına eklenir
         if (req.body.isAdmin) {
 
             const newUserAdmin = AdminModel({
@@ -171,7 +184,7 @@ module.exports.postKayitPage = (req, res) => {
 
             AdminModel.findOne({
                 mail
-            }).then((response) => { // maili object olarak ekle
+            }).then((response) => {
                 // response db'de bulunan tüm objeyi getiriyor
                 if (response) {
 
@@ -211,6 +224,8 @@ module.exports.postKayitPage = (req, res) => {
 
         } else {
 
+            //isAdmin = false ise kullanıcı üyeliği yapılır
+
             const newUser = UserModel({
                 username,
                 surname,
@@ -223,7 +238,7 @@ module.exports.postKayitPage = (req, res) => {
 
             UserModel.findOne({
                 mail
-            }).then((response) => { // maili object olarak ekle
+            }).then((response) => {
                 // response db'de bulunan tüm objeyi getiriyor
                 if (response) {
 
@@ -268,16 +283,17 @@ module.exports.getProfilePage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
     let findOneForMail = req.session.mail;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     if (!isAuth) {
         res.redirect("/")
     } else {
-
+        // Kullanıcı giriş yaptığında isAdmin = true ise admin girişi yapar
         if (isAdmin) {
 
             AdminModel.findOne({
                     mail: findOneForMail
-                }) // mail property olarak belirtilmeli
+                })
                 .then((response) => {
 
                     let userInfoForProfile = {
@@ -298,12 +314,14 @@ module.exports.getProfilePage = (req, res) => {
                 })
 
         } else {
+            // Kullanıcı giriş yaptığında isAdmin = false ise müşteri girişi yapar
 
             UserModel.findOne({
                     findOneForMail
                 })
                 .then((response) => {
 
+                    // Profil kısmında kullanıcıların bilgilerini görebilmesi için session'a eklenen bilgileri ekrana yazdırılması için bir objeye atanır
                     let userInfoForProfile = {
                         username: response.username,
                         surname: response.surname,
@@ -327,19 +345,23 @@ module.exports.getProfilePage = (req, res) => {
 module.exports.getDuzenlePage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
-
     let findOneForMail = req.session.mail;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     if (!isAuth) {
         res.redirect("/");
     } else {
 
+        // Burada kullanıcının admin girişi yapıp yapmadığını kontrol ediyor
         if (isAdmin) {
 
             AdminModel.findOne({
                     mail: findOneForMail
                 })
                 .then((response) => {
+
+                    //Düzenleme sayfasında kullanıcının veri tabanında bulunan verilerini görebilmesi için kullanıcı bilgilerini bir objeye atanıyor
+                    // daha sonra res.render() a gönderilir ve ekrana yazdırılır
 
                     let userInfoForProfile = {
                         username: response.username,
@@ -360,6 +382,9 @@ module.exports.getDuzenlePage = (req, res) => {
                 })
 
         } else {
+
+            //isAdmin = false ise bu alana giriş yapılır
+            // Müşteri girişi olduğu için müşterinin veritabanındaki verilerini ekrana yazdırmak için gerekli bilgileri çeker
 
             UserModel.findOne({
                     mail: findOneForMail
@@ -390,10 +415,10 @@ module.exports.getDuzenlePage = (req, res) => {
 module.exports.postDuzenlePage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
+    let findOneForMail = req.session.mail;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     let errors = validationResult(req);
-
-    let findOneForMail = req.session.mail;
 
     //UserModel.updateOne() kısmında hata vermemesi için burada undefined olarak tanımlandı
     let alert = undefined;
@@ -402,10 +427,11 @@ module.exports.postDuzenlePage = (req, res) => {
 
         alert = errors.array();
 
-        UserModel.findOne({
+        if (isAdmin) {
+
+            AdminModel.findOne({
                 mail: findOneForMail
-            })
-            .then((response) => {
+            }).then((response) => {
 
                 let userInfoForProfile = {
                     username: response.username,
@@ -424,7 +450,34 @@ module.exports.postDuzenlePage = (req, res) => {
                     alert,
                     layout: "layouts/profile-layout"
                 });
-            })
+
+            });
+
+        } else {
+
+            UserModel.findOne({
+                mail: findOneForMail
+            }).then((response) => {
+
+                let userInfoForProfile = {
+                    username: response.username,
+                    surname: response.surname,
+                    mail: response.mail,
+                    password: response.password,
+                    age: response.age,
+                    phone: response.phone,
+                    address: response.address
+                };
+
+                res.render("profile-edit", {
+                    isAuth,
+                    isAdmin,
+                    userInfoForProfile,
+                    alert,
+                    layout: "layouts/profile-layout"
+                });
+            });
+        }
 
     } else {
         console.log(req.body)
@@ -446,11 +499,13 @@ module.exports.postDuzenlePage = (req, res) => {
 
             console.log("güncelleme alanı");
 
+            //güncellenecek olan verilerin hangi objede olduğu çağrılıyor
             AdminModel.findOne({
                 mail: findOneForMail
             }).then((response) => {
                 console.log("güncelleme alanına girildi");
 
+                //Eski ve yeni veriler karşılaştırılıp yer değiştireceği için önce veritabanındaki var olan veriler objeye atanıyor
                 let userInfoForProfile = {
                     username: response.username,
                     surname: response.surname,
@@ -461,6 +516,7 @@ module.exports.postDuzenlePage = (req, res) => {
                     address: response.address
                 };
 
+                // Verilerin güncellendiği yer
                 AdminModel.updateOne({
                         username: response.username
                     }, {
@@ -524,6 +580,7 @@ module.exports.postDuzenlePage = (req, res) => {
             })
 
         } else {
+            // admin bilgilerini düzenleme sayfası için yeni bilgiler
 
             const {
                 username,
@@ -539,11 +596,13 @@ module.exports.postDuzenlePage = (req, res) => {
 
             console.log("güncelleme alanı");
 
+            //güncellenecek olan verilerin hangi objede olduğu çağrılıyor
             UserModel.findOne({
                 mail: findOneForMail
             }).then((response) => {
                 console.log("güncelleme alanına girildi");
 
+                //Eski ve yeni veriler karşılaştırılıp yer değiştireceği için önce veritabanındaki var olan veriler objeye atanıyor
                 let userInfoForProfile = {
                     username: response.username,
                     surname: response.surname,
@@ -554,6 +613,7 @@ module.exports.postDuzenlePage = (req, res) => {
                     address: response.address
                 };
 
+                // Verilerin güncellendiği yer
                 UserModel.updateOne({
                         username: response.username
                     }, {
@@ -620,16 +680,19 @@ module.exports.postDuzenlePage = (req, res) => {
 }
 
 module.exports.getMyRentalCarsPage = (req, res) => {
+    //Aracı yalnızca kullanıcılar kiralayabildiği için bu sayfa UserModel Modeline özeldir
+
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
-    let mail = req.session.mail;
+    let findOneForMail = req.session.mail;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     if (!isAuth) {
         res.redirect("/");
     } else {
 
         UserModel.findOne({
-                mail: mail
+                mail: findOneForMail
             })
             .then((response) => {
                 let arrayOfCars = response.rentedCar;
@@ -647,17 +710,20 @@ module.exports.getMyRentalCarsPage = (req, res) => {
 module.exports.postMyRentalCarsPage = (req, res) => {
     let mail = req.session.mail;
     let isAuth = req.session.isAuth;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     if (!isAuth) {
         res.redirect("/");
     } else {
 
+        //Kullanıcıdan silincek olan aracın obje id'si
         let carIdForRemoveFromUser = req.body.carIdForRemoveFromUser;
 
         UserModel.findOne({
                 mail: mail
             }).then((response) => {
 
+                //Kullanıcının kiraladığı aracı silme işlemi
                 for (let i = 0; i < response.rentedCar.length; i++) {
 
                     let removeCar = response.rentedCar[i]._id.toString();
@@ -671,6 +737,7 @@ module.exports.postMyRentalCarsPage = (req, res) => {
 
                         response.save();
 
+                        // Silinen araç CarModel modelinde kiralanma durumu false yapılır
                         CarModel.findOneAndUpdate({
                             "_id": removeCar
                         }, {
@@ -681,7 +748,6 @@ module.exports.postMyRentalCarsPage = (req, res) => {
                         res.redirect("/profil/kiralanan-araclar");
                     }
                 }
-
             })
             .catch(err => console.log(err))
     }
@@ -690,6 +756,7 @@ module.exports.postMyRentalCarsPage = (req, res) => {
 module.exports.getAddACarPage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     if (!isAuth) {
         res.redirect("/");
@@ -708,6 +775,7 @@ module.exports.postAddACarPage = (req, res) => {
     let isAdmin = req.session.isAdmin;
     let mail = req.session.mail;
     let alert = undefined;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     let errors = validationResult(req);
 
@@ -721,6 +789,7 @@ module.exports.postAddACarPage = (req, res) => {
             alert,
             layout: "layouts/profile-layout"
         })
+        // errors değikeni boş değil ise buraya bir json dosyası gönderilir ve onlar ekrana yazılır
 
     } else {
 
@@ -745,11 +814,15 @@ module.exports.postAddACarPage = (req, res) => {
             carProvince,
             carDistrict,
         } = req.body;
+        // Veritabanına eklenecek olan aracın verileri req.body'den çekiliyor
 
-        let isListed = false;
-        let isRented = false;
-        let image = req.file.filename;
+        // İlk olarak veritabanına eklenen araç kiralık veya listeli olmadığı için
+        //isListed ve isRented değerleri false olarak atanır
+        let isListed = false; //Listelenme durumu
+        let isRented = false; // kiralanma durumu
+        let image = req.file.filename; // aracın fotoğrafının dosya yolu
 
+        //CarModeli modeli değişkene aktarılıyor
         let newCar = CarModel({
             carName,
             carModel,
@@ -775,21 +848,24 @@ module.exports.postAddACarPage = (req, res) => {
             image
         });
 
+        // Burası, aracı ekleyen adminin ownCars kısmına eklemek için
         AdminModel.findOne({
                 mail
             })
             .then((response) => {
 
+
+                // Aracın sahibinin gözükmesi için responsetan gelen admin verileri newCar objesine ekleniyor
                 newCar.ownerAdmin.ownerName = response.username;
                 newCar.ownerAdmin.ownerSurname = response.surname;
                 newCar.ownerAdmin.ownerMail = response.mail;
                 newCar.ownerAdmin.ownerPhone = response.phone;
                 newCar.ownerAdmin.ownerAddress = response.address;
 
-                response.ownCars.push(newCar);
+                response.ownCars.push(newCar); // Adminin ownCars kısmına pushlanıyor
 
-                newCar.save();
-                response.save();
+                newCar.save(); // araç kaydediliyor
+                response.save(); // Adminin ownCars kısmına pushlanan newCar objesi kaydediliyor
 
                 res.redirect("/profil/araclarim");
 
@@ -802,8 +878,8 @@ module.exports.postAddACarPage = (req, res) => {
 module.exports.getOwnCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
-
-    let mail = req.session.mail;
+    let findOneForMail = req.session.mail;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     if (!isAuth) {
         res.redirect("/");
@@ -823,11 +899,13 @@ module.exports.getOwnCarsPage = (req, res) => {
                 alert,
                 layout: "layouts/profile-layout"
             })
+            // errors değikeni boş değil ise buraya bir json dosyası gönderilir ve onlar ekrana yazılır
 
         } else {
 
+            // Adminin sahip olduğu araçları (varsa) ekranda göstermesini sağlar
             AdminModel.findOne({
-                    mail: mail
+                    mail: findOneForMail
                 })
                 .then((response) => {
                     let arrayOfCars = response.ownCars;
@@ -847,15 +925,18 @@ module.exports.getOwnCarsPage = (req, res) => {
 module.exports.postOwnCarsPage = (req, res) => {
     let isAuth = req.session.isAuth;
     let mail = req.session.mail;
+    // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
-    let deleteCar = req.body.carIdForDelete;
-    let goRentCar = req.body.carIdForRent;
-    let removeRenting = req.body.carIdForRemoveRenting;
+    let deleteCar = req.body.carIdForDelete; // silinmek istenen aracın id'si
+    let goRentCar = req.body.carIdForRent; // Kiralanmak istenen aracın id'si
+    let removeRenting = req.body.carIdForRemoveRenting; // Kiralıktan kaldırılmak istenen aracın id'si
+    // Adminin araca yapmak istediği işlemleri bir değişkene aktarılır
 
     if (!isAuth) {
         res.redirect("/");
     } else {
 
+        // Seçilen aracın silindiği alan
         if (deleteCar) {
 
             console.log("deletecar alanı: " + deleteCar)
@@ -889,7 +970,7 @@ module.exports.postOwnCarsPage = (req, res) => {
                         }
                     }
                 })
-
+            //Seçilen aracın kiralanma alanı
         } else if (goRentCar) {
 
             console.log("gorentcar alanı: " + goRentCar);
@@ -961,7 +1042,7 @@ module.exports.postOwnCarsPage = (req, res) => {
                         }
                     }
                 })
-
+            // Seçilen aracın kiralıktan kaldırılma işlemi
         } else if (removeRenting) {
 
             console.log("araş kaldırma id = ")
@@ -1040,7 +1121,7 @@ module.exports.postOwnCarsPage = (req, res) => {
 }
 
 module.exports.postCarListPage = (req, res) => {
-    let mail = req.session.mail;
+    let findOneForMail = req.session.mail;
     let rentCarId = req.body.rentCar;
 
     CarModel.findOne({
@@ -1049,7 +1130,7 @@ module.exports.postCarListPage = (req, res) => {
         .then((response) => {
 
             UserModel.findOneAndUpdate({
-                mail: mail
+                mail: findOneForMail
             }, {
                 $push: {
                     "rentedCar": response
