@@ -72,6 +72,7 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     let isAuth = req.session.isAuth;
+    
 
     let {
         provinces,
@@ -95,7 +96,8 @@ app.post('/', (req, res) => {
     if (provinces == undefined || districts == undefined) {
 
         res.render("index.ejs", {
-            isAuth
+            isAuth,
+            alert
         });
 
         // seçilen il ve ilçeye göre veri tabanında bu il ve ilçenin olup olmadığı sorgusu yapılıyor

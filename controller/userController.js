@@ -17,6 +17,7 @@ const {
 const {
     json
 } = require("body-parser");
+const { findOne } = require("../model/User");
 // Moduller
 //Kullanıcı giriş ve kayıt işlemlerinin yapıldığı yer
 module.exports.getGirisPage = (req, res) => {
@@ -291,6 +292,8 @@ module.exports.getProfilePage = (req, res) => {
     let isAuth = req.session.isAuth;
     let isAdmin = req.session.isAdmin;
     let findOneForMail = req.session.mail;
+    console.log(findOneForMail);
+    console.log(isAuth)
     // Sayfa render edildiğinde res.render()'a gönderilecek olan değişkenler
 
     if (!isAuth) {
@@ -327,7 +330,7 @@ module.exports.getProfilePage = (req, res) => {
             // Kullanıcı giriş yaptığında isAdmin = false ise müşteri girişi yapar
 
             UserModel.findOne({
-                    findOneForMail
+                    mail: findOneForMail
                 })
                 .then((response) => {
 
