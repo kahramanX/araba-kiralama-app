@@ -1,7 +1,9 @@
+//mongodb ile iletişim için mongoose modülü import ediliyor
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema; // mongoose altında bulunan mongoose.Schema değişkene atanıyor
 
+// Schema ile veritabanında bilgilerin yerleştirilecek olan veriler ve  o verilerin tipleri belirleniyor
 const usersSchema = new Schema({
     username: String,
     surname: String,
@@ -23,6 +25,8 @@ const usersSchema = new Schema({
     rentedCar: Array,
 })
 
+// mongodb veritabanında Cars Collection'nuna ekleneceğini gösteriyor
 const UserModel = mongoose.model("User", usersSchema);
 
+//Diğer dosyalarda kullanılmak üzere export ediliyor
 module.exports = UserModel;

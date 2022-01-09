@@ -17,7 +17,10 @@ const userRoutes = require('./routes/userRoutes');
 const app = express();
 
 // db connection
-mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
+mongoose.connect("mongodb+srv://mustafa:12345@cluster0.9qhig.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}, (error) => {
     if (!error) {
         console.log("Database bağlandı!");
     } else {
@@ -94,10 +97,9 @@ app.post('/', (req, res) => {
         res.render("index.ejs", {
             isAuth
         });
-    }
 
-    // seçilen il ve ilçeye göre veri tabanında bu il ve ilçenin olup olmadığı sorgusu yapılıyor
-    if (provinces !== undefined && districts !== undefined) {
+        // seçilen il ve ilçeye göre veri tabanında bu il ve ilçenin olup olmadığı sorgusu yapılıyor
+    } else if (provinces !== undefined && districts !== undefined) {
 
         Country.findOne()
             .then((response) => {
@@ -110,10 +112,7 @@ app.post('/', (req, res) => {
                         for (let j = 0; j < country[i].ilceler.length; j++) {
 
                             if (country[i].ilceler[j][0] == districts) {
-
-                                let newProvince = country[i].il;
-                                let newDistrict = country[i].ilceler[j][0];
-
+                                // Seçilen il ve ilçeler veritabanındaki il ve ilçeler ile uyuşuyorsa /arac-secimi sayfasına yönlendirir
                                 res.redirect("/arac-secimi");
                             }
                         }

@@ -12,7 +12,7 @@ allEventListeners();
 //Tüm evenListenerlar burada toplandı
 function allEventListeners() {
     window.addEventListener('DOMContentLoaded', addProvincesToSelectTag); // tüm DOM elementleri yüklendiğinde çalışır
-    provinceSelect.addEventListener("change", addDistrictsToSelectTag);
+    provinceSelect.addEventListener("change", addDistrictsToSelectTag); 
     districtSelect.addEventListener("change", removeDisabledAttributesFromInput);
     datePickerInput.addEventListener("click", removeDisabledAttributesFromButton);
 }
@@ -22,30 +22,28 @@ function addProvincesToSelectTag() {
 
     for (let i = 0; i < turkey.length; i++) {
 
-        districtSelect.innerHTML = "";
-        districtSelect.innerHTML = `<option value="İlçe seç" disabled selected>İlçe Seç</option>`;
-
         let element = `<option value="${turkey[i].il}">${turkey[i].il}</option>`;
 
-        provinceSelect.innerHTML += element;
+        provinceSelect.innerHTML += element; // iller select elemetine ekleniyor
     }
 }
 
 // İl seçimi yapıldığında, seçilen ile göre ilçeler eklenir
 function addDistrictsToSelectTag(e) {
-
-    districtSelect.disabled = false;
-    districtSelect.cursor = "default"
+// province elementi her değiştiğinde bu fonksiyon çalışır
+    districtSelect.disabled = false; // ilçe seçimi yapılabilmesi için, ilçe select elementi aktif edilir
+    districtSelect.cursor = "default" // cursor normal hale getirilir
+    districtSelect.innerHTML = ""; // her il seçiminde, ilçelerin üst üste binmemesi için districtSelectin html alanı boşaltılır
 
     for (let i = 0; i < turkey.length; i++) {
 
-        if (turkey[i].il.includes(provinceSelect.value)) {
+        if (turkey[i].il.includes(provinceSelect.value)) { // seçilen il, veritabanındaki il ile eşleşiyorsa; o ilin altındaki ilçeleri yazdıracak olan şart bloğu çalışır
 
             for (let j = 0; j < turkey[i].ilceler.length; j++) {
 
                 let element = `<option value="${turkey[i].ilceler[j]}">${turkey[i].ilceler[j]}</option>`;
 
-                districtSelect.innerHTML += element;
+                districtSelect.innerHTML += element; // ilçeler select elemetine yazdırılır
             }
         }
     }
